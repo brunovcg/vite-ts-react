@@ -1,0 +1,51 @@
+/* Base styles */
+.drawer-toggle {
+  display: none;
+}
+
+aside[data-component="Drawer"] {
+  width: 300px;
+  background-color: var(--background-white);
+  transition: transform 0.3s ease;
+  z-index: 50;
+}
+
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: var(--background-backdrop);
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+  .drawer-backdrop {
+    display: none;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  aside[data-component="Drawer"] {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    box-shadow: var(--box-shadow);
+  }
+
+  /* Show backdrop when toggle is checked */
+  .drawer-toggle:checked ~ .drawer-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Slide drawer in when toggle is checked */
+  .drawer-toggle:checked ~ aside[data-component="Drawer"] {
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,12 @@
+.im-icon {
+  display: flex;
+  align-items: center;
+
+  &[title] {
+    cursor: help;
+  }
+
+  &.im-hidden {
+    visibility: hidden;
+  }
+}

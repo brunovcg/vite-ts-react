@@ -1,0 +1,79 @@
+.width-viewport {
+  width: 100vw;
+}
+
+.height-viewport {
+  height: 100vw;
+}
+
+.width-full {
+  width: 100%;
+}
+
+.height-full {
+  height: 100%;
+}
+
+.width-half {
+  width: 50%;
+}
+
+.height-half {
+  height: 50%;
+}
+
+.width-quarter {
+  width: 25%;
+}
+
+.height-quarter {
+  height: 25%;
+}
+
+.width-third {
+  width: 33.33%;
+}
+
+.height-third {
+  height: 33.33%;
+}
+
+.width-two-thirds {
+  width: 66.66%;
+}
+
+.height-two-thirds {
+  height: 66.66%;
+}
+
+.width-auto {
+  width: auto;
+}
+
+.height-auto {
+  height: auto;
+}
+
+.width-min {
+  width: min-content;
+}
+
+.height-min {
+  height: min-content;
+}
+
+.width-max {
+  width: max-content;
+}
+
+.height-max {
+  height: max-content;
+}
+
+.width-fit {
+  width: fit-content;
+}
+
+.height-fit {
+  height: fit-content;
+}

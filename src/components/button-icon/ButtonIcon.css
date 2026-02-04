@@ -1,0 +1,16 @@
+.button-icon {
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &:focus {
+    outline: 2px solid var(--primary);
+  }
+}

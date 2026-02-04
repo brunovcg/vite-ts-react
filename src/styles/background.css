@@ -1,0 +1,27 @@
+.background-light {
+  background-color: var(--background-light);
+}
+
+.background-dark {
+  background-color: var(--background-dark);
+}
+
+.background-white {
+  background-color: var(--background-white);
+}
+
+.background-dialog-opacity {
+  background-color: var(--background-backdrop);
+}
+
+.background-transparent {
+  background-color: transparent;
+}
+
+.background-primary {
+  background-color: var(--primary);
+}
+
+.background-error {
+  background-color: var(--error-color);
+}

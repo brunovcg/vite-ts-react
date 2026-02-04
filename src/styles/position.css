@@ -1,0 +1,37 @@
+.position {
+  &.absolute {
+    position: absolute;
+  }
+
+  &.fixed {
+    position: fixed;
+  }
+
+  &.sticky {
+    position: sticky;
+  }
+
+  &.relative {
+    position: relative;
+  }
+
+  &.static {
+    position: static;
+  }
+
+  &.top {
+    top: 0;
+  }
+
+  &.right {
+    right: 0;
+  }
+
+  &.bottom {
+    bottom: 0;
+  }
+
+  &.left {
+    left: 0;
+  }
+}

@@ -19,7 +19,10 @@ export function TestDialog({ body }: Props) {
           </Button>
         </Form>
       </Dialog.Content>
-      <Dialog.Footer></Dialog.Footer>
+
+      <Dialog.Footer>
+        <Dialog.Close>Close</Dialog.Close>
+      </Dialog.Footer>
     </Dialog>
   );
 }

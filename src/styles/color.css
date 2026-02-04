@@ -23,15 +23,15 @@
 }
 
 .color-light-warning {
-  color: var(--warning-light-color);
+  color: var(--warning-light);
 }
 
 .color-error {
-  color: var(--error-color);
+  color: var(--error);
 }
 
 .color-light-error {
-  color: var(--error-light-color);
+  color: var(--error-light);
 }
 
 .color-typeface-white {

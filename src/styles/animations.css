@@ -1,0 +1,41 @@
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-rotate {
+  animation: rotate infinite 1s linear;
+}
+
+.animate-rotate-slow {
+  animation: rotate infinite 3s linear;
+}
+
+.animate-blink {
+  animation: blink infinite 2s linear;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}

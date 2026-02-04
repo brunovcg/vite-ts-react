@@ -4,17 +4,17 @@
 }
 
 aside[data-component="Drawer"] {
-  width: 300px;
+  width: 280px;
   background-color: var(--background-white);
   transition: transform 0.3s ease;
-  z-index: 50;
+  z-index: var(--z-index-drawer);
 }
 
 .drawer-backdrop {
   position: fixed;
   inset: 0;
   background-color: var(--background-backdrop);
-  z-index: 40;
+  z-index: var(--z-index-drawer);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;

@@ -1,8 +1,13 @@
 .button-icon {
   transition: all 0.2s ease-in-out;
 
-  &:hover {
-    opacity: 0.8;
+  &:hover:not(:disabled) {
+    &.color-primary {
+      background-color: var(--primary-light);
+    }
+    &.color-error {
+      background-color: var(--error-light);
+    }
   }
 
   &:disabled {

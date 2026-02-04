@@ -12,7 +12,7 @@
     label::after {
       content: " *";
       font-size: var(--font-size-md);
-      color: var(--error-color);
+      color: var(--error);
       font-weight: bold;
       line-height: 1;
     }
@@ -20,10 +20,10 @@
 
   &:has(input:user-invalid, textarea:user-invalid, select:user-invalid, datalist:user-invalid) {
     cursor: not-allowed;
-    border-color: var(--error-color);
+    border-color: var(--error);
 
     label {
-      color: var(--error-color);
+      color: var(--error);
     }
   }
 

@@ -1,9 +1,18 @@
-import type { DialogHTMLAttributes, PropsWithChildren } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  type DialogHTMLAttributes,
+  type PropsWithChildren,
+} from "react";
 import { ClassNames } from "@/utils/class-names/ClassNames.util";
 import type { DialogId } from "./dialog.types";
 import { dialogController } from "./Dialog.controller";
 import "./Dialog.css";
 import { ButtonIcon } from "@/components/button-icon/ButtonIcon";
+import { Button, type ButtonProps } from "@/components/button/Button";
+import type { MouseEvent } from "react";
+import { EVENTS } from "@/events/events";
 
 type DialogProps = PropsWithChildren &
   DialogHTMLAttributes<HTMLDialogElement> & {
@@ -16,14 +25,34 @@ type DialogProps = PropsWithChildren &
 
 function DialogContent({ children }: PropsWithChildren) {
   return (
-    <section className={ClassNames.merge("display-flex column gap-2xl padding-sm overflow-y-auto")}>
+    <section
+      className={ClassNames.merge("display-flex column gap-2xl padding-lg overflow-y-auto flex-1")}
+      data-component='DialogContent'
+    >
       {children}
     </section>
   );
 }
 
+function DialogCloseButton({ onClick, children, ...props }: ButtonProps) {
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.dispatchEvent(new CustomEvent(EVENTS.CLOSE_DIALOG, { bubbles: true }));
+    onClick?.(e);
+  };
+
+  return (
+    <Button {...props} onClick={handleClick}>
+      {children}
+    </Button>
+  );
+}
+
 function DialogFooter({ children }: PropsWithChildren) {
-  return <section>{children}</section>;
+  return (
+    <section data-component='DialogFooter' className='padding-lg'>
+      {children}
+    </section>
+  );
 }
 
 export function Dialog({
@@ -35,12 +64,23 @@ export function Dialog({
   allowXButton = true,
   ...rest
 }: DialogProps) {
-  const handleCloseDialog = () => {
+  const handleCloseDialog = useCallback(() => {
     dialogController.close(dialogId);
-  };
+  }, [dialogId]);
+
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const dialogElement = dialogRef.current;
+    dialogElement?.addEventListener(EVENTS.CLOSE_DIALOG, handleCloseDialog);
+    return () => {
+      dialogElement?.removeEventListener(EVENTS.CLOSE_DIALOG, handleCloseDialog);
+    };
+  }, [handleCloseDialog]);
 
   return (
     <dialog
+      ref={dialogRef}
       id={`dialog-${dialogId}`}
       data-component='Dialog'
       className={ClassNames.merge(
@@ -57,17 +97,21 @@ export function Dialog({
       {...rest}
     >
       <div
-        className={
-          "dialog-content display-flex column padding-lg gap-lg background-white border-radius-sm"
-        }
+        className={"dialog-content display-flex column gap-lg background-white border-radius-sm"}
         style={{
           width: width ? `${width}px` : "400px",
         }}
       >
-        <div className={"display-flex space-between align-center"}>
-          <h2>{heading}</h2>
-          {allowXButton && <ButtonIcon icon='close' onClick={handleCloseDialog} />}
-        </div>
+        {(heading || allowXButton) && (
+          <section
+            className={
+              "dialog-header display-flex space-between align-center border-bottom padding-lg"
+            }
+          >
+            <h2 className='typography width-full ellipsis'>{heading}</h2>
+            {allowXButton && <ButtonIcon icon='close' onClick={handleCloseDialog} />}
+          </section>
+        )}
         {children}
       </div>
     </dialog>
@@ -76,3 +120,4 @@ export function Dialog({
 
 Dialog.Content = DialogContent;
 Dialog.Footer = DialogFooter;
+Dialog.Close = DialogCloseButton;

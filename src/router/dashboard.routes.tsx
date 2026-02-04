@@ -1,9 +1,11 @@
+import type { IconName } from "@/components/icon/Icon.types";
 import { useMemo } from "react";
 import type { RouteObject } from "react-router-dom";
 
 export type AppRouteHandle = {
   hide?: boolean;
   title?: string;
+  icon?: IconName;
 };
 
 export function useDashboardRoutes(): RouteObject[] {
@@ -15,6 +17,7 @@ export function useDashboardRoutes(): RouteObject[] {
         handle: {
           hide: false,
           title: "Overview",
+          icon: "home",
         } as AppRouteHandle,
       },
       {
@@ -23,6 +26,7 @@ export function useDashboardRoutes(): RouteObject[] {
         handle: {
           hide: false,
           title: "Reports",
+          icon: "file",
         } as AppRouteHandle,
       },
       {
@@ -31,6 +35,7 @@ export function useDashboardRoutes(): RouteObject[] {
         handle: {
           hide: true,
           title: "Internal",
+          icon: "file",
         } as AppRouteHandle,
       },
     ],

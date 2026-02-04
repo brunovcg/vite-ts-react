@@ -1,8 +1,10 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDashboardRoutes } from "@/router/dashboard.routes";
 import type { AppRouteHandle } from "@/router/dashboard.routes";
-import { dialogController } from "@/dialogs/Dialog.controller";
 import "./Drawer.layout.css";
+import { DrawerUtils } from "./drawer.utils";
+import { Button } from "@/components/button/Button";
+import { Icon } from "@/components/icon/Icon";
 
 export function Drawer() {
   const navigate = useNavigate();
@@ -27,49 +29,24 @@ export function Drawer() {
             (route) => {
               const handle = route.handle as AppRouteHandle | undefined;
               const path = route.path || "";
-
-              const isCurrent = location.pathname === `/${path}`;
+              const icon = handle?.icon;
 
               return (
-                <button
+                <Button
+                  variant={location.pathname === `/${path}` ? "filled" : "regular"}
+                  className='display-flex align-center gap-md'
                   key={path}
                   onClick={() => {
                     navigate(path);
-                  }}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    padding: "12px 16px",
-                    background: isCurrent ? "rgba(100, 108, 255, 0.15)" : "transparent",
-                    color: isCurrent ? "#646cff" : "#a1a1aa",
-                    border: "none",
-                    borderRadius: "12px",
-                    cursor: "pointer",
-                    textAlign: "left",
-                    fontSize: "0.95rem",
-                    fontWeight: isCurrent ? 600 : 500,
-                    transition: "all 0.2s",
-                    outline: "none",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isCurrent) e.currentTarget.style.background = "rgba(255, 255, 255, 0.05)";
-                    e.currentTarget.style.color = isCurrent ? "#646cff" : "#fff";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = isCurrent
-                      ? "rgba(100, 108, 255, 0.15)"
-                      : "transparent";
-                    e.currentTarget.style.color = isCurrent ? "#646cff" : "#a1a1aa";
+                    DrawerUtils.toggle(false);
                   }}
                 >
-                  {handle?.title || path}
-                </button>
+                  {icon && <Icon icon={icon} />}
+                  <p>{handle?.title || path}</p>
+                </Button>
               );
             },
           )}
-          <button onClick={() => dialogController.open("TestDialog", { props: { body: "Test" } })}>
-            Test
-          </button>
         </nav>
       </aside>
     </>

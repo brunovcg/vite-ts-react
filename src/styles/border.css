@@ -2,6 +2,22 @@
   border: 1px solid var(--border-color);
 }
 
+.border-top {
+  border-top: 1px solid var(--border-color);
+}
+
+.border-bottom {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.border-left {
+  border-left: 1px solid var(--border-color);
+}
+
+.border-right {
+  border-right: 1px solid var(--border-color);
+}
+
 .border-none {
   border: none;
 }
@@ -103,5 +119,5 @@
 }
 
 .border-error {
-  border: 1px solid var(--error-color);
+  border: 1px solid var(--error);
 }

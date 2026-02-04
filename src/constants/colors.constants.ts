@@ -1,6 +1,6 @@
 export const COLORS = {
   primary: "var(--primary)",
-  error: "var(--error-color)",
+  error: "var(--error)",
   success: "var(--success)",
   warning: "var(--warning)",
   dark: "var(--typeface-dark)",

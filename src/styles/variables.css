@@ -7,7 +7,9 @@
   --warning: rgb(190, 156, 0);
   --warning-light: #fcfade;
   --error: #e12f26;
+  --error-color: var(--error);
   --error-light: #ffeaea;
+  --error-light-color: var(--error-light);
 
   /* TYPEFACE */
   --typeface-white: #fcfcfc;
@@ -63,4 +65,8 @@
 
   /* BOW SHADOW */
   --box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
+
+  /* Z-INDEX */
+  --z-index-drawer: 10;
+  --z-index-toast: 9999;
 }

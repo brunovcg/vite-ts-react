@@ -1,4 +1,4 @@
-import type { Column } from "@/components/table/Table";
+import type { Column } from "@/components/table";
 
 export class DownloadUtils {
   static csv(csvContent: string, fileName: string) {
@@ -24,7 +24,7 @@ export class DownloadUtils {
     const rows = data.map((row) =>
       columns
         .map((col) => {
-          if (col.acessor) return row[col.acessor];
+          if (col.accessor) return row[col.accessor];
           return ""; // Cannot export custom cells easily
         })
         .join(","),

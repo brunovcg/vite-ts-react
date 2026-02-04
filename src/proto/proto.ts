@@ -1,12 +1,3 @@
-declare global {
-  interface Array<T> {
-    filterMap<U>(
-      filterFn: (item: T, index: number, array: T[]) => boolean,
-      mapFn: (item: T, index: number, array: T[]) => U,
-    ): U[];
-  }
-}
-
 if (!Array.prototype.filterMap) {
   Object.defineProperty(Array.prototype, "filterMap", {
     value: function <T, U>(

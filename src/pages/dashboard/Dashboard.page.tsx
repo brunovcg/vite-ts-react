@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Drawer } from "../../layouts/drawer/Drawer.layout";
 import { Header } from "../../layouts/Header.layout";
+import { DesignSystemButton } from "@/components/design-system-button/DesignSystemButton";
 
 export function Dashboard() {
   return (
@@ -16,6 +17,7 @@ export function Dashboard() {
           <Outlet />
         </main>
       </div>
+      <DesignSystemButton />
     </div>
   );
 }

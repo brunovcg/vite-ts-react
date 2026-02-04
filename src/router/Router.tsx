@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Login } from "@/pages/login/Login.page";
+import { DesignSystem } from "@/pages/design-system/DesignSystem.page";
 import { Dashboard } from "@/pages/dashboard/Dashboard.page";
 import { AuthGuard } from "./AuthGuard";
 import { NotFound } from "@/pages/not-found/NotFound.page";
@@ -15,6 +16,10 @@ export function Router() {
         {
           path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/design-system",
+          element: <DesignSystem />,
         },
         {
           path: "/",

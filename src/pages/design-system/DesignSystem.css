@@ -1,0 +1,24 @@
+.design-system-container {
+  .section {
+    box-shadow: var(--box-shadow);
+  }
+
+  .font-mono {
+    font-family: var(--typeface-monospace);
+  }
+
+  .border-bottom-dashed {
+    border-bottom: 1px dashed var(--border-color);
+  }
+
+  .shadow-sm {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  code {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: var(--typeface-monospace);
+  }
+}

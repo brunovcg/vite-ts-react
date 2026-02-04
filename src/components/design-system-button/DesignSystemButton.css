@@ -1,0 +1,14 @@
+.design-system-button {
+  width: 56px;
+  height: 56px;
+  z-index: var(--z-index-toast);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+
+  &:hover {
+    opacity: var(--hover-opacity);
+    transform: scale(1.05);
+  }
+}

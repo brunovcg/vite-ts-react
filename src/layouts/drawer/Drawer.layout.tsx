@@ -20,7 +20,7 @@ export function Drawer() {
         className='display-flex column height-full padding-2xl border-right'
         data-component='Drawer'
       >
-        <nav className='display-flex column gap-lg'>
+        <nav className='display-flex column gap-sm'>
           {dashboardRoutes.filterMap(
             (route) => {
               const handle = route.handle as AppRouteHandle | undefined;

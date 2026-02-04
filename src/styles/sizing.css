@@ -77,3 +77,11 @@
 .height-fit {
   height: fit-content;
 }
+
+.max-width-full {
+  max-width: 100%;
+}
+
+.min-width-full {
+  min-width: 100%;
+}

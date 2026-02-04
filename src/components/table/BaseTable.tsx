@@ -107,7 +107,7 @@ export function BaseTable<Row extends Record<string, unknown>>({
         onFilterChange={onFilterChange}
         loading={loading}
       />
-      <div className='position-relative'>
+      <div className='position-relative overflow-x-auto width-full'>
         <TableLoading loading={loading} />
 
         <table className='border-collapse width-full'>

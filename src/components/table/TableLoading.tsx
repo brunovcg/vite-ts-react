@@ -8,10 +8,7 @@ export function TableLoading({ loading }: TableLoadingProps) {
   if (!loading) return null;
 
   return (
-    <div
-      className='position-absolute width-full height-full display-flex justify-center align-center'
-      style={{ backgroundColor: "rgba(255,255,255,0.5)", zIndex: 10 }}
-    >
+    <div className='position-absolute display-flex justify-center align-center background-backdrop-light'>
       <LoadingSpinner />
     </div>
   );

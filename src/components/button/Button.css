@@ -1,7 +1,5 @@
 button[data-component="Button"] {
-  &.variant-filled {
-    border: 1px solid transparent;
-  }
+  border: 1px solid transparent;
 
   &:hover:not(:disabled) {
     /* Outlined or Regular */
@@ -36,7 +34,7 @@ button[data-component="Button"] {
     opacity: 0.5;
   }
 
-  &:focus {
+  &:focus-visible {
     outline: 2px solid var(--primary);
   }
 }

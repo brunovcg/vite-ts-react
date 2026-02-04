@@ -1,24 +1,8 @@
-.position {
-  &.absolute {
-    position: absolute;
-  }
-
-  &.fixed {
-    position: fixed;
-  }
-
-  &.sticky {
-    position: sticky;
-  }
-
-  &.relative {
-    position: relative;
-  }
-
-  &.static {
-    position: static;
-  }
-
+.position-relative,
+.position-absolute,
+.position-fixed,
+.position-sticky,
+.position-static {
   &.top {
     top: 0;
   }
@@ -34,4 +18,24 @@
   &.left {
     left: 0;
   }
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.position-fixed {
+  position: fixed;
+}
+
+.position-sticky {
+  position: sticky;
+}
+
+.position-static {
+  position: static;
 }

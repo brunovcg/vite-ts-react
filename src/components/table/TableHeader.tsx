@@ -34,7 +34,7 @@ export function TableHeader<Row extends Record<string, unknown>>({
   loading,
 }: TableHeaderProps<Row>) {
   return (
-    <div className='display-flex justify-between align-center width-full wrap gap-md'>
+    <div className='display-flex justify-between align-center width-full flex-wrap gap-md'>
       <div className='display-flex flex-wrap gap-md flex-grow-1'>
         {hasFilters &&
           columns.map((column) => {

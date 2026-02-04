@@ -92,7 +92,7 @@ export function BaseTable<Row extends Record<string, unknown>>({
   };
 
   return (
-    <div data-component='BaseTable' className='display-flex column gap-md width-full'>
+    <div data-component='BaseTable' className='display-flex flex-column gap-md width-full'>
       <TableHeader
         columns={columns}
         data={data}

@@ -1,23 +1,23 @@
 .display-flex {
   display: flex;
 
-  &.row {
+  &.flex-row {
     flex-direction: row;
   }
 
-  &.row-reverse {
+  &.flex-row-reverse {
     flex-direction: row-reverse;
   }
 
-  &.column {
+  &.flex-column {
     flex-direction: column;
   }
 
-  &.column-reverse {
+  &.flex-column-reverse {
     flex-direction: column-reverse;
   }
 
-  &.center {
+  &.flex-center {
     justify-content: center;
     align-items: center;
   }
@@ -78,23 +78,23 @@
     gap: var(--space-2xl);
   }
 
-  &.wrap {
+  &.flex-wrap {
     flex-wrap: wrap;
   }
 
-  &.no-wrap {
+  &.flex-no-wrap {
     flex-wrap: nowrap;
   }
-}
 
-.flex-1 {
-  flex: 1;
-}
+  .flex-1 {
+    flex: 1;
+  }
 
-.flex-grow {
-  flex-grow: 1;
-}
+  .flex-grow {
+    flex-grow: 1;
+  }
 
-.flex-shrink {
-  flex-shrink: 1;
+  .flex-shrink {
+    flex-shrink: 1;
+  }
 }

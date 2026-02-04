@@ -17,10 +17,10 @@ export function Drawer() {
       <label htmlFor='drawer-toggle' className='drawer-backdrop' />
 
       <aside
-        className='display-flex column height-full padding-2xl border-right'
+        className='display-flex flex-column height-full padding-2xl border-right'
         data-component='Drawer'
       >
-        <nav className='display-flex column gap-sm'>
+        <nav className='display-flex flex-column gap-sm'>
           {dashboardRoutes.filterMap(
             (route) => {
               const handle = route.handle as AppRouteHandle | undefined;

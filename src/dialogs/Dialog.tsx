@@ -24,7 +24,9 @@ type DialogProps = PropsWithChildren &
 function DialogContent({ children }: PropsWithChildren) {
   return (
     <section
-      className={ClassNames.merge("display-flex column gap-2xl padding-lg overflow-y-auto flex-1")}
+      className={ClassNames.merge(
+        "display-flex flex-column gap-2xl padding-lg overflow-y-auto flex-1",
+      )}
       data-component='DialogContent'
     >
       {children}
@@ -108,7 +110,9 @@ export function Dialog({
       {...rest}
     >
       <div
-        className={"dialog-content display-flex column gap-lg background-white border-radius-sm"}
+        className={
+          "dialog-content display-flex flex-column gap-lg background-white border-radius-sm"
+        }
         style={{
           width: width ? `${width}px` : "400px",
         }}

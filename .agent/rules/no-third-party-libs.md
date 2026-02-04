@@ -2,7 +2,7 @@
 trigger: always_on
 ---
 
-# Antigravity Rule: Strict Typing Enforcement
+# Antigravity Rule: No Third-Party Libraries
 
 ## 🚨 Core Instruction: Do not install third party libs, we have a own code policy.
 

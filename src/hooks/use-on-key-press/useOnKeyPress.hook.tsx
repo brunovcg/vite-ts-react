@@ -57,7 +57,6 @@ export function useOnKeyPress({
     }
 
     return () => {
-      const element = target?.current;
       if (element) {
         element.removeEventListener(
           type,

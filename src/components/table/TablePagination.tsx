@@ -10,15 +10,7 @@ interface TablePaginationProps {
   loading: boolean;
 }
 
-export function TablePagination({
-  total,
-  totalPages,
-  page,
-  pageSize,
-  loading,
-  onPageSizeChange,
-  onPageChange,
-}: TablePaginationProps) {
+export function TablePagination({ total, totalPages, page, pageSize, loading, onPageSizeChange, onPageChange }: TablePaginationProps) {
   if (total === 0) return null;
 
   const itemStart = (page - 1) * pageSize + 1;
@@ -46,16 +38,8 @@ export function TablePagination({
         </select>
       </div>
       <div className='display-flex gap-sm'>
-        <ButtonIcon
-          disabled={page === 1 || loading}
-          onClick={() => onPageChange(Math.max(1, page - 1))}
-          icon='arrowBack'
-        />
-        <ButtonIcon
-          icon='arrowForward'
-          onClick={() => onPageChange(Math.max(1, page + 1))}
-          disabled={page >= totalPages || loading}
-        />
+        <ButtonIcon disabled={page === 1 || loading} onClick={() => onPageChange(Math.max(1, page - 1))} icon='arrowBack' />
+        <ButtonIcon icon='arrowForward' onClick={() => onPageChange(Math.max(1, page + 1))} disabled={page >= totalPages || loading} />
       </div>
     </div>
   );

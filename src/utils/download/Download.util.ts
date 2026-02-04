@@ -11,15 +11,7 @@ export class DownloadUtils {
     document.body.removeChild(link);
   }
 
-  static tableCSV<Row extends Record<string, unknown>>({
-    data,
-    columns,
-    fileName,
-  }: {
-    data: Row[];
-    columns: Column<Row>[];
-    fileName: string;
-  }) {
+  static tableCSV<Row extends Record<string, unknown>>({ data, columns, fileName }: { data: Row[]; columns: Column<Row>[]; fileName: string }) {
     const headers = columns.map((col) => col.header).join(",");
     const rows = data.map((row) =>
       columns

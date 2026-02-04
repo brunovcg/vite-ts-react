@@ -1,6 +1,7 @@
 import { Chip } from "@/components/chip/Chip";
 import type { Column } from "@/components/table/BaseTable";
 import { Table } from "@/components/table/Table";
+import { css } from "@/utils/class-names/ClassNames.util";
 
 // Sample data type
 interface User extends Record<string, unknown> {
@@ -179,13 +180,10 @@ const columns: Column<User>[] = [
 
 export function Login() {
   return (
-    <div data-component='Login' className='padding-xl'>
-      <div className='margin-bottom-lg'>
+    <div data-component='Login' className={css("padding-xl")}>
+      <div className={css("margin-bottom-lg")}>
         <h1>Table Example - User Management</h1>
-        <p className='text-muted margin-top-sm'>
-          This is a comprehensive example of the ClientTable component with sorting, filtering,
-          pagination, and downloadable features.
-        </p>
+        <p className={css("margin-top-sm")}>This is a comprehensive example of the ClientTable component with sorting, filtering, pagination, and downloadable features.</p>
       </div>
 
       <Table.Client columns={columns} rows={sampleUsers} primaryKey='id' downloadable={true} />

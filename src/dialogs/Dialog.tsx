@@ -23,12 +23,7 @@ type DialogProps = PropsWithChildren &
 
 function DialogContent({ children }: PropsWithChildren) {
   return (
-    <section
-      className={ClassNames.merge(
-        "display-flex flex-column gap-2xl padding-lg overflow-y-auto flex-1",
-      )}
-      data-component='DialogContent'
-    >
+    <section className={ClassNames.merge("display-flex flex-column gap-2xl padding-lg overflow-y-auto flex-1")} data-component='DialogContent'>
       {children}
     </section>
   );
@@ -55,16 +50,7 @@ function DialogFooter({ children }: PropsWithChildren) {
   );
 }
 
-export function Dialog({
-  dialogId,
-  heading,
-  className,
-  children,
-  width,
-  allowXButton = true,
-  closeOnEscape = true,
-  ...rest
-}: DialogProps) {
+export function Dialog({ dialogId, heading, className, children, width, allowXButton = true, closeOnEscape = true, ...rest }: DialogProps) {
   const handleCloseDialog = useCallback(() => {
     dialogController.close(dialogId);
   }, [dialogId]);
@@ -110,20 +96,14 @@ export function Dialog({
       {...rest}
     >
       <div
-        className={
-          "dialog-content display-flex flex-column gap-lg background-white border-radius-sm"
-        }
+        className={"dialog-content display-flex flex-column gap-lg background-white border-radius-sm"}
         style={{
           width: width ? `${width}px` : "400px",
         }}
       >
         {(heading || allowXButton) && (
-          <section
-            className={
-              "dialog-header display-flex space-between align-center border-bottom padding-lg"
-            }
-          >
-            <h2 className='typography width-full ellipsis'>{heading}</h2>
+          <section className={"dialog-header display-flex space-between align-center border-bottom padding-lg"}>
+            <h2 className='width-full text-ellipsis'>{heading}</h2>
             {allowXButton && <ButtonIcon icon='close' onClick={handleCloseDialog} />}
           </section>
         )}

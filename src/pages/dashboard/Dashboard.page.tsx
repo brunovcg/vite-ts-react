@@ -5,10 +5,7 @@ import { DesignSystemButton } from "@/components/design-system-button/DesignSyst
 
 export function Dashboard() {
   return (
-    <div
-      className='display-flex flex-column height-full overflow-hidden'
-      data-component='Dashboard'
-    >
+    <div className='display-flex flex-column height-full overflow-hidden' data-component='Dashboard'>
       <Header />
       <div className='display-flex flex-row flex-1 relative overflow-hidden'>
         <input type='checkbox' id='drawer-toggle' className='drawer-toggle' />

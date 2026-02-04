@@ -1,0 +1,17 @@
+@import "./config/reset.css";
+@import "./config/variables.css";
+@import "./design/typography.css";
+@import "./design/sizing.css";
+@import "./design/spacing.css";
+@import "./design/flexbox.css";
+@import "./shared/container-input.css";
+@import "./design/cursor.css";
+@import "./design/border.css";
+@import "./design/background.css";
+@import "./design/color.css";
+@import "./design/display.css";
+@import "./design/position.css";
+@import "./config/responsive.css";
+@import "./design/animations.css";
+@import "./design/text-max-lines.css";
+@import "./design/overflow.css";

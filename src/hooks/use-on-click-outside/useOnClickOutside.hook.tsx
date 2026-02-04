@@ -8,11 +8,7 @@ interface UseOnClickOutsideProps<T extends HTMLElement> {
   active?: boolean;
 }
 
-export function useOnClickOutside<T extends HTMLElement = HTMLElement>({
-  ref,
-  handler,
-  active,
-}: UseOnClickOutsideProps<T>) {
+export function useOnClickOutside<T extends HTMLElement = HTMLElement>({ ref, handler, active }: UseOnClickOutsideProps<T>) {
   useEffect(() => {
     if (active) {
       const listener = (event: Event) => {

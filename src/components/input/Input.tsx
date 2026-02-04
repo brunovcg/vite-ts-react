@@ -8,21 +8,10 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   debounce?: number;
 }
 
-export function Input({
-  id,
-  name,
-  label,
-  debounce,
-  value,
-  onChange,
-  defaultValue,
-  ...props
-}: InputProps) {
+export function Input({ id, name, label, debounce, value, onChange, defaultValue, ...props }: InputProps) {
   const isDebounced = typeof debounce === "number" && debounce > 0;
 
-  const [localValue, setLocalValue] = useState<string | number | readonly string[] | undefined>(
-    value !== undefined ? value : defaultValue !== undefined ? defaultValue : "",
-  );
+  const [localValue, setLocalValue] = useState<string | number | readonly string[] | undefined>(value !== undefined ? value : defaultValue !== undefined ? defaultValue : "");
 
   const lastChangeEvent = useRef<ChangeEvent<HTMLInputElement> | null>(null);
 
@@ -66,14 +55,7 @@ export function Input({
   return (
     <div className='container-input' data-component='Input'>
       <label htmlFor={id}>{label}</label>
-      <input
-        id={id}
-        name={name}
-        value={passedValue}
-        defaultValue={passedDefaultValue}
-        onChange={handleChange}
-        {...inputProps}
-      />
+      <input id={id} name={name} value={passedValue} defaultValue={passedDefaultValue} onChange={handleChange} {...inputProps} />
     </div>
   );
 }

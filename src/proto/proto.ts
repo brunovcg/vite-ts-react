@@ -1,10 +1,6 @@
 if (!Array.prototype.filterMap) {
   Object.defineProperty(Array.prototype, "filterMap", {
-    value: function <T, U>(
-      this: T[],
-      filterFn: (item: T, index: number, array: T[]) => boolean,
-      mapFn: (item: T, index: number, array: T[]) => U,
-    ): U[] {
+    value: function <T, U>(this: T[], filterFn: (item: T, index: number, array: T[]) => boolean, mapFn: (item: T, index: number, array: T[]) => U): U[] {
       const result: U[] = [];
       for (let i = 0; i < this.length; i++) {
         const item = this[i];

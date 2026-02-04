@@ -4,9 +4,7 @@ export class Environment {
   }
 
   public static isDevelopment(): boolean {
-    return (
-      this.getEnv("VITE_ENVIRONMENT") === "development" || window.location.hostname === "localhost"
-    );
+    return this.getEnv("VITE_ENVIRONMENT") === "development" || window.location.hostname === "localhost";
   }
 
   public static isProduction(): boolean {

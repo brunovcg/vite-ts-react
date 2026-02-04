@@ -4,18 +4,12 @@ import { dialogs } from "./dialog.register";
 import { Portal } from "../components/portal/Portal";
 
 import { UrlUtils } from "@/utils/url/Url.utils";
-import {
-  CreateComponent,
-  type AttributesOptionalChildren,
-} from "@/components/create-component/CreateComponent";
+import { CreateComponent, type AttributesOptionalChildren } from "@/components/create-component/CreateComponent";
 
 import type { DialogId, ConditionalProps } from "./dialog.types";
 
 export function DialogProvider() {
-  const openedDialogs = useSyncExternalStore(
-    dialogController.subscribe,
-    dialogController.getSnapshot,
-  );
+  const openedDialogs = useSyncExternalStore(dialogController.subscribe, dialogController.getSnapshot);
 
   // Open dialog detailed on query params
   useEffect(() => {
@@ -51,10 +45,7 @@ export function DialogProvider() {
 
         return (
           <Fragment key={item.id}>
-            <CreateComponent
-              component={dialogComponent as unknown as ComponentType<AttributesOptionalChildren>}
-              props={item.props as unknown as AttributesOptionalChildren}
-            />
+            <CreateComponent component={dialogComponent as unknown as ComponentType<AttributesOptionalChildren>} props={item.props as unknown as AttributesOptionalChildren} />
           </Fragment>
         );
       })}

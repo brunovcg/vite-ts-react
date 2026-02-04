@@ -62,10 +62,7 @@ class DialogController {
       ref?: RefObject<ComponentRef>;
     } & ConditionalProps<CurrentDialogId>,
   ): void {
-    this.openedDialogs = [
-      ...this.openedDialogs.filter((item) => item.id !== id),
-      { id, ...options } as DialogItem<DialogId, ComponentRef>,
-    ];
+    this.openedDialogs = [...this.openedDialogs.filter((item) => item.id !== id), { id, ...options } as DialogItem<DialogId, ComponentRef>];
     this.notify();
     this.syncUrl();
   }

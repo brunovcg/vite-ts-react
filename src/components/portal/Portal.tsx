@@ -4,9 +4,7 @@ import { createPortal } from "react-dom";
 
 export function Portal({ children, className, targetId }: PortalProps) {
   // Lazily initialize to avoid re-render if element already exists
-  const [container, setContainer] = useState<Element | null>(() =>
-    typeof document !== "undefined" ? document.getElementById(targetId) : null,
-  );
+  const [container, setContainer] = useState<Element | null>(() => (typeof document !== "undefined" ? document.getElementById(targetId) : null));
 
   useLayoutEffect(() => {
     const element = document.getElementById(targetId);

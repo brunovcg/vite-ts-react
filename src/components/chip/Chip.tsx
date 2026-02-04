@@ -21,7 +21,7 @@ export function Chip({ children, color }: ChipProps) {
           "color-warning": color === "warning",
           "color-success": color === "success",
         },
-        "padding-block-sm padding-inline-md typography size-sm bold display-flex align-center gap-xs justify-center width-fit border-radius-sm",
+        "padding-block-sm padding-inline-md font-size-sm text-bold display-flex align-center gap-xs justify-center width-fit border-radius-sm",
       )}
     >
       {children}

@@ -7,20 +7,7 @@ import "./Icon.css";
 import { ClassNames } from "@/utils/class-names/ClassNames.util";
 import { COLORS } from "@/constants/colors.constants";
 
-function IconComponent(
-  {
-    icon,
-    size = "sm",
-    color,
-    margin = "0",
-    className = "",
-    mirrored,
-    hide,
-    dataTestId,
-    title,
-  }: IconProps,
-  ref: ForwardedRef<HTMLSpanElement>,
-) {
+function IconComponent({ icon, size = "sm", color, margin = "0", className = "", mirrored, hide, dataTestId, title }: IconProps, ref: ForwardedRef<HTMLSpanElement>) {
   const iconWrapperClasses = ClassNames.merge("im-icon", {
     [`im-icon-${icon}`]: true,
     ["display-none"]: !!hide,

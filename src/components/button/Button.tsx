@@ -11,15 +11,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loadingMessage?: string;
 }
 
-export function Button({
-  className,
-  color = "primary",
-  variant = "regular",
-  loadingMessage,
-  children,
-  loading,
-  ...rest
-}: ButtonProps) {
+export function Button({ className, color = "primary", variant = "regular", loadingMessage, children, loading, ...rest }: ButtonProps) {
   return (
     <button
       data-component='Button'
@@ -35,7 +27,7 @@ export function Button({
           "background-primary": color === "primary" && variant === "filled",
           "background-error": color === "error" && variant === "filled",
         },
-        "border-radius-md padding-md cursor-pointer background-white typography bold size-sm",
+        "border-radius-md padding-md cursor-pointer background-white text-bold font-size-sm",
         className,
       )}
       {...rest}

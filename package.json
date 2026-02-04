@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "prepare": "husky",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "register:styles": "node scripts/generate-css-register.js"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.20",
@@ -50,6 +51,9 @@
     ],
     "*.{json,md,html,css}": [
       "prettier --write"
+    ],
+    "src/styles/design/*.css": [
+      "npm run register:styles"
     ]
   }
 }

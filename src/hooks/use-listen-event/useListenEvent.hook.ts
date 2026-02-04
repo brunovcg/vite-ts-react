@@ -8,12 +8,7 @@ interface UseListenEventProps<T extends HTMLElement> {
   enabled?: boolean;
 }
 
-export function useListenEvent({
-  ref,
-  event,
-  handler,
-  enabled = true,
-}: UseListenEventProps<HTMLElement>) {
+export function useListenEvent({ ref, event, handler, enabled = true }: UseListenEventProps<HTMLElement>) {
   useEffect(() => {
     if (!enabled) {
       return;

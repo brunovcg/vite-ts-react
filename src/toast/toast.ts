@@ -162,8 +162,7 @@ export class CustomToastDialog extends HTMLDialogElement {
     const durationValue = config?.duration ?? this.getAttribute("duration");
     if (durationValue) {
       this.setAttribute("duration", String(durationValue));
-      this.remainingTime =
-        typeof durationValue === "number" ? durationValue : parseInt(durationValue, 10);
+      this.remainingTime = typeof durationValue === "number" ? durationValue : parseInt(durationValue, 10);
       this.startTimer();
     } else {
       // Hide progress bar if no duration

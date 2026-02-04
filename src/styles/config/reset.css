@@ -25,3 +25,11 @@ body {
   height: 100vh;
   width: 100%;
 }
+
+p,
+span,
+div,
+section,
+article {
+  line-height: 1.5;
+}

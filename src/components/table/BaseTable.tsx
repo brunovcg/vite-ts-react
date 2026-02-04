@@ -13,9 +13,7 @@ export type CellProps<Row extends Record<string, unknown>> = {
 
 export type Cell<Row extends Record<string, unknown>> = (props: CellProps<Row>) => ReactNode;
 
-type ColumnFilter =
-  | { type: "text" | "number" | "date" | "range" }
-  | { type: "select"; options: string[] };
+type ColumnFilter = { type: "text" | "number" | "date" | "range" } | { type: "select"; options: string[] };
 
 type CustomCellRender<Row extends Record<string, unknown>> =
   | { cell: Cell<Row>; accessor?: keyof Row }
@@ -77,9 +75,7 @@ export function BaseTable<Row extends Record<string, unknown>>({
     if (!existing) {
       onSortChange([...sorting, { column: columnHeader, direction: "asc" }]);
     } else if (existing.direction === "asc") {
-      onSortChange(
-        sorting.map((s) => (s.column === columnHeader ? { ...s, direction: "desc" } : s)),
-      );
+      onSortChange(sorting.map((s) => (s.column === columnHeader ? { ...s, direction: "desc" } : s)));
     } else {
       onSortChange(sorting.filter((s) => s.column !== columnHeader));
     }
@@ -173,11 +169,7 @@ export function BaseTable<Row extends Record<string, unknown>>({
             ) : (
               <tr>
                 <td colSpan={columns.length} className='padding-xl text-center text-muted'>
-                  {loading
-                    ? "Loading..."
-                    : Object.keys(filters).length > 0
-                      ? "No results found matching your filters."
-                      : "No data available."}
+                  {loading ? "Loading..." : Object.keys(filters).length > 0 ? "No results found matching your filters." : "No data available."}
                 </td>
               </tr>
             )}

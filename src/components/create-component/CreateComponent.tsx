@@ -10,11 +10,7 @@ export type Props<ComponentProps> = {
   children?: ReactNode;
 };
 
-export function CreateComponent<ComponentProps extends AttributesOptionalChildren>({
-  component: Component,
-  props,
-  children,
-}: Props<ComponentProps>) {
+export function CreateComponent<ComponentProps extends AttributesOptionalChildren>({ component: Component, props, children }: Props<ComponentProps>) {
   return (
     <Component className='create-component' {...props} data-component='CreateComponent'>
       {children}

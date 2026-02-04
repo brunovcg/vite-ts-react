@@ -20,12 +20,7 @@ export interface ServerTableProps<Row extends Record<string, unknown>> {
   downloadable?: boolean;
 }
 
-export function ServerTable<Row extends Record<string, unknown>>({
-  columns,
-  primaryKey,
-  service,
-  downloadable,
-}: ServerTableProps<Row>) {
+export function ServerTable<Row extends Record<string, unknown>>({ columns, primaryKey, service, downloadable }: ServerTableProps<Row>) {
   const [data, setData] = useState<Row[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);

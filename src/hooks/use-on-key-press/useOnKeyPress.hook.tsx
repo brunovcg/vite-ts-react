@@ -4,11 +4,7 @@ import type { KeyboardKey } from "@/constants/colors.constants";
 import type { UseOnKeyPressProps } from "./useOnKeyPress.hook.types";
 import { useIsHoldingKey } from "../use-is-holding-key/useIsHoldingKey.hook";
 
-const preventBehavior = (
-  event: KeyboardEvent,
-  stopPropagation: boolean,
-  preventDefault: boolean,
-) => {
+const preventBehavior = (event: KeyboardEvent, stopPropagation: boolean, preventDefault: boolean) => {
   if (stopPropagation) {
     event.stopPropagation();
   }
@@ -17,17 +13,7 @@ const preventBehavior = (
   }
 };
 
-export function useOnKeyPress({
-  keys,
-  target,
-  handler,
-  hold,
-  ignoreHold,
-  enabled = true,
-  stopPropagation = false,
-  preventDefault = false,
-  type = "keydown",
-}: UseOnKeyPressProps) {
+export function useOnKeyPress({ keys, target, handler, hold, ignoreHold, enabled = true, stopPropagation = false, preventDefault = false, type = "keydown" }: UseOnKeyPressProps) {
   const { isHolding } = useIsHoldingKey({
     key: hold ?? ignoreHold,
   });
@@ -58,10 +44,7 @@ export function useOnKeyPress({
 
     return () => {
       if (element) {
-        element.removeEventListener(
-          type,
-          keydownEvent as unknown as EventListenerOrEventListenerObject,
-        );
+        element.removeEventListener(type, keydownEvent as unknown as EventListenerOrEventListenerObject);
       } else {
         document.removeEventListener(type, keydownEvent);
       }

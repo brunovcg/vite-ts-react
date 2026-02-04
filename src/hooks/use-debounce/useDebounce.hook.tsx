@@ -12,12 +12,7 @@ import type { UseDebounceProps } from "./useDebounce.hook.types";
  * @returns a value that only changes after waiting the delayed
  * time and no new change on the value was made.
  */
-export function useDebounce<Value>({
-  value,
-  delay,
-  onDebounceChange,
-  active = true,
-}: UseDebounceProps<Value>) {
+export function useDebounce<Value>({ value, delay, onDebounceChange, active = true }: UseDebounceProps<Value>) {
   const [debouncedValue, setDebouncedValue] = useState(value);
   const [isDebouncing, setIsDebouncing] = useState(false);
   const timeoutRef = useRef<number | null>(null);

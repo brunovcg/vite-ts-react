@@ -8,12 +8,7 @@ export interface ClientTableProps<Row extends Record<string, unknown>> {
   downloadable?: boolean;
 }
 
-export function ClientTable<Row extends Record<string, unknown>>({
-  columns,
-  primaryKey,
-  rows,
-  downloadable,
-}: ClientTableProps<Row>) {
+export function ClientTable<Row extends Record<string, unknown>>({ columns, primaryKey, rows, downloadable }: ClientTableProps<Row>) {
   // State
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);

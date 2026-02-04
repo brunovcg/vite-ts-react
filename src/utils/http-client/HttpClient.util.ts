@@ -13,27 +13,12 @@ export class HttpClient {
   private baseUrl: string;
   private defaultHeaders: HeadersInit;
 
-  constructor({
-    baseUrl = "",
-    defaultHeaders = {},
-  }: { baseUrl?: string; defaultHeaders?: HeadersInit } = {}) {
+  constructor({ baseUrl = "", defaultHeaders = {} }: { baseUrl?: string; defaultHeaders?: HeadersInit } = {}) {
     this.baseUrl = baseUrl;
     this.defaultHeaders = defaultHeaders;
   }
 
-  private async request<S, E>(
-    method: string,
-    {
-      endpoint,
-      body,
-      params,
-      config = {},
-      onSuccess,
-      onError,
-      onHttpError,
-      onComplete,
-    }: RequestOptions<S, E>,
-  ): Promise<S | E | null> {
+  private async request<S, E>(method: string, { endpoint, body, params, config = {}, onSuccess, onError, onHttpError, onComplete }: RequestOptions<S, E>): Promise<S | E | null> {
     const url = new URL(`${this.baseUrl}${endpoint}`, window.location.origin);
 
     if (params) {
@@ -73,19 +58,12 @@ export class HttpClient {
           errorData = null;
         }
 
-        const errorMessage =
-          (errorData as { message?: string })?.message ||
-          `HTTP Error ${status}: ${response.statusText}`;
+        const errorMessage = (errorData as { message?: string })?.message || `HTTP Error ${status}: ${response.statusText}`;
 
         const error = new Error(errorMessage);
 
         // If the server returns our standard error format even on 4xx/5xx, attempts to use onError
-        if (
-          errorData &&
-          typeof errorData === "object" &&
-          "success" in errorData &&
-          (errorData as { success: boolean }).success === false
-        ) {
+        if (errorData && typeof errorData === "object" && "success" in errorData && (errorData as { success: boolean }).success === false) {
           const standardError = errorData as { success: boolean; data: E };
           onError?.(standardError.data, status);
           return standardError.data;
@@ -135,9 +113,7 @@ export class HttpClient {
     return this.request<S, E>("PATCH", options);
   }
 
-  public delete<S, E = unknown>(
-    options: Omit<RequestOptions<S, E>, "body">,
-  ): Promise<S | E | null> {
+  public delete<S, E = unknown>(options: Omit<RequestOptions<S, E>, "body">): Promise<S | E | null> {
     return this.request<S, E>("DELETE", options);
   }
 }

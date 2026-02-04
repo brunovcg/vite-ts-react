@@ -57,21 +57,9 @@ export function TableHeader<Row extends Record<string, unknown>>({
       </div>
       <div className='display-flex gap-md'>
         {downloadable && (
-          <ButtonIcon
-            icon='fileDownload'
-            onClick={() => DownloadUtils.tableCSV({ data, columns, fileName: "table_export.csv" })}
-            disabled={data.length === 0 || loading}
-          />
+          <ButtonIcon icon='fileDownload' onClick={() => DownloadUtils.tableCSV({ data, columns, fileName: "table_export.csv" })} disabled={data.length === 0 || loading} />
         )}
-        <TablePagination
-          total={total}
-          totalPages={totalPages}
-          page={page}
-          pageSize={pageSize}
-          onPageSizeChange={onPageSizeChange}
-          onPageChange={onPageChange}
-          loading={loading}
-        />
+        <TablePagination total={total} totalPages={totalPages} page={page} pageSize={pageSize} onPageSizeChange={onPageSizeChange} onPageChange={onPageChange} loading={loading} />
       </div>
     </div>
   );

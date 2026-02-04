@@ -1,0 +1,114 @@
+.text-normal {
+  font-weight: normal;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+/* STYLE */
+
+.text-italic {
+  font-style: italic;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+/* SIZE */
+
+.font-size-xs {
+  font-size: var(--font-size-xs);
+}
+
+.font-size-sm {
+  font-size: var(--font-size-sm);
+}
+
+.font-size-md {
+  font-size: var(--font-size-md);
+}
+
+.font-size-lg {
+  font-size: var(--font-size-lg);
+}
+
+.font-size-xl {
+  font-size: var(--font-size-xl);
+}
+
+.font-size-2xl {
+  font-size: var(--font-size-2xl);
+}
+
+/* ALIGN */
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-vertical-top {
+  vertical-align: top;
+}
+
+.text-vertical-middle {
+  vertical-align: middle;
+}
+
+.text-vertical-bottom {
+  vertical-align: bottom;
+}
+
+.text-preset-title {
+  font-size: var(--font-size-2xl);
+  font-weight: bold;
+  color: var(--typeface-dark);
+}
+
+.text-preset-body {
+  font-size: var(--font-size-md);
+  font-weight: normal;
+  color: var(--typeface-dark);
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.text-clip {
+  overflow: clip;
+}
+
+.white-space-nowrap {
+  white-space: nowrap;
+}
+
+.white-space-normal {
+  white-space: normal;
+}
+
+.white-space-pre {
+  white-space: pre;
+}
+
+.white-space-pre-wrap {
+  white-space: pre-wrap;
+}
+
+.white-space-pre-line {
+  white-space: pre-line;
+}
+
+.test-novo {
+}

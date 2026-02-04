@@ -1,4 +1,4 @@
-import type { SubmitEvent, FormHTMLAttributes, ReactNode } from "react";
+import { type SubmitEvent, type FormHTMLAttributes, type ReactNode } from "react";
 
 export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   children: ReactNode;

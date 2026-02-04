@@ -1,10 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  type DialogHTMLAttributes,
-  type PropsWithChildren,
-} from "react";
+import { useCallback, useRef, type DialogHTMLAttributes, type PropsWithChildren } from "react";
 import { ClassNames } from "@/utils/class-names/ClassNames.util";
 import type { DialogId } from "./dialog.types";
 import { dialogController } from "./Dialog.controller";
@@ -13,6 +7,9 @@ import { ButtonIcon } from "@/components/button-icon/ButtonIcon";
 import { Button, type ButtonProps } from "@/components/button/Button";
 import type { MouseEvent } from "react";
 import { EVENTS } from "@/events/events";
+import { useOnKeyPress } from "@/hooks/use-on-key-press/useOnKeyPress.hook";
+import { useOnClickOutside } from "@/hooks/use-on-click-outside/useOnClickOutside.hook";
+import { useListenEvent } from "@/hooks/use-listen-event/useListenEvent.hook";
 
 type DialogProps = PropsWithChildren &
   DialogHTMLAttributes<HTMLDialogElement> & {
@@ -21,6 +18,7 @@ type DialogProps = PropsWithChildren &
     heading: string;
     width?: "sm" | "md" | "lg" | "full";
     allowXButton?: boolean;
+    closeOnEscape?: boolean;
   };
 
 function DialogContent({ children }: PropsWithChildren) {
@@ -62,6 +60,7 @@ export function Dialog({
   children,
   width,
   allowXButton = true,
+  closeOnEscape = true,
   ...rest
 }: DialogProps) {
   const handleCloseDialog = useCallback(() => {
@@ -70,13 +69,25 @@ export function Dialog({
 
   const dialogRef = useRef<HTMLDialogElement>(null);
 
-  useEffect(() => {
-    const dialogElement = dialogRef.current;
-    dialogElement?.addEventListener(EVENTS.CLOSE_DIALOG, handleCloseDialog);
-    return () => {
-      dialogElement?.removeEventListener(EVENTS.CLOSE_DIALOG, handleCloseDialog);
-    };
-  }, [handleCloseDialog]);
+  useOnKeyPress({
+    keys: ["Escape"],
+    target: dialogRef,
+    enabled: closeOnEscape,
+    handler: handleCloseDialog,
+  });
+
+  useOnClickOutside({
+    ref: dialogRef,
+    handler: handleCloseDialog,
+    active: closeOnEscape,
+  });
+
+  useListenEvent({
+    ref: dialogRef,
+    event: "CLOSE_DIALOG",
+    handler: handleCloseDialog,
+    enabled: closeOnEscape,
+  });
 
   return (
     <dialog

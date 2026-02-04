@@ -1,16 +1,15 @@
 import { ClassNames } from "@/utils/class-names/ClassNames.util";
-import type { ElementType, HTMLAttributes } from "react";
+import type { ButtonHTMLAttributes } from "react";
 import type { IconName, IconProps } from "../icon/Icon.types";
 import { Icon } from "../icon/Icon";
 import "./ButtonIcon.css";
 
-export interface ButtonIconProps extends HTMLAttributes<HTMLElement> {
+export interface ButtonIconProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   icon: IconName;
   color?: "primary" | "error";
   iconProps?: Omit<IconProps, "icon">;
   noBorder?: boolean;
-  as?: ElementType;
 }
 
 export function ButtonIcon({
@@ -19,11 +18,11 @@ export function ButtonIcon({
   color = "primary",
   iconProps,
   noBorder,
-  as: Component = "button",
+
   ...rest
 }: ButtonIconProps) {
   return (
-    <Component
+    <button
       className={ClassNames.merge(
         "button-icon border-radius-circle padding-sm background-white cursor-pointer",
         {
@@ -39,6 +38,6 @@ export function ButtonIcon({
       {...rest}
     >
       <Icon icon={icon} color={color} {...iconProps} />
-    </Component>
+    </button>
   );
 }

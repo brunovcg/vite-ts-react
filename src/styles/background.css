@@ -25,3 +25,27 @@
 .background-error {
   background-color: var(--error);
 }
+
+.background-warning {
+  background-color: var(--warning);
+}
+
+.background-success {
+  background-color: var(--success);
+}
+
+.background-success-light {
+  background-color: var(--success-light);
+}
+
+.background-error-light {
+  background-color: var(--error-light);
+}
+
+.background-warning-light {
+  background-color: var(--warning-light);
+}
+
+.background-primary-light {
+  background-color: var(--primary-light);
+}

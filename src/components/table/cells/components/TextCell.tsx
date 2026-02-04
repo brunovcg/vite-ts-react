@@ -1,11 +1,11 @@
 import type { CellProps } from "../../BaseTable";
 
 export function TextCell<Row extends Record<string, unknown>>(
-  cell: CellProps<Row> | string,
+  input: CellProps<Row> | string,
   maxLines: TextMaxLines,
 ) {
   const value =
-    typeof cell === "string" ? cell : cell.row[cell.column?.accessor as keyof typeof cell.row];
+    typeof input === "string" ? input : input.row[input.column?.accessor as keyof typeof input.row];
 
   if (typeof value !== "string") return null;
 

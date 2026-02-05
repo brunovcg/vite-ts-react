@@ -84,10 +84,10 @@ export function StylesView() {
           <div css={["margin-top-lg"]}>
             <h3 css={["text-bold", "margin-bottom-sm"]}>Border Radius</h3>
             <div css={["display-flex", "flex-wrap", "gap-md"]}>
-              <ClassDoc css={["border-radius-sm"]} description='4px' />
-              <ClassDoc css={["border-radius-md"]} description='8px' />
-              <ClassDoc css={["border-radius-lg"]} description='12px' />
-              <ClassDoc css={["border-radius-circle"]} description='50%' />
+              <ClassDoc className='.border-radius-sm' description='4px' css={[]} />
+              <ClassDoc className='.border-radius-md' description='8px' css={[]} />
+              <ClassDoc className='.border-radius-lg' description='12px' css={[]} />
+              <ClassDoc className='.border-radius-circle' description='50%' css={[]} />
             </div>
           </div>
         </Section>
@@ -95,7 +95,7 @@ export function StylesView() {
         <Section id='cursors' title='Cursors & Interaction' description='Cursor styles.'>
           <div css={["display-flex", "flex-wrap", "gap-md"]}>
             {(["pointer", "not-allowed", "wait", "text", "move", "help", "grab", "grabbing"] as const).map((c) => (
-              <div key={c} css={["cursor-pointer", "padding-md", "border", "background-white", "border-radius-sm"]}>
+              <div key={c} css={[`cursor-${c}`, "padding-md", "border", "background-white", "border-radius-sm"]}>
                 .cursor-{c}
               </div>
             ))}
@@ -104,34 +104,34 @@ export function StylesView() {
 
         <Section id='flexbox' title='Flex Box' description='Utilities for Flexbox layout control.'>
           <div css={["display-flex", "flex-column", "gap-lg"]}>
-            <ClassDoc css={["display-flex"]} description='display: flex' />
-            <ClassDoc css={["flex-row"]} description='flex-direction: row' />
-            <ClassDoc css={["flex-column"]} description='flex-direction: column' />
-            <ClassDoc css={["flex-center"]} description='justify-content: center; align-items: center' />
-            <ClassDoc css={["justify-between"]} description='justify-content: space-between' />
-            <ClassDoc css={["gap-md"]} description='gap: 8px' />
+            <ClassDoc className='.display-flex' description='display: flex' css={[]} />
+            <ClassDoc className='.flex-row' description='flex-direction: row' css={[]} />
+            <ClassDoc className='.flex-column' description='flex-direction: column' css={[]} />
+            <ClassDoc className='.flex-center' description='justify-content: center; align-items: center' css={[]} />
+            <ClassDoc className='.justify-between' description='justify-content: space-between' css={[]} />
+            <ClassDoc className='.gap-md' description='gap: 8px' css={[]} />
           </div>
 
           <div css={["margin-top-lg"]}>
             <h3 css={["text-bold", "margin-bottom-sm"]}>Gap Sizes</h3>
             <div css={["display-flex", "flex-wrap", "gap-md"]}>
-              <ClassDoc css={["gap-xs"]} description='2px' />
-              <ClassDoc css={["gap-sm"]} description='4px' />
-              <ClassDoc css={["gap-md"]} description='8px' />
-              <ClassDoc css={["gap-lg"]} description='16px' />
-              <ClassDoc css={["gap-xl"]} description='24px' />
-              <ClassDoc css={["gap-2xl"]} description='40px' />
+              <ClassDoc className='.gap-xs' description='2px' css={[]} />
+              <ClassDoc className='.gap-sm' description='4px' css={[]} />
+              <ClassDoc className='.gap-md' description='8px' css={[]} />
+              <ClassDoc className='.gap-lg' description='16px' css={[]} />
+              <ClassDoc className='.gap-xl' description='24px' css={[]} />
+              <ClassDoc className='.gap-2xl' description='40px' css={[]} />
             </div>
           </div>
 
           <div css={["margin-top-lg"]}>
             <h3 css={["text-bold", "margin-bottom-sm"]}>Flex Grow & Shrink</h3>
             <div css={["display-flex", "flex-column", "gap-sm"]}>
-              <ClassDoc css={["flex-1"]} description='flex: 1' />
-              <ClassDoc css={["flex-grow"]} description='flex-grow: 1' />
-              <ClassDoc css={["flex-shrink"]} description='flex-shrink: 1' />
-              <ClassDoc css={["flex-wrap"]} description='flex-wrap: wrap' />
-              <ClassDoc css={["flex-no-wrap"]} description='flex-wrap: nowrap' />
+              <ClassDoc className='.flex-1' description='flex: 1' css={[]} />
+              <ClassDoc className='.flex-grow' description='flex-grow: 1' css={[]} />
+              <ClassDoc className='.flex-shrink' description='flex-shrink: 1' css={[]} />
+              <ClassDoc className='.flex-wrap' description='flex-wrap: wrap' css={[]} />
+              <ClassDoc className='.flex-no-wrap' description='flex-wrap: nowrap' css={[]} />
             </div>
           </div>
         </Section>
@@ -157,10 +157,10 @@ export function StylesView() {
 
         <Section id='overflow' title='Overflow' description='Scroll and overflow utilities.'>
           <div css={["display-flex", "flex-wrap", "gap-md"]}>
-            <ClassDoc css={["overflow-hidden"]} description='overflow: hidden' />
-            <ClassDoc css={["overflow-auto"]} description='overflow: auto' />
-            <ClassDoc css={["overflow-y-scroll"]} description='overflow-y: scroll' />
-            <ClassDoc css={["overflow-x-hidden"]} description='overflow-x: hidden' />
+            <ClassDoc className='.overflow-hidden' description='overflow: hidden' css={[]} />
+            <ClassDoc className='.overflow-auto' description='overflow: auto' css={[]} />
+            <ClassDoc className='.overflow-y-scroll' description='overflow-y: scroll' css={[]} />
+            <ClassDoc className='.overflow-x-hidden' description='overflow-x: hidden' css={[]} />
           </div>
         </Section>
 
@@ -305,9 +305,11 @@ function ColorGrid() {
 
 function TypeSpecimen({ className, label, css }: { className?: string; label: string; css: Css }) {
   return (
-    <div css={mergeCss("display-flex", "align-center", "gap-md", "padding-bottom-sm", css)}>
+    <div css={["display-flex", "align-center", "gap-md", "padding-bottom-sm"]}>
       <span css={["font-size-sm", "color-typeface-light", "width-third", "font-family-monospace"]}>{label}</span>
-      <span className={className}>The quick brown fox jumps over the lazy dog.</span>
+      <span className={className} css={css}>
+        Hello world.
+      </span>
     </div>
   );
 }

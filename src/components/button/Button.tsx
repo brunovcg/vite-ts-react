@@ -11,11 +11,19 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loadingMessage?: string;
 }
 
+import { buttonLocale } from "./Button.locales";
+import { useDictionary } from "@/locales";
+
 export function Button({ className, color = "primary", variant = "regular", loadingMessage, children, loading, ...rest }: ButtonProps) {
+  const dictionary = useDictionary(buttonLocale);
+
   return (
     <button
       data-component='Button'
       className={mergeClass(className, `variant-${variant}`)}
+      disabled={loading || rest.disabled}
+      aria-busy={loading}
+      aria-disabled={loading || rest.disabled}
       css={[
         "border-radius-md",
         "padding-md",
@@ -39,7 +47,7 @@ export function Button({ className, color = "primary", variant = "regular", load
       {loading && (
         <div className='display-flex align-center gap-sm' css={["display-flex", "align-center", "gap-sm"]}>
           <LoadingSpinner />
-          {loadingMessage && <span>{loadingMessage}</span>}
+          <span>{loadingMessage || dictionary.loading}</span>
         </div>
       )}
       {!loading && children}

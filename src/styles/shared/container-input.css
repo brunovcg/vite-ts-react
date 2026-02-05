@@ -14,7 +14,6 @@ label {
   top: 4px;
 
   &:has(+ .container-input:user-invalid) {
-    position: absolute;
     color: var(--error);
   }
 
@@ -25,6 +24,7 @@ label {
       color: var(--error);
       font-weight: bold;
       line-height: 1;
+      vertical-align: sub;
     }
   }
 
@@ -41,6 +41,16 @@ label {
   }
 }
 
+.container-input ~ [data-component="LoadingSpinner"] {
+  position: absolute;
+  color: var(--primary);
+  opacity: 1;
+  background-color: transparent;
+  right: 12px;
+  bottom: 8px;
+  pointer-events: none;
+}
+
 .container-input {
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-sm);
@@ -52,10 +62,19 @@ label {
   padding-top: 18px;
   outline: none;
 
-  /* Standard Input Styles */
-  box-sizing: border-box;
+  &[aria-busy="true"] {
+    cursor: wait;
+    color: transparent;
+  }
 
-  &::placeholder {
+  &[aria-busy="true"]::placeholder,
+  &[aria-busy="true"].placeholder {
+    color: transparent;
+  }
+
+  &::placeholder,
+  ::placeholder,
+  .placeholder {
     color: var(--placeholder-color);
     font-size: var(--font-size-sm);
   }
@@ -94,7 +113,7 @@ label {
 
   /* Date Input Specific styles */
   &[type="date"]:not(:focus):invalid {
-    color: var(--placeholder-color);
+    color: var(--error-color);
   }
 
   &[type="date"]::-webkit-datetime-edit-text,

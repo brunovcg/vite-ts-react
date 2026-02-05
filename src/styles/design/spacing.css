@@ -403,3 +403,11 @@
 .margin-block-3xl {
   margin-block: var(--space-3xl);
 }
+
+.margin-auto {
+  margin: auto;
+}
+
+.margin-auto-0 {
+  margin: auto 0;
+}

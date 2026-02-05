@@ -1,4 +1,4 @@
 export const languageConfig = {
   default: "enUS",
-  others: ["esES"],
+  others: ["esES", "ptBr"],
 } as const;

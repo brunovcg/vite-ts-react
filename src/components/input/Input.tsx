@@ -1,15 +1,17 @@
 import { type ChangeEvent, type InputHTMLAttributes, useEffect, useRef, useState } from "react";
 import { useDebounce } from "../../hooks/use-debounce/useDebounce.hook";
 import { mergeClass } from "@/utils/class-names/ClassNames.util";
+import { LoadingSpinner } from "../loading-spinner/LoadingSpinner";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
   name: string;
   label?: string;
   debounce?: number;
+  loading?: boolean;
 }
 
-export function Input({ id, name, label, debounce, value, onChange, defaultValue, className, ...props }: InputProps) {
+export function Input({ id, name, label, debounce, value, onChange, defaultValue, className, disabled, loading, ...props }: InputProps) {
   const isDebounced = typeof debounce === "number" && debounce > 0;
 
   const [localValue, setLocalValue] = useState<string | number | readonly string[] | undefined>(value !== undefined ? value : defaultValue !== undefined ? defaultValue : "");
@@ -54,8 +56,21 @@ export function Input({ id, name, label, debounce, value, onChange, defaultValue
 
   return (
     <>
-      <label htmlFor={id}>{label}</label>
-      <input id={id} name={name} value={passedValue} defaultValue={passedDefaultValue} onChange={handleChange} className={mergeClass(className, "container-input")} data-component='Input' {...props} />
+      <label htmlFor={id}>
+        {label} {loading && <LoadingSpinner />}
+      </label>
+      <input
+        id={id}
+        name={name}
+        value={passedValue}
+        defaultValue={passedDefaultValue}
+        onChange={handleChange}
+        disabled={disabled || loading}
+        aria-busy={loading}
+        className={mergeClass(className, "container-input")}
+        data-component='Input'
+        {...props}
+      />
     </>
   );
 }

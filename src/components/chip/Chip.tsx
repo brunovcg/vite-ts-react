@@ -7,7 +7,7 @@ interface ChipProps {
 
 export function Chip({ children, color }: ChipProps) {
   return (
-    <div
+    <p
       data-component='Chip'
       css={[
         {
@@ -32,6 +32,6 @@ export function Chip({ children, color }: ChipProps) {
       ]}
     >
       {children}
-    </div>
+    </p>
   );
 }

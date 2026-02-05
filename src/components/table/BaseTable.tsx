@@ -2,6 +2,8 @@ import { type ReactNode } from "react";
 import { Icon } from "../icon/Icon";
 import { TableHeader } from "./TableHeader";
 import { TableLoading } from "./TableLoading";
+import { tableLocale } from "./Table.locales";
+import { useDictionary } from "@/locales";
 
 export type CellProps<Row extends Record<string, unknown>> = {
   column: BaseTableProps<Row>["columns"][number];
@@ -63,6 +65,7 @@ export function BaseTable<Row extends Record<string, unknown>>({
   filters,
   onFilterChange,
 }: BaseTableProps<Row>) {
+  const dictionary = useDictionary(tableLocale);
   const hasFilters = columns.some((column) => column.filter);
   const totalPages = Math.ceil(total / pageSize);
 
@@ -178,7 +181,7 @@ export function BaseTable<Row extends Record<string, unknown>>({
             ) : (
               <tr>
                 <td colSpan={columns.length} css={["padding-xl", "text-center"]}>
-                  {loading ? "Loading..." : Object.keys(filters).length > 0 ? "No results found matching your filters." : "No data available."}
+                  {loading ? dictionary.loading : Object.keys(filters).length > 0 ? dictionary.noResults : dictionary.noData}
                 </td>
               </tr>
             )}

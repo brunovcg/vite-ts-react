@@ -7,6 +7,7 @@ import type { Column } from "@/components/table/BaseTable";
 import { Table } from "@/components/table/Table";
 import { Tabs } from "@/components/tabs/Tabs";
 import { TextArea } from "@/components/text-area/TextArea";
+import type { Css } from "@/runtime/css.types";
 import { Form } from "react-router-dom";
 
 // Sample data type
@@ -18,6 +19,10 @@ interface User extends Record<string, unknown> {
   status: string;
   createdAt: string;
   lastLogin: string;
+}
+
+function Component({ css }: { css?: Css }) {
+  return <div css={["background-primary", css]}>xxx</div>;
 }
 
 // Sample data
@@ -235,6 +240,7 @@ export function Login() {
         <Tabs.Item id='tab-1'>Tab 1 Content</Tabs.Item>
         <Tabs.Item id='tab-2'>Tab 2 Content</Tabs.Item>
       </Tabs>
+      <Component css={["color-error"]} />
     </div>
   );
 }

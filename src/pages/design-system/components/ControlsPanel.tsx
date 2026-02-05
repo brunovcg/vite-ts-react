@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { Control, ControlType } from "@/types/component-doc.types";
 import { Input } from "@/components/input/Input";
 import { Select } from "@/components/select/Select";
-import { JsonEditor } from "./JsonEditor";
+import { ObjectInput } from "./ObjectInput";
 import { InputFunction } from "./InputFunction";
 
 interface ControlsPanelProps {
@@ -72,14 +72,14 @@ function ObjectControl({ initialValue, onChange }: { initialValue: unknown; onCh
   const handleChange = (val: string) => {
     setJsonString(val);
     try {
-      const parsed = JSON.parse(val);
+      const parsed = new Function(`return ${val}`)();
       onChange(parsed);
     } catch {
       // invalid json, don't propagate to parent component yet
     }
   };
 
-  return <JsonEditor value={jsonString} onChange={handleChange} />;
+  return <ObjectInput value={jsonString} onChange={handleChange} format={Array.isArray(initialValue) ? "array" : "object"} />;
 }
 
 function FunctionControl({ initialValue, onChange }: { initialValue: unknown; onChange: (val: unknown) => void }) {

@@ -1,4 +1,5 @@
 progress[data-component="Progress"] {
+  min-width: 100px;
   height: 12px;
   border: none;
   border-radius: var(--border-radius-sm);
@@ -7,6 +8,7 @@ progress[data-component="Progress"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  color: var(--primary);
 
   &::-webkit-progress-bar {
     background-color: var(--background-light);

@@ -1,6 +1,7 @@
 import { Icon } from "./Icon";
 import type { ComponentDoc } from "@/types/component-doc.types";
 import type { IconProps } from "./Icon.types";
+import { icons } from "./Icons";
 
 export const iconDoc: ComponentDoc<IconProps> = {
   id: "icon",
@@ -17,7 +18,7 @@ export const iconDoc: ComponentDoc<IconProps> = {
   argTypes: {
     icon: {
       type: "select",
-      options: ["close", "menu", "search", "loading", "codeFrontend", "sort", "sortAsc", "sortDesc"], // Simplified list for demo
+      options: Object.keys(icons),
     },
     size: {
       type: "select",

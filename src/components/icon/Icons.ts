@@ -24,7 +24,7 @@ import collapse from "./assets/collapse.svg?raw";
 import copy from "./assets/copy.svg?raw";
 import currency from "./assets/currency.svg?raw";
 import data from "./assets/data.svg?raw";
-import deleteIcon from "./assets/delete.svg?raw";
+import trash from "./assets/delete.svg?raw";
 import done from "./assets/done.svg?raw";
 import download from "./assets/download.svg?raw";
 import edit from "./assets/edit.svg?raw";
@@ -141,7 +141,7 @@ export const icons = {
   copy,
   currency,
   data,
-  delete: deleteIcon,
+  trash,
   done,
   download,
   edit,

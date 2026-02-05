@@ -168,16 +168,20 @@ export function StylesView() {
           <div css={["display-flex", "flex-wrap", "gap-lg"]}>
             <div css={["width-half"]}>
               <h3 css={["text-bold", "margin-bottom-sm"]}>Position</h3>
-              <ClassDoc css={["position-relative"]} description='position: relative' />
-              <ClassDoc css={["position-absolute"]} description='position: absolute' />
-              <ClassDoc css={["position-fixed"]} description='position: fixed' />
-              <ClassDoc css={["position-sticky"]} description='position: sticky' />
+              <div css={["display-flex", "flex-column", "gap-sm"]}>
+                <ClassDoc className='.position-relative' description='position: relative' css={[]} />
+                <ClassDoc className='.position-absolute' description='position: absolute' css={[]} />
+                <ClassDoc className='.position-fixed' description='position: fixed' css={[]} />
+                <ClassDoc className='.position-sticky' description='position: sticky' css={[]} />
+              </div>
             </div>
             <div css={["width-half"]}>
               <h3 css={["text-bold", "margin-bottom-sm"]}>Display</h3>
-              <ClassDoc css={["display-none"]} description='display: none' />
-              <ClassDoc css={["display-inline"]} description='display: inline' />
-              <ClassDoc css={["display-inline-block"]} description='display: inline-block' />
+              <div css={["display-flex", "flex-column", "gap-sm"]}>
+                <ClassDoc className='.display-none' description='display: none' css={[]} />
+                <ClassDoc className='.display-inline' description='display: inline' css={[]} />
+                <ClassDoc className='.display-inline-block' description='display: inline-block' css={[]} />
+              </div>
             </div>
           </div>
         </Section>

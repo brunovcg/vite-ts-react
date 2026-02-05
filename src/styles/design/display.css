@@ -29,3 +29,15 @@
 .display-table-cell {
   display: table-cell;
 }
+
+.display-subgrid {
+  display: subgrid;
+}
+
+.display-contents {
+  display: contents;
+}
+
+.display-block {
+  display: block;
+}

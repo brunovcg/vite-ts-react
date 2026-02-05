@@ -8,9 +8,9 @@ export interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> 
 
 export function TextArea({ id, name, label, ...props }: InputProps) {
   return (
-    <div className='container-input' data-component='TextArea'>
+    <>
       <label htmlFor={id}>{label}</label>
-      <textarea id={id} name={name} {...props} />
-    </div>
+      <textarea id={id} className='container-input' name={name} {...props} data-component='TextArea' />
+    </>
   );
 }

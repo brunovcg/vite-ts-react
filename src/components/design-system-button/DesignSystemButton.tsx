@@ -12,7 +12,21 @@ export function DesignSystemButton() {
 
   return (
     <button
-      className='design-system-button position-fixed bottom right margin-lg padding-md background-primary color-white border-none border-radius-circle cursor-pointer display-flex flex-center'
+      className='design-system-button'
+      css={[
+        "position-fixed",
+        "bottom",
+        "right",
+        "margin-lg",
+        "padding-md",
+        "background-primary",
+        "color-white",
+        "border-none",
+        "border-radius-circle",
+        "cursor-pointer",
+        "display-flex",
+        "flex-center",
+      ]}
       onClick={() => navigate("/design-system")}
       title='Open Design System'
     >

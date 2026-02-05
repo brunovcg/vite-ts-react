@@ -16,8 +16,8 @@ export function Drawer() {
     <>
       <label htmlFor='drawer-toggle' className='drawer-backdrop' />
 
-      <aside className='display-flex flex-column height-full padding-2xl border-right' data-component='Drawer'>
-        <nav className='display-flex flex-column gap-sm'>
+      <aside css={["display-flex", "flex-column", "height-full", "padding-2xl", "border-right"]} data-component='Drawer'>
+        <nav css={["display-flex", "flex-column", "gap-sm"]}>
           {dashboardRoutes.filterMap(
             (route) => {
               const handle = route.handle as AppRouteHandle | undefined;
@@ -31,7 +31,7 @@ export function Drawer() {
               return (
                 <Button
                   variant={location.pathname === `/${path}` ? "filled" : "regular"}
-                  className='display-flex align-center gap-md'
+                  css={["display-flex", "align-center", "gap-md"]}
                   key={path}
                   onClick={() => {
                     navigate(path);

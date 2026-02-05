@@ -1,3 +1,4 @@
+import type { HTMLAttributes } from "react";
 import { icons } from "./Icons";
 
 import type { Color } from "@/constants/colors.constants";
@@ -18,4 +19,4 @@ export type IconProps = {
   hide?: boolean;
   margin?: string;
   dataTestId?: string;
-};
+} & HTMLAttributes<HTMLSpanElement>;

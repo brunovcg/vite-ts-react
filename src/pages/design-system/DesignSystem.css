@@ -3,10 +3,6 @@
     box-shadow: var(--box-shadow);
   }
 
-  .font-mono {
-    font-family: var(--typeface-monospace);
-  }
-
   .border-bottom-dashed {
     border-bottom: 1px dashed var(--border-color);
   }

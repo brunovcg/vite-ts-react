@@ -1,4 +1,4 @@
-import { ClassNames } from "@/utils/class-names/ClassNames.util";
+import { mergeClass } from "@/utils/class-names/ClassNames.util";
 import type { ButtonHTMLAttributes } from "react";
 import type { IconName, IconProps } from "../icon/Icon.types";
 import { Icon } from "../icon/Icon";
@@ -23,8 +23,12 @@ export function ButtonIcon({
 }: ButtonIconProps) {
   return (
     <button
-      className={ClassNames.merge(
-        "button-icon border-radius-circle padding-sm background-white cursor-pointer",
+      className={mergeClass("button-icon", className)}
+      css={[
+        "border-radius-circle",
+        "padding-sm",
+        "cursor-pointer",
+        "background-white",
         {
           "border-none": !!noBorder,
           "border-primary": !noBorder && color === "primary",
@@ -32,8 +36,7 @@ export function ButtonIcon({
           "color-primary": color === "primary",
           "color-error": color === "error",
         },
-        className,
-      )}
+      ]}
       data-component='ButtonIcon'
       {...rest}
     >

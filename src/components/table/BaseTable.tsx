@@ -1,6 +1,5 @@
 import { type ReactNode } from "react";
 import { Icon } from "../icon/Icon";
-import { ClassNames } from "@/utils/class-names/ClassNames.util";
 import { TableHeader } from "./TableHeader";
 import { TableLoading } from "./TableLoading";
 
@@ -15,10 +14,7 @@ export type Cell<Row extends Record<string, unknown>> = (props: CellProps<Row>) 
 
 type ColumnFilter = { type: "text" | "number" | "date" | "range" } | { type: "select"; options: string[] };
 
-type CustomCellRender<Row extends Record<string, unknown>> =
-  | { cell: Cell<Row>; accessor?: keyof Row }
-  | { cell?: Cell<Row>; accessor: keyof Row }
-  | { cell: Cell<Row>; accessor: keyof Row };
+type CustomCellRender<Row extends Record<string, unknown>> = { cell: Cell<Row>; accessor?: keyof Row } | { cell?: Cell<Row>; accessor: keyof Row } | { cell: Cell<Row>; accessor: keyof Row };
 
 export type Column<Row extends Record<string, unknown>> = {
   header: string;
@@ -88,7 +84,7 @@ export function BaseTable<Row extends Record<string, unknown>>({
   };
 
   return (
-    <div data-component='BaseTable' className='display-flex flex-column gap-md width-full'>
+    <div data-component='BaseTable' css={["display-flex", "flex-column", "gap-md", "width-full"]}>
       <TableHeader
         columns={columns}
         data={data}
@@ -103,10 +99,10 @@ export function BaseTable<Row extends Record<string, unknown>>({
         onFilterChange={onFilterChange}
         loading={loading}
       />
-      <div className='position-relative overflow-x-auto width-full'>
+      <div css={["position-relative", "overflow-x-auto", "width-full"]}>
         <TableLoading loading={loading} />
 
-        <table className='border-collapse width-full'>
+        <table className={"border-collapse"} css={["width-full"]}>
           <thead>
             <tr>
               {columns.map((column) => {
@@ -114,19 +110,28 @@ export function BaseTable<Row extends Record<string, unknown>>({
                 return (
                   <th
                     key={column.header}
-                    className={ClassNames.merge("padding-sm border-bottom", {
-                      "text-left": headerAlign === "left",
-                      "text-center": headerAlign === "center",
-                      "text-right": headerAlign === "right",
-                    })}
+                    css={[
+                      "padding-sm",
+                      "border-bottom",
+                      {
+                        "text-left": headerAlign === "left",
+                        "text-center": headerAlign === "center",
+                        "text-right": headerAlign === "right",
+                      },
+                    ]}
                   >
                     <div
-                      className={ClassNames.merge("display-flex align-items-center gap-xs", {
-                        "cursor-pointer select-none": !!column.sortable,
-                        "justify-start": headerAlign === "left",
-                        "justify-center": headerAlign === "center",
-                        "justify-end": headerAlign === "right",
-                      })}
+                      css={[
+                        "display-flex",
+                        "align-center",
+                        "gap-xs",
+                        {
+                          "cursor-pointer": !!column.sortable,
+                          "justify-start": headerAlign === "left",
+                          "justify-center": headerAlign === "center",
+                          "justify-end": headerAlign === "right",
+                        },
+                      ]}
                       onClick={() => column.sortable && handleSort(column.header)}
                     >
                       {column.header}
@@ -144,13 +149,17 @@ export function BaseTable<Row extends Record<string, unknown>>({
                   {columns.map((column) => {
                     const cellAlign = column.alignCell || column.alignHeader || "left";
                     return (
-                      <td key={column.header} className='padding-sm'>
+                      <td key={column.header} css={["padding-sm"]}>
                         <div
-                          className={ClassNames.merge("display-flex align-center", {
-                            "justify-start": cellAlign === "left",
-                            "justify-center": cellAlign === "center",
-                            "justify-end": cellAlign === "right",
-                          })}
+                          css={[
+                            "display-flex",
+                            "align-center",
+                            {
+                              "justify-start": cellAlign === "left",
+                              "justify-center": cellAlign === "center",
+                              "justify-end": cellAlign === "right",
+                            },
+                          ]}
                         >
                           {column.cell
                             ? column.cell({
@@ -168,7 +177,7 @@ export function BaseTable<Row extends Record<string, unknown>>({
               ))
             ) : (
               <tr>
-                <td colSpan={columns.length} className='padding-xl text-center text-muted'>
+                <td colSpan={columns.length} css={["padding-xl", "text-center"]}>
                   {loading ? "Loading..." : Object.keys(filters).length > 0 ? "No results found matching your filters." : "No data available."}
                 </td>
               </tr>

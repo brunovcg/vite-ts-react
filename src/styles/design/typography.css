@@ -16,6 +16,20 @@
   text-decoration: underline;
 }
 
+/* FAMILY */
+
+.font-family-sans {
+  font-family: var(--typeface-sans);
+}
+
+.font-family-serif {
+  font-family: var(--typeface-serif);
+}
+
+.font-family-monospace {
+  font-family: var(--typeface-monospace);
+}
+
 /* SIZE */
 
 .font-size-xs {
@@ -40,6 +54,10 @@
 
 .font-size-2xl {
   font-size: var(--font-size-2xl);
+}
+
+.font-size-3xl {
+  font-size: var(--font-size-3xl);
 }
 
 /* ALIGN */
@@ -108,7 +126,4 @@
 
 .white-space-pre-line {
   white-space: pre-line;
-}
-
-.test-novo {
 }

@@ -82,8 +82,9 @@ export function Dialog({ dialogId, heading, className, children, width, allowXBu
       ref={dialogRef}
       id={`dialog-${dialogId}`}
       data-component='Dialog'
+      css={["position-fixed", "top", "left", "width-full", "height-full", "display-flex", "flex-center", "background-dialog-opacity", "border-none"]}
       className={ClassNames.merge(
-        "dialog position fixed top left width-full height-full display-flex center background-dialog-opacity border-none",
+        "dialog",
         {
           "dialog-sm": width === "sm",
           "dialog-md": width === "md",
@@ -96,14 +97,15 @@ export function Dialog({ dialogId, heading, className, children, width, allowXBu
       {...rest}
     >
       <div
-        className={"dialog-content display-flex flex-column gap-lg background-white border-radius-sm"}
+        className={"dialog-content"}
+        css={["display-flex", "flex-column", "gap-lg", "background-white", "border-radius-sm"]}
         style={{
           width: width ? `${width}px` : "400px",
         }}
       >
         {(heading || allowXButton) && (
-          <section className={"dialog-header display-flex space-between align-center border-bottom padding-lg"}>
-            <h2 className='width-full text-ellipsis'>{heading}</h2>
+          <section className={"dialog-header"} css={["display-flex", "justify-between", "align-center", "border-bottom", "padding-lg"]}>
+            <h2 css={["width-full", "text-ellipsis"]}>{heading}</h2>
             {allowXButton && <ButtonIcon icon='close' onClick={handleCloseDialog} />}
           </section>
         )}

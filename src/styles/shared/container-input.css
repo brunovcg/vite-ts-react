@@ -1,15 +1,25 @@
-.container-input {
-  border: 1px solid var(--border-color);
+label {
+  color: var(--typeface-light);
+  font-size: var(--font-size-xs);
+  font-weight: bold;
+  background: transparent;
+  padding: 0px 4px;
   border-radius: var(--border-radius-sm);
-  height: 44px;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  padding-right: 4px;
-  background-color: var(--background-white);
+  text-wrap: nowrap;
+  display: block;
+  width: fit-content;
+  position: relative;
+  margin-left: 6px;
+  margin-bottom: -14px;
+  top: 4px;
 
-  &:has(:required) {
-    label::after {
+  &:has(+ .container-input:user-invalid) {
+    position: absolute;
+    color: var(--error);
+  }
+
+  &:has(+ .container-input:required) {
+    &::after {
       content: " *";
       font-size: var(--font-size-md);
       color: var(--error);
@@ -18,102 +28,86 @@
     }
   }
 
-  &:has(input:user-invalid, textarea:user-invalid, select:user-invalid, datalist:user-invalid) {
+  &:has(+ .container-input:hover) {
+    color: var(--typeface-dark);
+  }
+
+  &:has(+ .container-input:focus-within) {
+    color: var(--primary);
+  }
+
+  &:has(+ .container-input:disabled) {
+    color: var(--typeface-light);
+  }
+}
+
+.container-input {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  height: 44px;
+  padding-right: 4px;
+  background-color: var(--background-white);
+  font-size: var(--font-size-sm);
+  padding-left: 10px;
+  padding-top: 18px;
+  outline: none;
+
+  /* Standard Input Styles */
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: var(--placeholder-color);
+    font-size: var(--font-size-sm);
+  }
+
+  &:user-invalid {
     cursor: not-allowed;
     border-color: var(--error);
-
-    label {
-      color: var(--error);
-    }
   }
 
   &:hover {
     cursor: pointer;
     border-color: var(--typeface-dark);
-    label {
-      color: var(--typeface-dark);
-    }
   }
 
   &:focus-within {
     border-color: var(--primary);
-    label {
-      color: var(--primary);
-    }
   }
 
-  &:has(input:disabled, textarea:disabled, select:disabled, datalist:disabled) {
+  &:disabled {
     cursor: not-allowed;
     opacity: 0.6;
     border-color: var(--border-color);
-
-    label {
-      color: var(--typeface-light);
-    }
-
-    input,
-    textarea,
-    select,
-    datalist {
-      cursor: not-allowed;
-    }
   }
 
-  label {
-    color: var(--typeface-light);
-    font-size: var(--font-size-xs);
-    font-weight: bold;
-    background: var(--background-white);
-    padding: 0px 4px;
-    border-radius: var(--border-radius-sm);
-    text-wrap: nowrap;
-    top: -10px;
-  }
-
-  input,
-  textarea,
-  select,
-  datalist {
-    height: 100%;
-    font-size: var(--font-size-sm);
-    border: none;
-    width: 100%;
-    padding-left: 10px;
-    background: var(--background-white);
-    border-radius: var(--border-radius-sm);
-
-    &::placeholder {
-      color: var(--placeholder-color);
-      font-size: var(--font-size-sm);
-    }
-  }
-
-  select option[disabled][selected],
-  select option.placeholder {
+  /* Select Specific styles */
+  & option[disabled][selected],
+  & option.placeholder {
     color: var(--placeholder-color);
     font-size: var(--font-size-sm);
   }
 
-  select:has(option[disabled][selected]:checked),
-  select:has(option.placeholder:checked) {
+  &:has(option[disabled][selected]:checked),
+  &:has(option.placeholder:checked) {
     color: var(--placeholder-color);
   }
 
-  input[type="date"]:not(:focus):invalid {
+  /* Date Input Specific styles */
+  &[type="date"]:not(:focus):invalid {
     color: var(--placeholder-color);
   }
 
-  input[type="date"]::-webkit-datetime-edit-text,
-  input[type="date"]::-webkit-datetime-edit-month-field,
-  input[type="date"]::-webkit-datetime-edit-day-field,
-  input[type="date"]::-webkit-datetime-edit-year-field {
+  &[type="date"]::-webkit-datetime-edit-text,
+  &[type="date"]::-webkit-datetime-edit-month-field,
+  &[type="date"]::-webkit-datetime-edit-day-field,
+  &[type="date"]::-webkit-datetime-edit-year-field {
     color: var(--placeholder-color);
   }
 
-  input[type="date"]:valid::-webkit-datetime-edit-text,
-  input[type="date"]:valid::-webkit-datetime-edit-month-field,
-  input[type="date"]:valid::-webkit-datetime-edit-day-field,
-  input[type="date"]:valid::-webkit-datetime-edit-year-field {
+  &[type="date"]:valid::-webkit-datetime-edit-text,
+  &[type="date"]:valid::-webkit-datetime-edit-month-field,
+  &[type="date"]:valid::-webkit-datetime-edit-day-field,
+  &[type="date"]:valid::-webkit-datetime-edit-year-field {
     color: var(--typeface-medium);
   }
 }

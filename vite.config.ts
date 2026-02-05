@@ -20,7 +20,7 @@ const watchDesignStyles = () => ({
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), watchDesignStyles()],
+  plugins: [react({ jsxImportSource: "@/runtime" }), watchDesignStyles()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

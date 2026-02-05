@@ -1,7 +1,7 @@
-import { ClassNames } from "@/utils/class-names/ClassNames.util";
 import type { ButtonHTMLAttributes } from "react";
 import "./Button.css";
 import { LoadingSpinner } from "../loading-spinner/LoadingSpinner";
+import { mergeClass } from "@/utils/class-names/ClassNames.util";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
@@ -15,8 +15,14 @@ export function Button({ className, color = "primary", variant = "regular", load
   return (
     <button
       data-component='Button'
-      className={ClassNames.merge(
-        `variant-${variant}`,
+      className={mergeClass(className, `variant-${variant}`)}
+      css={[
+        "border-radius-md",
+        "padding-md",
+        "cursor-pointer",
+        "background-white",
+        "text-bold",
+        "font-size-sm",
         {
           "border-none": variant !== "outlined",
           "border-primary": color === "primary" && variant !== "regular",
@@ -27,13 +33,11 @@ export function Button({ className, color = "primary", variant = "regular", load
           "background-primary": color === "primary" && variant === "filled",
           "background-error": color === "error" && variant === "filled",
         },
-        "border-radius-md padding-md cursor-pointer background-white text-bold font-size-sm",
-        className,
-      )}
+      ]}
       {...rest}
     >
       {loading && (
-        <div className='display-flex align-center gap-sm'>
+        <div className='display-flex align-center gap-sm' css={["display-flex", "align-center", "gap-sm"]}>
           <LoadingSpinner />
           {loadingMessage && <span>{loadingMessage}</span>}
         </div>

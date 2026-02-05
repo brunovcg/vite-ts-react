@@ -1,7 +1,4 @@
-import type { CssRegister } from "@/styles/designRegister";
-
-export type ClassNameArg = string | undefined | null | Record<string, boolean> | string[];
-export type CssArg = CssRegister | Record<CssRegister, boolean> | CssRegister[];
+export type ClassNameArg = string | undefined | null | Record<string, boolean | undefined | null> | string[];
 
 export class ClassNames {
   static merge(...classNames: ClassNameArg[]) {
@@ -28,10 +25,6 @@ export class ClassNames {
 
     return result.join(" ");
   }
-
-  static css(...classNames: CssArg[]) {
-    return ClassNames.merge(...classNames);
-  }
 }
 
-export const css = ClassNames.css;
+export const mergeClass = ClassNames.merge;

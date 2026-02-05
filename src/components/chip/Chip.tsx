@@ -1,4 +1,3 @@
-import { ClassNames } from "@/utils/class-names/ClassNames.util";
 import type { ReactNode } from "react";
 
 interface ChipProps {
@@ -10,7 +9,7 @@ export function Chip({ children, color }: ChipProps) {
   return (
     <div
       data-component='Chip'
-      className={ClassNames.merge(
+      css={[
         {
           "background-primary-light": color === "primary",
           "background-error-light": color === "error",
@@ -21,8 +20,16 @@ export function Chip({ children, color }: ChipProps) {
           "color-warning": color === "warning",
           "color-success": color === "success",
         },
-        "padding-block-sm padding-inline-md font-size-sm text-bold display-flex align-center gap-xs justify-center width-fit border-radius-sm",
-      )}
+        "padding-block-sm",
+        "padding-inline-md",
+        "font-size-sm",
+        "text-bold",
+        "display-flex",
+        "align-center",
+        "gap-xs",
+        "width-fit",
+        "border-radius-sm",
+      ]}
     >
       {children}
     </div>

@@ -1,5 +1,6 @@
 import { type ChangeEvent, type InputHTMLAttributes, useEffect, useRef, useState } from "react";
 import { useDebounce } from "../../hooks/use-debounce/useDebounce.hook";
+import { mergeClass } from "@/utils/class-names/ClassNames.util";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
@@ -8,7 +9,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   debounce?: number;
 }
 
-export function Input({ id, name, label, debounce, value, onChange, defaultValue, ...props }: InputProps) {
+export function Input({ id, name, label, debounce, value, onChange, defaultValue, className, ...props }: InputProps) {
   const isDebounced = typeof debounce === "number" && debounce > 0;
 
   const [localValue, setLocalValue] = useState<string | number | readonly string[] | undefined>(value !== undefined ? value : defaultValue !== undefined ? defaultValue : "");
@@ -48,14 +49,13 @@ export function Input({ id, name, label, debounce, value, onChange, defaultValue
     }
   };
 
-  const inputProps = { ...props };
   const passedValue = isDebounced ? localValue : value;
   const passedDefaultValue = !isDebounced ? defaultValue : undefined;
 
   return (
-    <div className='container-input' data-component='Input'>
+    <>
       <label htmlFor={id}>{label}</label>
-      <input id={id} name={name} value={passedValue} defaultValue={passedDefaultValue} onChange={handleChange} {...inputProps} />
-    </div>
+      <input id={id} name={name} value={passedValue} defaultValue={passedDefaultValue} onChange={handleChange} className={mergeClass(className, "container-input")} data-component='Input' {...props} />
+    </>
   );
 }

@@ -55,7 +55,14 @@ export function ControlsPanel({ args, argTypes, onChange }: ControlsPanelProps) 
                 onChange={(e) => onChange(key, e.target.value)}
               />
             ) : (
-              <Input id={`control-${key}`} name={key} label={key} value={String(value)} onChange={(e) => onChange(key, type === "number" ? Number(e.target.value) : e.target.value)} />
+              <Input
+                id={`control-${key}`}
+                name={key}
+                label={key}
+                type={type === "number" ? "number" : "text"}
+                value={String(value)}
+                onChange={(e) => onChange(key, type === "number" ? Number(e.target.value) : e.target.value)}
+              />
             )}
           </div>
         );

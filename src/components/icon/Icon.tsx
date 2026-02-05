@@ -8,10 +8,9 @@ import { ClassNames } from "@/utils/class-names/ClassNames.util";
 import { COLORS } from "@/constants/colors.constants";
 
 function IconComponent({ icon, size = "sm", color, margin = "0", className = "", mirrored, hide, dataTestId, title, ...rest }: IconProps, ref: ForwardedRef<HTMLSpanElement>) {
-  const iconWrapperClasses = ClassNames.merge("im-icon", {
+  const iconWrapperClasses = ClassNames.merge("im-icon", className, {
     [`im-icon-${icon}`]: true,
     ["display-none"]: !!hide,
-    [`${className}`]: !!className,
   });
 
   const sizes = {

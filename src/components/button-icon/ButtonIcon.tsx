@@ -1,4 +1,4 @@
-import { mergeClass } from "@/utils/class-names/ClassNames.util";
+import { mergeClass, mergeCss } from "@/utils/class-names/ClassNames.util";
 import type { ButtonHTMLAttributes } from "react";
 import type { IconName, IconProps } from "../icon/Icon.types";
 import { Icon } from "../icon/Icon";
@@ -12,23 +12,16 @@ export interface ButtonIconProps extends ButtonHTMLAttributes<HTMLButtonElement>
   noBorder?: boolean;
 }
 
-export function ButtonIcon({
-  className,
-  icon,
-  color = "primary",
-  iconProps,
-  noBorder,
-
-  ...rest
-}: ButtonIconProps) {
+export function ButtonIcon({ className, icon, color = "primary", iconProps, noBorder, css, ...rest }: ButtonIconProps) {
   return (
     <button
       className={mergeClass("button-icon", className)}
-      css={[
+      css={mergeCss([
         "border-radius-circle",
         "padding-sm",
         "cursor-pointer",
         "background-white",
+        css,
         {
           "border-none": !!noBorder,
           "border-primary": !noBorder && color === "primary",
@@ -36,7 +29,7 @@ export function ButtonIcon({
           "color-primary": color === "primary",
           "color-error": color === "error",
         },
-      ]}
+      ])}
       data-component='ButtonIcon'
       {...rest}
     >

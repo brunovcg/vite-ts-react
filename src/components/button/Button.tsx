@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes } from "react";
 import "./Button.css";
 import { LoadingSpinner } from "../loading-spinner/LoadingSpinner";
-import { mergeClass } from "@/utils/class-names/ClassNames.util";
+import { mergeClass, mergeCss } from "@/utils/class-names/ClassNames.util";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
@@ -14,7 +14,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 import { buttonLocale } from "./Button.locales";
 import { useDictionary } from "@/locales";
 
-export function Button({ className, color = "primary", variant = "regular", loadingMessage, children, loading, ...rest }: ButtonProps) {
+export function Button({ className, color = "primary", variant = "regular", loadingMessage, css, children, loading, ...rest }: ButtonProps) {
   const dictionary = useDictionary(buttonLocale);
 
   return (
@@ -24,13 +24,14 @@ export function Button({ className, color = "primary", variant = "regular", load
       disabled={loading || rest.disabled}
       aria-busy={loading}
       aria-disabled={loading || rest.disabled}
-      css={[
+      css={mergeCss([
         "border-radius-md",
         "padding-md",
         "cursor-pointer",
         "background-white",
         "text-bold",
         "font-size-sm",
+        css,
         {
           "border-none": variant !== "outlined",
           "border-primary": color === "primary" && variant !== "regular",
@@ -41,7 +42,7 @@ export function Button({ className, color = "primary", variant = "regular", load
           "background-primary": color === "primary" && variant === "filled",
           "background-error": color === "error" && variant === "filled",
         },
-      ]}
+      ])}
       {...rest}
     >
       {loading && (

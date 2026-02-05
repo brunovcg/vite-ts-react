@@ -1,3 +1,4 @@
+import { TextArea } from "@/components/text-area/TextArea";
 import { useState, useEffect } from "react";
 
 interface ObjectInputProps {
@@ -5,9 +6,10 @@ interface ObjectInputProps {
   onChange: (value: string) => void;
   readOnly?: boolean;
   format?: "object" | "array";
+  label?: string;
 }
 
-export function ObjectInput({ value, onChange, readOnly, format = "object" }: ObjectInputProps) {
+export function ObjectInput({ value, onChange, readOnly, format = "object", label }: ObjectInputProps) {
   const [localValue, setLocalValue] = useState(value);
   const [error, setError] = useState<string | null>(null);
 
@@ -57,27 +59,28 @@ export function ObjectInput({ value, onChange, readOnly, format = "object" }: Ob
 
   return (
     <div
-      className='container-input'
       css={["position-relative", "height-auto", "width-full", "display-flex", "flex-column"]}
       style={{
         padding: 0,
         minHeight: "200px",
       }}
     >
-      <textarea
+      <TextArea
         value={localValue}
         onChange={handleInput}
         readOnly={readOnly}
         spellCheck={false}
-        css={["flex-1", "width-full", "border-none", "background-transparent"]}
+        css={["flex-1", "width-full", "background-transparent"]}
         style={{
           fontFamily: "monospace",
           fontSize: "var(--font-size-sm)",
           lineHeight: "1.5",
-          padding: "18px 4px 4px 10px", // Matches standard Input styling
           resize: "vertical",
           minHeight: "200px",
         }}
+        id={""}
+        name={""}
+        label={label}
       />
 
       {error && <div css={["padding-xs", "font-size-xs", "color-error", "background-error-light", "border-top", "width-full"]}>{error}</div>}

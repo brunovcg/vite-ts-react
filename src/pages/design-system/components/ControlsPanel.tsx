@@ -31,16 +31,14 @@ export function ControlsPanel({ args, argTypes, onChange }: ControlsPanelProps) 
         const isFunction = typeof value === "function";
 
         return (
-          <div key={key} css={["display-flex", "flex-column", "gap-xs"]}>
+          <div key={key} css={["display-flex", "flex-column", "gap-sm"]}>
             {type === "function" || isFunction ? (
               <div css={["display-flex", "flex-column", "gap-xs"]}>
-                <span css={["font-size-sm", "text-bold"]}>{key} (Function)</span>
-                <FunctionControl initialValue={value} onChange={(newValue) => onChange(key, newValue)} />
+                <FunctionControl initialValue={value} onChange={(newValue) => onChange(key, newValue)} label={key} />
               </div>
             ) : type === "object" ? (
               <div css={["display-flex", "flex-column", "gap-xs"]}>
-                <span css={["font-size-sm", "text-bold"]}>{key}</span>
-                <ObjectControl initialValue={value} onChange={(newValue) => onChange(key, newValue)} />
+                <ObjectControl label={key} initialValue={value} onChange={(newValue) => onChange(key, newValue)} />
               </div>
             ) : type === "boolean" ? (
               <label css={["display-flex", "align-center", "gap-sm", "cursor-pointer"]}>
@@ -66,7 +64,7 @@ export function ControlsPanel({ args, argTypes, onChange }: ControlsPanelProps) 
   );
 }
 
-function ObjectControl({ initialValue, onChange }: { initialValue: unknown; onChange: (val: unknown) => void }) {
+function ObjectControl({ initialValue, onChange, label }: { initialValue: unknown; onChange: (val: unknown) => void; label: string }) {
   const [jsonString, setJsonString] = useState(() => JSON.stringify(initialValue, null, 2));
 
   const handleChange = (val: string) => {
@@ -79,10 +77,10 @@ function ObjectControl({ initialValue, onChange }: { initialValue: unknown; onCh
     }
   };
 
-  return <ObjectInput value={jsonString} onChange={handleChange} format={Array.isArray(initialValue) ? "array" : "object"} />;
+  return <ObjectInput value={jsonString} onChange={handleChange} format={Array.isArray(initialValue) ? "array" : "object"} label={label} />;
 }
 
-function FunctionControl({ initialValue, onChange }: { initialValue: unknown; onChange: (val: unknown) => void }) {
+function FunctionControl({ initialValue, onChange, label }: { label: string; initialValue: unknown; onChange: (val: unknown) => void }) {
   const [codeString, setCodeString] = useState(() => (typeof initialValue === "function" ? initialValue.toString() : "() => {}"));
 
   const handleChange = (val: string) => {
@@ -99,5 +97,5 @@ function FunctionControl({ initialValue, onChange }: { initialValue: unknown; on
     }
   };
 
-  return <InputFunction value={codeString} onChange={handleChange} />;
+  return <InputFunction value={codeString} onChange={handleChange} label={label} />;
 }

@@ -1,4 +1,5 @@
-import type { Css } from "@/runtime/css.types";
+import type { Css, PropsWithCss } from "@/runtime/css.types";
+import { mergeCss } from "@/utils/class-names/ClassNames.util";
 import { createContext, useContext, useMemo, useCallback, type PropsWithChildren } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -73,16 +74,16 @@ function TabItem({ children, id, css, className }: TabsItemProps) {
   if (!isActive) return null;
 
   return (
-    <section role='tabpanel' id={panelId} aria-labelledby={tabId} tabIndex={0} css={[css]} className={className} data-component='TabItem'>
+    <section role='tabpanel' id={panelId} aria-labelledby={tabId} tabIndex={0} css={css} className={className} data-component='TabItem'>
       {children}
     </section>
   );
 }
 
-function TabNav() {
+function TabNav({ css }: PropsWithCss) {
   const { setActiveTab, tabs, activeTab, baseId } = useTabContext();
   return (
-    <nav css={["border-bottom", "width-fit", "padding-inline-sm"]} data-component='TabNav'>
+    <nav css={mergeCss(["border-bottom", "width-fit", "padding-inline-sm"], css)} data-component='TabNav'>
       <ul role='tablist' css={["display-flex", "gap-md"]}>
         {tabs.filterMap(
           (tab) => !tab.hidden,
@@ -98,14 +99,12 @@ function TabNav() {
                   aria-selected={isActive}
                   aria-controls={panelId}
                   tabIndex={isActive ? 0 : -1}
-                  css={[
-                    "cursor-pointer",
-                    "border-none",
-                    "padding-md",
-                    "border-top-radius-sm",
-                    "text-bold",
-                    { "background-primary": isActive, "color-white": isActive, "background-white": !isActive, "color-primary": !isActive },
-                  ]}
+                  css={mergeCss("cursor-pointer", "border-none", "padding-md", "border-top-radius-sm", "text-bold", {
+                    "background-primary": isActive,
+                    "color-white": isActive,
+                    "background-white": !isActive,
+                    "color-primary": !isActive,
+                  })}
                   onClick={() => setActiveTab(tab.id)}
                 >
                   {tab.label}

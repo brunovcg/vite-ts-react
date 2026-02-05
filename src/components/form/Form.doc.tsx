@@ -2,6 +2,7 @@ import { Form } from "./Form";
 import type { ComponentDoc } from "@/types/component-doc.types";
 import { Button } from "../button/Button";
 import { Input } from "../input/Input";
+import { type SubmitEvent } from "react";
 
 // Wrapper to demonstrate Form usage with children
 function FormDemo(props: React.ComponentProps<typeof Form>) {
@@ -19,10 +20,10 @@ export const formDoc: ComponentDoc<React.ComponentProps<typeof Form>> = {
   description: "A wrapper around HTML form that handles submit events.",
   component: FormDemo as React.ComponentType<React.ComponentProps<typeof Form>>,
   args: {
-    onSubmit: ((e) => {
+    onSubmit: ((e: SubmitEvent<HTMLFormElement>) => {
       e.preventDefault();
       // handle submit
-    }) as unknown as React.FormEventHandler<HTMLFormElement>,
+    }) as unknown as React.SubmitEventHandler<HTMLFormElement>,
   },
   argTypes: {},
 };

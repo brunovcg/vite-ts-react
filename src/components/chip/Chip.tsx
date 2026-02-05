@@ -1,15 +1,18 @@
+import type { Css } from "@/runtime/css.types";
+import { mergeCss } from "@/utils/class-names/ClassNames.util";
 import type { ReactNode } from "react";
 
 interface ChipProps {
   children: ReactNode;
   color: "primary" | "error" | "warning" | "success";
+  css?: Css;
 }
 
-export function Chip({ children, color }: ChipProps) {
+export function Chip({ children, color, css }: ChipProps) {
   return (
     <p
       data-component='Chip'
-      css={[
+      css={mergeCss([
         {
           "background-primary-light": color === "primary",
           "background-error-light": color === "error",
@@ -29,7 +32,8 @@ export function Chip({ children, color }: ChipProps) {
         "gap-xs",
         "width-fit",
         "border-radius-sm",
-      ]}
+        css,
+      ])}
     >
       {children}
     </p>

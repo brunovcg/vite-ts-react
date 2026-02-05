@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { type JSX, type ReactNode } from "react";
 import { languageConfig } from "./languages.config";
 
 export type DictionaryBase = Record<string, string>;

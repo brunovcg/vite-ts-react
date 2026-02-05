@@ -1,26 +1,24 @@
-import type { Css } from "./css.types";
+export function cssReducer(...args: unknown[]): string {
+  const classes: string[] = [];
 
-export function cssReducer(...classNames: Css[]) {
-  const result: string[] = [];
+  for (const arg of args) {
+    if (!arg) continue;
 
-  classNames.forEach((item) => {
-    if (!item) return;
-
-    if (Array.isArray(item)) {
-      const merged = cssReducer(...item);
-      if (merged) {
-        result.push(merged);
+    if (typeof arg === "string") {
+      classes.push(arg);
+    } else if (Array.isArray(arg)) {
+      if (arg.length) {
+        const inner = cssReducer(...arg);
+        if (inner) classes.push(inner);
       }
-    } else if (typeof item === "string") {
-      result.push(item);
-    } else if (typeof item === "object") {
-      Object.entries(item).forEach(([key, value]) => {
+    } else if (typeof arg === "object") {
+      for (const [key, value] of Object.entries(arg as Record<string, unknown>)) {
         if (value) {
-          result.push(key);
+          classes.push(key);
         }
-      });
+      }
     }
-  });
+  }
 
-  return result.join(" ");
+  return classes.join(" ");
 }

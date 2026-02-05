@@ -1,6 +1,8 @@
 import { useState, useCallback } from "react";
 import { Icon } from "@/components/icon/Icon";
 import type { Css } from "@/runtime/css.types";
+import { mergeCss } from "@/utils/class-names/ClassNames.util";
+import { TextArea } from "@/components/text-area/TextArea";
 
 interface InputFunctionProps {
   value: string;
@@ -37,14 +39,16 @@ export function InputFunction({ value, onChange, css, label, error: paramsError 
   const errorMessage = paramsError || localError;
 
   return (
-    <div className='container-input' css={["position-relative", "height-auto", "display-flex", "flex-column", "padding-0", css]} style={{ minHeight: "100px", padding: 0 }}>
-      {label && <label>{label}</label>}
-      <textarea
+    <div css={mergeCss(["position-relative", "height-auto", "width-full", "display-flex", "flex-column"], css)} style={{ minHeight: "100px", padding: 0 }}>
+      <TextArea
+        label={label}
         value={value}
         onChange={handleChange}
         spellCheck={false}
-        css={["width-full", "border-none", "background-transparent", "font-family-monospace", "font-size-sm"]}
-        style={{ padding: "10px", outline: "none", minHeight: "100px", resize: "vertical" }}
+        css={["width-full", "background-transparent", "font-family-monospace", "font-size-sm"]}
+        style={{ minHeight: "100px", resize: "vertical" }}
+        id={""}
+        name={""}
       />
       {errorMessage && (
         <div css={["padding-xs", "font-size-xs", "color-error", "background-error-light", "border-top", "display-flex", "align-center", "gap-xs"]}>

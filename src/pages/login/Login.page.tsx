@@ -7,7 +7,8 @@ import type { Column } from "@/components/table/BaseTable";
 import { Table } from "@/components/table/Table";
 import { Tabs } from "@/components/tabs/Tabs";
 import { TextArea } from "@/components/text-area/TextArea";
-import type { Css } from "@/runtime/css.types";
+import type { PropsWithCss } from "@/runtime/css.types";
+import { mergeCss } from "@/utils/class-names/ClassNames.util";
 import { Form } from "react-router-dom";
 
 // Sample data type
@@ -21,8 +22,10 @@ interface User extends Record<string, unknown> {
   lastLogin: string;
 }
 
-function Component({ css }: { css?: Css }) {
-  return <div css={["background-primary", css]}>xxx</div>;
+function Component({ css }: PropsWithCss) {
+  console.log(css);
+
+  return <div css={mergeCss("background-primary", css)}>xxx</div>;
 }
 
 // Sample data
@@ -193,16 +196,16 @@ export function Login() {
   const laoding = false;
 
   return (
-    <div data-component='Login' css={"padding-xl"}>
-      <div css={"margin-bottom-lg"}>
+    <div data-component='Login' css={["padding-xl"]}>
+      <div css={["margin-bottom-lg"]}>
         <h1>Table Example - User Management</h1>
-        <p css={"margin-top-sm"}>This is a comprehensive example of the ClientTable component with sorting, filtering, pagination, and downloadable features.</p>
+        <p css={["margin-top-sm"]}>This is a comprehensive example of the ClientTable component with sorting, filtering, pagination, and downloadable features.</p>
       </div>
       <Table.Client columns={columns} rows={sampleUsers} primaryKey='id' downloadable={true} />
-      <div css={"margin-top-xl"}>
-        <div css={"margin-bottom-md"}>
+      <div css={["margin-top-xl"]}>
+        <div css={["margin-bottom-md"]}>
           <h2>DataList Example</h2>
-          <p css={"margin-top-sm"}>A native datalist example using the roles from the user data above.</p>
+          <p css={["margin-top-sm"]}>A native datalist example using the roles from the user data above.</p>
         </div>
 
         <Form onSubmit={console.log}>

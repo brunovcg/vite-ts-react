@@ -7,6 +7,7 @@ import { useComponentDocs } from "@/hooks/use-component-docs/useComponentDocs.ho
 import { StylesView, StylesNav } from "./components/StylesView";
 import { ComponentViewer } from "./components/ComponentViewer";
 import "./DesignSystem.css";
+import { mergeCss } from "@/utils/class-names/ClassNames.util";
 
 export function DesignSystem() {
   const navigate = useNavigate();
@@ -57,16 +58,10 @@ export function DesignSystem() {
                   <button
                     key={doc.id}
                     onClick={() => setSelectedComponentId(doc.id)}
-                    css={[
-                      "padding-md",
-                      "text-left",
-                      "border-none",
-                      "background-transparent",
-                      "cursor-pointer",
-                      "border-radius-sm",
-                      "opacity-hover",
-                      { "background-primary-light": selectedComponentId === doc.id, "color-primary": selectedComponentId === doc.id },
-                    ]}
+                    css={mergeCss("padding-md", "text-left", "border-none", "background-transparent", "cursor-pointer", "border-radius-sm", "opacity-hover", {
+                      "background-primary-light": selectedComponentId === doc.id,
+                      "color-primary": selectedComponentId === doc.id,
+                    })}
                   >
                     <span css={["text-bold", "display-block"]}>{doc.name}</span>
                     {doc.description && <span css={["font-size-xs", "color-typeface-light", "text-ellipsis", "display-block"]}>{doc.description}</span>}
@@ -77,7 +72,7 @@ export function DesignSystem() {
           </aside>
 
           {/* View Area */}
-          <main css={["flex-1", "height-full", "overflow-hidden", "position-relative"]}>
+          <main css={["flex-1", "height-full", "overflow-auto", "position-relative"]}>
             <Tabs.Item id='styles'>
               <StylesView />
             </Tabs.Item>

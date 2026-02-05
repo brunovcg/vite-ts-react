@@ -57,7 +57,6 @@ ${Object.entries(register)
   .join("\n")}
 } as const satisfies Record<string, string[]>;
 
-export type CssRegister = (typeof cssRegister)[keyof typeof cssRegister][number];
 `;
 
   fs.writeFileSync(outputFile, fileContent);

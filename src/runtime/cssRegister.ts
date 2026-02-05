@@ -324,5 +324,3 @@ export const cssRegister = {
     "white-space-pre-wrap",
   ],
 } as const satisfies Record<string, string[]>;
-
-export type CssRegister = (typeof cssRegister)[keyof typeof cssRegister][number];

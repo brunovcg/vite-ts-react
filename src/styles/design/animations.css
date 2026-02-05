@@ -24,6 +24,15 @@
   }
 }
 
+@keyframes indeterminate {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
 .animate-rotate {
   animation: rotate infinite 1s linear;
 }
@@ -38,4 +47,8 @@
 
 .animate-slide-in {
   animation: slide-in 0.3s ease-out;
+}
+
+.animate-indeterminate {
+  animation: indeterminate 1.5s linear infinite;
 }

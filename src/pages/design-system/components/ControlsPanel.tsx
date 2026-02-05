@@ -4,6 +4,7 @@ import { Input } from "@/components/input/Input";
 import { Select } from "@/components/select/Select";
 import { ObjectInput } from "./ObjectInput";
 import { InputFunction } from "./InputFunction";
+import { Checkbox } from "@/components/checkbox/Checkbox";
 
 interface ControlsPanelProps {
   args: Record<string, unknown>;
@@ -41,10 +42,9 @@ export function ControlsPanel({ args, argTypes, onChange }: ControlsPanelProps) 
                 <ObjectControl label={key} initialValue={value} onChange={(newValue) => onChange(key, newValue)} />
               </div>
             ) : type === "boolean" ? (
-              <label css={["display-flex", "align-center", "gap-sm", "cursor-pointer"]}>
-                <input type='checkbox' checked={!!value} onChange={(e) => onChange(key, e.target.checked)} />
-                <span css={["font-size-sm", "text-bold"]}>{key}</span>
-              </label>
+              <div css={["display-flex", "flex-column", "justify-start", "width-full"]}>
+                <Checkbox type='checkbox' checked={!!value} onChange={(e) => onChange(key, e.target.checked)} label={key} />
+              </div>
             ) : type === "select" && options ? (
               <Select
                 id={`control-${key}`}

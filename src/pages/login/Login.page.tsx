@@ -1,4 +1,5 @@
 import { Button } from "@/components/button/Button";
+import { Checkbox } from "@/components/checkbox/Checkbox";
 import { Chip } from "@/components/chip/Chip";
 import { DataList } from "@/components/data-list/DataList";
 import { Input } from "@/components/input/Input";
@@ -244,6 +245,7 @@ export function Login() {
         <Tabs.Item id='tab-2'>Tab 2 Content</Tabs.Item>
       </Tabs>
       <Component css={["color-error"]} />
+      <Checkbox label='Checkbox' />
     </div>
   );
 }

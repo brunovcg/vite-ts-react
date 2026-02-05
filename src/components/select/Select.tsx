@@ -1,6 +1,7 @@
 import { useState, type SelectHTMLAttributes } from "react";
 import { LoadingSpinner } from "../loading-spinner/LoadingSpinner";
 import { mergeClass } from "@/utils/class-names/ClassNames.util";
+import type { Css } from "@/runtime/css.types";
 
 interface SelectProps<Option extends string> extends Omit<SelectHTMLAttributes<HTMLSelectElement>, "children" | "name" | "id" | "onChange" | "onBlur"> {
   name: string;
@@ -12,11 +13,31 @@ interface SelectProps<Option extends string> extends Omit<SelectHTMLAttributes<H
   allowClear?: boolean;
   allowSearch?: boolean;
   value?: Option;
+  className?: string;
+  css?: Css;
+  inputCss?: Css;
+  inputClassName?: string;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement> & { target: { value: Option } & React.ChangeEvent<HTMLSelectElement>["target"] }) => void;
   onBlur?: (event: React.FocusEvent<HTMLSelectElement> & { target: { value: Option } & React.FocusEvent<HTMLSelectElement>["target"] }) => void;
 }
 
-export function Select<Option extends string>({ label, options, id, onChange, onBlur, loading, disabled, placeholder, allowClear, name, ...props }: SelectProps<Option>) {
+export function Select<Option extends string>({
+  label,
+  options,
+  id,
+  onChange,
+  onBlur,
+  loading,
+  disabled,
+  className,
+  css,
+  inputCss,
+  inputClassName,
+  placeholder,
+  allowClear,
+  name,
+  ...props
+}: SelectProps<Option>) {
   const [currentValue, setCurrentValue] = useState<Option | null>("" as Option);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -32,22 +53,21 @@ export function Select<Option extends string>({ label, options, id, onChange, on
   const isPlaceholder = currentValue === "";
 
   return (
-    <>
-      <label htmlFor={id}>
-        {label} {loading && <LoadingSpinner />}
-      </label>
-
+    <label htmlFor={id} css={css} className={mergeClass("container-input", className)} data-component='Select'>
+      <span className='label-text'>{label}</span> {loading && <LoadingSpinner />}
       <select
         id={id}
         name={name}
         onChange={handleChange}
         onBlur={handleBlur}
         {...props}
-        data-component='Select'
         aria-busy={loading}
+        aria-required={props.required}
+        aria-invalid={props["aria-invalid"]}
         disabled={disabled || loading}
-        className={mergeClass("container-input", props.className, { placeholder: isPlaceholder })}
+        className={mergeClass("input-element", inputClassName, { placeholder: isPlaceholder })}
         style={{ color: isPlaceholder ? "var(--placeholder-color)" : "var(--text-color)" }}
+        css={inputCss}
       >
         {placeholder && (
           <option value='' disabled={!allowClear}>
@@ -60,6 +80,6 @@ export function Select<Option extends string>({ label, options, id, onChange, on
           </option>
         ))}
       </select>
-    </>
+    </label>
   );
 }

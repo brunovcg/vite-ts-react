@@ -14,12 +14,13 @@ export const inputDoc: ComponentDoc<InputProps> = {
     placeholder: "Enter username...",
     disabled: false,
     loading: false,
+    required: false,
     debounce: 0,
   },
   argTypes: {
     type: {
       type: "select",
-      options: ["text", "number", "email", "password", "color", "date", "datetime-local", "month", "time", "week", "tel", "url", "search", "file", "checkbox", "radio", "range"],
+      options: ["text", "number", "email", "password", "color", "date", "datetime-local", "month", "time", "week", "tel", "url"],
       defaultValue: "text",
     },
     id: {
@@ -35,6 +36,9 @@ export const inputDoc: ComponentDoc<InputProps> = {
       type: "text",
     },
     disabled: {
+      type: "boolean",
+    },
+    required: {
       type: "boolean",
     },
     loading: {

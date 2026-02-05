@@ -1,5 +1,7 @@
 import type { InputHTMLAttributes } from "react";
 import { LoadingSpinner } from "../loading-spinner/LoadingSpinner";
+import type { Css } from "@/runtime/css.types";
+import { mergeClass } from "@/utils/class-names/ClassNames.util";
 
 export interface DataListProps<Option extends string> extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
@@ -10,9 +12,28 @@ export interface DataListProps<Option extends string> extends InputHTMLAttribute
   allowOutOfList?: boolean;
   loading?: boolean;
   disabled?: boolean;
+  className?: string;
+  css?: Css;
+  inputCss?: Css;
+  inputClassName?: string;
 }
 
-export function DataList<Option extends string>({ id, name, label, options, onChange, onBlur, allowOutOfList = false, loading, disabled, ...props }: DataListProps<Option>) {
+export function DataList<Option extends string>({
+  id,
+  name,
+  label,
+  options,
+  onChange,
+  onBlur,
+  css,
+  inputCss,
+  inputClassName,
+  allowOutOfList = false,
+  loading,
+  disabled,
+  className,
+  ...props
+}: DataListProps<Option>) {
   const listId = `${id}-list`;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,18 +57,30 @@ export function DataList<Option extends string>({ id, name, label, options, onCh
   };
 
   return (
-    <>
-      <label htmlFor={id} css={["text-ellipsis", "width-150px"]}>
-        {label} {loading && <LoadingSpinner />}
-      </label>
-      <input id={id} name={name} list={listId} onChange={handleChange} onBlur={handleBlur} {...props} className='container-input' disabled={disabled || loading} aria-busy={loading} />
-      <datalist data-component='DataList' id={listId}>
+    <label htmlFor={id} css={css} className={mergeClass("container-input", className)} data-component='DataList'>
+      <span className='label-text'>{label}</span> {loading && <LoadingSpinner />}
+      <input
+        id={id}
+        name={name}
+        list={listId}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        css={inputCss}
+        {...props}
+        className={mergeClass("input-element", inputClassName)}
+        disabled={disabled || loading}
+        aria-busy={loading}
+        aria-required={props.required}
+        aria-invalid={props["aria-invalid"]}
+        aria-autocomplete='list'
+      />
+      <datalist id={listId}>
         {options.map((option) => (
           <option key={option.value} value={option.value} disabled={option.disabled}>
             {option.label}
           </option>
         ))}
       </datalist>
-    </>
+    </label>
   );
 }

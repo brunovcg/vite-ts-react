@@ -1,0 +1,34 @@
+label[data-component="Range"] {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+
+  .label-text {
+    font-size: var(--font-size-xs);
+    font-weight: bold;
+  }
+
+  input:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  input {
+    cursor: pointer;
+    accent-color: var(--primary);
+
+    &:checked {
+      accent-color: var(--primary);
+    }
+
+    &:focus-visible {
+      outline: 1px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    &:user-invalid {
+      accent-color: var(--error);
+    }
+  }
+}

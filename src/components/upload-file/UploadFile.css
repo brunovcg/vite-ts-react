@@ -1,0 +1,153 @@
+label[data-component="UploadFile"] {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--background-white);
+  font-size: var(--font-size-sm);
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-inline: 6px;
+  padding-top: 3px;
+  padding-bottom: 6px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  .label-text {
+    font-size: var(--font-size-xs);
+    font-weight: bold;
+    line-height: 1;
+    text-align: left;
+    width: 100%;
+    height: 12px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--typeface-light);
+  }
+
+  &:has(input:required) {
+    .label-text::after {
+      content: " *";
+      font-size: var(--font-size-md);
+      color: var(--error);
+      font-weight: bold;
+      line-height: 1;
+      vertical-align: top;
+    }
+  }
+
+  .upload-area {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 16px;
+    transition: all 0.2s ease;
+  }
+
+  .upload-text {
+    font-size: var(--font-size-sm);
+    color: var(--typeface-medium);
+    text-align: center;
+    user-select: none;
+  }
+
+  .file-input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &:hover {
+    border-color: var(--typeface-dark);
+
+    .upload-area {
+      border-color: var(--typeface-dark);
+      background-color: var(--background-light);
+    }
+
+    .label-text {
+      color: var(--typeface-dark);
+    }
+  }
+
+  &:has(input:focus-visible) {
+    border-color: var(--primary);
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+
+    .upload-area {
+      border-color: var(--primary);
+    }
+
+    .label-text {
+      color: var(--primary);
+    }
+  }
+
+  &.dragging {
+    border-color: var(--primary);
+    background-color: var(--primary-light);
+
+    .upload-area {
+      border-color: var(--primary);
+      background-color: var(--background-white);
+      border-style: solid;
+    }
+
+    .upload-text {
+      color: var(--primary);
+      font-weight: bold;
+    }
+  }
+
+  &:has(input:disabled) {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background-color: var(--background-white);
+
+    .upload-area {
+      background-color: var(--background-light);
+    }
+
+    &:hover {
+      border-color: var(--border-color);
+
+      .upload-area {
+        border-color: var(--border-color);
+        background-color: var(--background-light);
+      }
+    }
+  }
+
+  &:has(input:user-invalid) {
+    border-color: var(--error);
+
+    .label-text {
+      color: var(--error);
+    }
+
+    .upload-area {
+      border-color: var(--error);
+    }
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

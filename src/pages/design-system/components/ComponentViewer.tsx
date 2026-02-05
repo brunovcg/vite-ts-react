@@ -24,9 +24,29 @@ export function ComponentViewer({ doc }: ComponentViewerProps) {
         </div>
 
         <div css={["display-flex", "flex-center", "background-white", "border-radius-md", "padding-2xl"]} style={{ minHeight: "300px", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }}>
-          {/* The component being previewed */}
           <div css={["margin-auto"]}>
-            <Component {...args} />
+            <Component
+              {...args}
+              onChange={(e: React.ChangeEvent<HTMLInputElement> | FileList | null) => {
+                if (e && typeof e === "object" && "target" in e) {
+                  const target = e.target as HTMLInputElement;
+                  if (target.type === "checkbox" || target.type === "radio") {
+                    handleChange("checked", target.checked);
+                  } else if (target.type === "range") {
+                    handleChange("value", Number(target.value));
+                  } else if (target.type === "file") {
+                    handleChange("files", target.files);
+                  } else {
+                    handleChange("value", target.value);
+                  }
+                } else {
+                  handleChange("files", e);
+                }
+                if (typeof args.onChange === "function") {
+                  args.onChange(e);
+                }
+              }}
+            />
           </div>
         </div>
 

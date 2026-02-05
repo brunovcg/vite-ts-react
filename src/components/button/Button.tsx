@@ -25,13 +25,15 @@ export function Button({ className, color = "primary", variant = "regular", load
       aria-busy={loading}
       aria-disabled={loading || rest.disabled}
       css={mergeCss([
+        "display-flex",
+        "flex-center",
+        "gap-sm",
         "border-radius-md",
         "padding-md",
         "cursor-pointer",
         "background-white",
         "text-bold",
         "font-size-sm",
-        css,
         {
           "border-none": variant !== "outlined",
           "border-primary": color === "primary" && variant !== "regular",
@@ -42,6 +44,7 @@ export function Button({ className, color = "primary", variant = "regular", load
           "background-primary": color === "primary" && variant === "filled",
           "background-error": color === "error" && variant === "filled",
         },
+        css,
       ])}
       {...rest}
     >

@@ -8,11 +8,18 @@ import { StylesView, StylesNav } from "./components/StylesView";
 import { ComponentViewer } from "./components/ComponentViewer";
 import "./DesignSystem.css";
 import { mergeCss } from "@/utils/class-names/ClassNames.util";
+import { Button } from "@/components/button/Button";
 
 export function DesignSystem() {
   const navigate = useNavigate();
   const componentDocs = useComponentDocs().sort((a, b) => a.name.localeCompare(b.name));
   const [selectedComponentId, setSelectedComponentId] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredComponentDocs = componentDocs.filter((doc) => {
+    const query = searchQuery.toLowerCase();
+    return doc.name.toLowerCase().includes(query) || doc.description?.toLowerCase().includes(query);
+  });
 
   if (!Environment.isDevelopment() && !Environment.isStaging()) {
     return null;
@@ -28,9 +35,10 @@ export function DesignSystem() {
           </div>
           <h1 css={["font-size-lg", "text-bold"]}>Design System</h1>
         </div>
-        <button css={["cursor-pointer", "padding-sm", "background-error-light", "color-error", "border-none", "border-radius-md", "text-bold"]} onClick={() => navigate("/")}>
+        <Button color='error' variant='outlined' onClick={() => navigate("/")}>
+          <Icon icon='logout' />
           Exit
-        </button>
+        </Button>
       </header>
 
       {/* Main Content with Tabs */}
@@ -53,20 +61,35 @@ export function DesignSystem() {
             </Tabs.Item>
 
             <Tabs.Item id='components' css={["display-flex", "flex-column", "flex-1", "overflow-hidden"]}>
+              <div css={["padding-sm", "border-bottom"]}>
+                <input
+                  type='text'
+                  placeholder='Search components...'
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  css={["padding-sm", "border-radius-sm", "border", "width-full", "font-size-sm"]}
+                />
+              </div>
               <div css={["display-flex", "flex-column", "overflow-y-auto", "flex-1", "padding-sm"]}>
-                {componentDocs.map((doc) => (
-                  <button
-                    key={doc.id}
-                    onClick={() => setSelectedComponentId(doc.id)}
-                    css={mergeCss("padding-md", "text-left", "border-none", "background-transparent", "cursor-pointer", "border-radius-sm", "opacity-hover", {
-                      "background-primary-light": selectedComponentId === doc.id,
-                      "color-primary": selectedComponentId === doc.id,
-                    })}
-                  >
-                    <span css={["text-bold", "display-block"]}>{doc.name}</span>
-                    {doc.description && <span css={["font-size-xs", "color-typeface-light", "text-ellipsis", "display-block"]}>{doc.description}</span>}
-                  </button>
-                ))}
+                {filteredComponentDocs.length === 0 ? (
+                  <div css={["padding-md", "text-center", "color-typeface-light"]}>
+                    <p>No components found</p>
+                  </div>
+                ) : (
+                  filteredComponentDocs.map((doc) => (
+                    <button
+                      key={doc.id}
+                      onClick={() => setSelectedComponentId(doc.id)}
+                      css={mergeCss("padding-md", "text-left", "border-none", "background-transparent", "cursor-pointer", "border-radius-sm", "opacity-hover", {
+                        "background-primary-light": selectedComponentId === doc.id,
+                        "color-primary": selectedComponentId === doc.id,
+                      })}
+                    >
+                      <span css={["text-bold", "display-block"]}>{doc.name}</span>
+                      {doc.description && <span css={["font-size-xs", "color-typeface-light", "text-ellipsis", "display-block"]}>{doc.description}</span>}
+                    </button>
+                  ))
+                )}
               </div>
             </Tabs.Item>
           </aside>

@@ -1,6 +1,4 @@
 button[data-component="Button"] {
-  border: 1px solid transparent;
-
   &:hover:not(:disabled) {
     /* Outlined or Regular */
     &.variant-outlined,

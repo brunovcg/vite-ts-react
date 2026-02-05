@@ -2,6 +2,7 @@ import { type ChangeEvent, type InputHTMLAttributes, useEffect, useRef, useState
 import { useDebounce } from "../../hooks/use-debounce/useDebounce.hook";
 import { mergeClass } from "@/utils/class-names/ClassNames.util";
 import { LoadingSpinner } from "../loading-spinner/LoadingSpinner";
+import type { Css } from "@/runtime/css.types";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
@@ -9,9 +10,12 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   debounce?: number;
   loading?: boolean;
+  inputCss?: Css;
+  inputClassName?: string;
+  className?: string;
 }
 
-export function Input({ id, name, label, debounce, value, onChange, defaultValue, className, disabled, loading, ...props }: InputProps) {
+export function Input({ id, name, label, debounce, value, onChange, defaultValue, className, disabled, loading, inputCss, css, inputClassName, ...inputProps }: InputProps) {
   const isDebounced = typeof debounce === "number" && debounce > 0;
 
   const [localValue, setLocalValue] = useState<string | number | readonly string[] | undefined>(value !== undefined ? value : defaultValue !== undefined ? defaultValue : "");
@@ -55,10 +59,8 @@ export function Input({ id, name, label, debounce, value, onChange, defaultValue
   const passedDefaultValue = !isDebounced ? defaultValue : undefined;
 
   return (
-    <>
-      <label htmlFor={id}>
-        {label} {loading && <LoadingSpinner />}
-      </label>
+    <label htmlFor={id} css={css} className={mergeClass("container-input", className)} data-component='Input'>
+      <span className='label-text'>{label}</span> {loading && <LoadingSpinner />}
       <input
         id={id}
         name={name}
@@ -67,10 +69,12 @@ export function Input({ id, name, label, debounce, value, onChange, defaultValue
         onChange={handleChange}
         disabled={disabled || loading}
         aria-busy={loading}
-        className={mergeClass(className, "container-input")}
-        data-component='Input'
-        {...props}
+        aria-required={inputProps.required}
+        aria-invalid={inputProps["aria-invalid"]}
+        css={inputCss}
+        className={mergeClass("input-element", inputClassName)}
+        {...inputProps}
       />
-    </>
+    </label>
   );
 }

@@ -6,7 +6,7 @@ import "./DesignSystemButton.css";
 export function DesignSystemButton() {
   const navigate = useNavigate();
 
-  if (!Environment.isDevelopment()) {
+  if (!Environment.isDevelopment() && !Environment.isStaging()) {
     return null;
   }
 

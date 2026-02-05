@@ -1,4 +1,4 @@
-import type { Column } from "@/components/table";
+import type { Column } from "@/components/table/BaseTable";
 
 export class DownloadUtils {
   static csv(csvContent: string, fileName: string) {
@@ -11,12 +11,12 @@ export class DownloadUtils {
     document.body.removeChild(link);
   }
 
-  static tableCSV<Row extends Record<string, unknown>>({ data, columns, fileName }: { data: Row[]; columns: Column<Row>[]; fileName: string }) {
+  static tableCSV<Row extends object>({ data, columns, fileName }: { data: Row[]; columns: Column<Row>[]; fileName: string }) {
     const headers = columns.map((col) => col.header).join(",");
     const rows = data.map((row) =>
       columns
         .map((col) => {
-          if (col.accessor) return row[col.accessor];
+          if (col.accessor) return row[col.accessor as keyof Row];
           return ""; // Cannot export custom cells easily
         })
         .join(","),

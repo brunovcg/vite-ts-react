@@ -30,6 +30,10 @@
   font-family: var(--typeface-monospace);
 }
 
+.font-inherit {
+  font-family: inherit;
+}
+
 /* SIZE */
 
 .font-size-xs {

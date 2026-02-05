@@ -81,6 +81,7 @@ export function Dialog({ dialogId, heading, className, children, width, allowXBu
     <dialog
       ref={dialogRef}
       id={`dialog-${dialogId}`}
+      aria-labelledby={`dialog-title-${dialogId}`}
       data-component='Dialog'
       css={["position-fixed", "top", "left", "width-full", "height-full", "display-flex", "flex-center", "background-dialog-opacity", "border-none"]}
       className={ClassNames.merge(
@@ -105,8 +106,10 @@ export function Dialog({ dialogId, heading, className, children, width, allowXBu
       >
         {(heading || allowXButton) && (
           <section className={"dialog-header"} css={["display-flex", "justify-between", "align-center", "border-bottom", "padding-lg"]}>
-            <h2 css={["width-full", "text-ellipsis"]}>{heading}</h2>
-            {allowXButton && <ButtonIcon icon='close' onClick={handleCloseDialog} />}
+            <h2 id={`dialog-title-${dialogId}`} css={["width-full", "text-ellipsis"]}>
+              {heading}
+            </h2>
+            {allowXButton && <ButtonIcon icon='close' onClick={handleCloseDialog} aria-label='Close dialog' />}
           </section>
         )}
         {children}

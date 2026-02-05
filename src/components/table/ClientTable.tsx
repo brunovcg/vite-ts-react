@@ -1,14 +1,14 @@
 import { useMemo, useState } from "react";
 import { BaseTable, type Column } from "./BaseTable";
 
-export interface ClientTableProps<Row extends Record<string, unknown>> {
+export interface ClientTableProps<Row extends object> {
   columns: Column<Row>[];
   primaryKey: keyof Row;
   rows: Row[];
   downloadable?: boolean;
 }
 
-export function ClientTable<Row extends Record<string, unknown>>({ columns, primaryKey, rows, downloadable }: ClientTableProps<Row>) {
+export function ClientTable<Row extends object>({ columns, primaryKey, rows, downloadable }: ClientTableProps<Row>) {
   // State
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);

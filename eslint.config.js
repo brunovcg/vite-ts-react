@@ -19,4 +19,11 @@ export default tseslint.config({ ignores: ["dist"] }, js.configs.recommended, ..
     ...reactHooks.configs.recommended.rules,
     "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
   },
-});
+  },
+  {
+    files: ["**/*.doc.ts", "**/*.doc.tsx"],
+    rules: {
+      "react-refresh/only-export-components": "off",
+    },
+  },
+);

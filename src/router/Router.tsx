@@ -6,6 +6,7 @@ import { AuthGuard } from "./AuthGuard";
 import { NotFound } from "@/pages/not-found/NotFound.page";
 import { useDashboardRoutes } from "./dashboard.routes";
 import { useMemo } from "react";
+import { GlobalLayout } from "./GlobalLayout";
 
 export function Router() {
   const dashboardRoutes = useDashboardRoutes();
@@ -14,27 +15,32 @@ export function Router() {
     () =>
       createBrowserRouter([
         {
-          path: "/login",
-          element: <Login />,
-        },
-        {
-          path: "/design-system",
-          element: <DesignSystem />,
-        },
-        {
-          path: "/",
-          element: <AuthGuard />,
+          element: <GlobalLayout />,
           children: [
             {
+              path: "/login",
+              element: <Login />,
+            },
+            {
+              path: "/design-system",
+              element: <DesignSystem />,
+            },
+            {
               path: "/",
-              element: <Dashboard />,
-              children: dashboardRoutes,
+              element: <AuthGuard />,
+              children: [
+                {
+                  path: "/",
+                  element: <Dashboard />,
+                  children: dashboardRoutes,
+                },
+              ],
+            },
+            {
+              path: "*",
+              element: <NotFound />,
             },
           ],
-        },
-        {
-          path: "*",
-          element: <NotFound />,
         },
       ]),
     [dashboardRoutes],

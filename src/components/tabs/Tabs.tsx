@@ -1,12 +1,14 @@
-import { createContext, useContext, useMemo, useCallback } from "react";
+import type { Css } from "@/runtime/css.types";
+import { createContext, useContext, useMemo, useCallback, type PropsWithChildren } from "react";
 import { useSearchParams } from "react-router-dom";
 
 type Tab<TabId extends string | number> = { label: string; id: TabId; disabled?: boolean; hidden?: boolean };
 
 interface TabsContextProps<TabId extends string | number> {
-  activeTab: TabId;
+  activeTab: TabId | null;
   setActiveTab: (tabId: TabId) => void;
   tabs: Tab<TabId>[];
+  baseId: string;
 }
 
 interface TabsProps<TabId extends string | number> {
@@ -18,6 +20,8 @@ interface TabsProps<TabId extends string | number> {
 interface TabsItemProps {
   id: string | number;
   children: React.ReactNode;
+  css?: Css;
+  className?: string;
 }
 
 const TabsContext = createContext<TabsContextProps<string | number> | null>(null);
@@ -57,48 +61,73 @@ export function Tabs<TabId extends string | number>({ children, tabs, id }: Tabs
     [paramKey, setSearchParams],
   );
 
-  return <TabsContext.Provider value={useMemo(() => ({ activeTab, setActiveTab, tabs }), [activeTab, setActiveTab, tabs])}>{children}</TabsContext.Provider>;
+  return <TabsContext.Provider value={useMemo(() => ({ activeTab, setActiveTab, tabs, baseId: id }), [activeTab, setActiveTab, tabs, id])}>{children}</TabsContext.Provider>;
 }
 
-function TabItem({ children, id }: TabsItemProps) {
-  const { activeTab } = useTabContext();
+function TabItem({ children, id, css, className }: TabsItemProps) {
+  const { activeTab, baseId } = useTabContext();
+  const isActive = activeTab === id;
+  const panelId = `${baseId}-panel-${id}`;
+  const tabId = `${baseId}-tab-${id}`;
+
+  if (!isActive) return null;
+
   return (
-    <div css={[{ "display-none": activeTab !== id }]} data-component='TabItem'>
+    <section role='tabpanel' id={panelId} aria-labelledby={tabId} tabIndex={0} css={[css]} className={className} data-component='TabItem'>
       {children}
-    </div>
+    </section>
   );
 }
 
 function TabNav() {
-  const { setActiveTab, tabs, activeTab } = useTabContext();
+  const { setActiveTab, tabs, activeTab, baseId } = useTabContext();
   return (
     <nav css={["border-bottom", "width-fit", "padding-inline-sm"]} data-component='TabNav'>
-      <ul css={["display-flex", "gap-md"]}>
+      <ul role='tablist' css={["display-flex", "gap-md"]}>
         {tabs.filterMap(
           (tab) => !tab.hidden,
-          (tab) => (
-            <li>
-              <button
-                css={[
-                  "cursor-pointer",
-                  "border-none",
-                  "padding-md",
-                  "border-top-radius-sm",
-                  "text-bold",
-                  { "background-primary": tab.id === activeTab, "color-white": tab.id === activeTab, "background-white": tab.id !== activeTab, "color-primary": tab.id !== activeTab },
-                ]}
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-              >
-                {tab.label}
-              </button>
-            </li>
-          ),
+          (tab) => {
+            const isActive = tab.id === activeTab;
+            const tabId = `${baseId}-tab-${tab.id}`;
+            const panelId = `${baseId}-panel-${tab.id}`;
+            return (
+              <li role='presentation' key={tab.id}>
+                <button
+                  role='tab'
+                  id={tabId}
+                  aria-selected={isActive}
+                  aria-controls={panelId}
+                  tabIndex={isActive ? 0 : -1}
+                  css={[
+                    "cursor-pointer",
+                    "border-none",
+                    "padding-md",
+                    "border-top-radius-sm",
+                    "text-bold",
+                    { "background-primary": isActive, "color-white": isActive, "background-white": !isActive, "color-primary": !isActive },
+                  ]}
+                  onClick={() => setActiveTab(tab.id)}
+                >
+                  {tab.label}
+                </button>
+              </li>
+            );
+          },
         )}
       </ul>
     </nav>
   );
 }
 
+function TabNoData({ children }: PropsWithChildren) {
+  const { activeTab } = useTabContext();
+
+  if (activeTab === null) {
+    return <section data-component='TabNoData'>{children}</section>;
+  }
+  return null;
+}
+
 Tabs.Item = TabItem;
 Tabs.Nav = TabNav;
+Tabs.NoData = TabNoData;

@@ -5,20 +5,20 @@ import { TableLoading } from "./TableLoading";
 import { tableLocale } from "./Table.locales";
 import { useDictionary } from "@/locales";
 
-export type CellProps<Row extends Record<string, unknown>> = {
+export type CellProps<Row extends object> = {
   column: BaseTableProps<Row>["columns"][number];
   row: Row;
   rows: Row[];
   value: Row[keyof Row] | undefined;
 };
 
-export type Cell<Row extends Record<string, unknown>> = (props: CellProps<Row>) => ReactNode;
+export type Cell<Row extends object> = (props: CellProps<Row>) => ReactNode;
 
 type ColumnFilter = { type: "text" | "number" | "date" | "range" } | { type: "select"; options: string[] };
 
-type CustomCellRender<Row extends Record<string, unknown>> = { cell: Cell<Row>; accessor?: keyof Row } | { cell?: Cell<Row>; accessor: keyof Row } | { cell: Cell<Row>; accessor: keyof Row };
+type CustomCellRender<Row extends object> = { cell: Cell<Row>; accessor?: keyof Row } | { cell?: Cell<Row>; accessor: keyof Row } | { cell: Cell<Row>; accessor: keyof Row };
 
-export type Column<Row extends Record<string, unknown>> = {
+export type Column<Row extends object> = {
   header: string;
   sortable?: boolean;
   filter?: ColumnFilter;
@@ -26,7 +26,7 @@ export type Column<Row extends Record<string, unknown>> = {
   alignHeader?: "left" | "center" | "right";
 } & CustomCellRender<Row>;
 
-export interface BaseTableProps<Row extends Record<string, unknown>> {
+export interface BaseTableProps<Row extends object> {
   columns: Column<Row>[];
   data: Row[];
   primaryKey: keyof Row;
@@ -49,7 +49,7 @@ export interface BaseTableProps<Row extends Record<string, unknown>> {
   onFilterChange: (header: string, value: string) => void;
 }
 
-export function BaseTable<Row extends Record<string, unknown>>({
+export function BaseTable<Row extends object>({
   columns,
   data,
   primaryKey,
@@ -110,9 +110,14 @@ export function BaseTable<Row extends Record<string, unknown>>({
             <tr>
               {columns.map((column) => {
                 const headerAlign = column.alignHeader || "left";
+                const isSortable = !!column.sortable;
+                const sortDirection = sorting.find((s) => s.column === column.header)?.direction;
+                const ariaSort = sortDirection === "asc" ? "ascending" : sortDirection === "desc" ? "descending" : "none";
+
                 return (
                   <th
                     key={column.header}
+                    aria-sort={isSortable ? ariaSort : undefined}
                     css={[
                       "padding-sm",
                       "border-bottom",
@@ -123,23 +128,45 @@ export function BaseTable<Row extends Record<string, unknown>>({
                       },
                     ]}
                   >
-                    <div
-                      css={[
-                        "display-flex",
-                        "align-center",
-                        "gap-xs",
-                        {
-                          "cursor-pointer": !!column.sortable,
-                          "justify-start": headerAlign === "left",
-                          "justify-center": headerAlign === "center",
-                          "justify-end": headerAlign === "right",
-                        },
-                      ]}
-                      onClick={() => column.sortable && handleSort(column.header)}
-                    >
-                      {column.header}
-                      {column.sortable && <Icon icon={getSortIcon(column.header)} size='xs' />}
-                    </div>
+                    {isSortable ? (
+                      <button
+                        type='button'
+                        onClick={() => handleSort(column.header)}
+                        css={[
+                          "display-flex",
+                          "align-center",
+                          "gap-xs",
+                          "background-transparent",
+                          "border-none",
+                          "cursor-pointer",
+                          "width-full",
+                          {
+                            "justify-start": headerAlign === "left",
+                            "justify-center": headerAlign === "center",
+                            "justify-end": headerAlign === "right",
+                          },
+                        ]}
+                        style={{ font: "inherit", color: "inherit" }}
+                      >
+                        {column.header}
+                        <Icon icon={getSortIcon(column.header)} size='xs' />
+                      </button>
+                    ) : (
+                      <div
+                        css={[
+                          "display-flex",
+                          "align-center",
+                          "gap-xs",
+                          {
+                            "justify-start": headerAlign === "left",
+                            "justify-center": headerAlign === "center",
+                            "justify-end": headerAlign === "right",
+                          },
+                        ]}
+                      >
+                        {column.header}
+                      </div>
+                    )}
                   </th>
                 );
               })}

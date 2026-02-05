@@ -176,6 +176,7 @@ export const cssRegister = {
     "width-viewport",
   ],
   spacing: [
+    "margin-0",
     "margin-2xl",
     "margin-3xl",
     "margin-auto",
@@ -227,6 +228,7 @@ export const cssRegister = {
     "margin-top-xs",
     "margin-xl",
     "margin-xs",
+    "padding-0",
     "padding-2xl",
     "padding-3xl",
     "padding-block-2xl",
@@ -293,6 +295,7 @@ export const cssRegister = {
     "font-family-monospace",
     "font-family-sans",
     "font-family-serif",
+    "font-inherit",
     "font-size-2xl",
     "font-size-3xl",
     "font-size-lg",

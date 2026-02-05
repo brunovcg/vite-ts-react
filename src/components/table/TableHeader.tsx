@@ -4,7 +4,7 @@ import { TablePagination } from "./TablePagination";
 import type { Column } from "./BaseTable";
 import { Input } from "../input/Input";
 
-interface TableHeaderProps<Row extends Record<string, unknown>> {
+interface TableHeaderProps<Row extends object> {
   columns: Column<Row>[];
   data: Row[];
   hasFilters: boolean;
@@ -19,7 +19,7 @@ interface TableHeaderProps<Row extends Record<string, unknown>> {
   loading: boolean;
 }
 
-export function TableHeader<Row extends Record<string, unknown>>({
+export function TableHeader<Row extends object>({
   columns,
   data,
   hasFilters,

@@ -13,14 +13,14 @@ export interface Paginated<T> {
   total: number;
 }
 
-export interface ServerTableProps<Row extends Record<string, unknown>> {
+export interface ServerTableProps<Row extends object> {
   columns: Column<Row>[];
   primaryKey: keyof Row;
   service: (pagination: TablePagination) => Promise<Paginated<Row>>;
   downloadable?: boolean;
 }
 
-export function ServerTable<Row extends Record<string, unknown>>({ columns, primaryKey, service, downloadable }: ServerTableProps<Row>) {
+export function ServerTable<Row extends object>({ columns, primaryKey, service, downloadable }: ServerTableProps<Row>) {
   const [data, setData] = useState<Row[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);

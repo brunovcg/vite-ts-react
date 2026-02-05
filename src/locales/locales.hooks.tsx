@@ -10,10 +10,7 @@ export interface UseLocaleProps<DefaultDictionary extends DictionaryBase> {
 export function useText<DefaultDictionary extends DictionaryBase>(locale: LocaleBase<DefaultDictionary>) {
   const { currentLanguage } = useLocaleContext();
 
-  return useCallback(
-    (key: keyof DefaultDictionary, options?: LocaleOptions) => locales.getText({ key: key as string, options, language: currentLanguage, locale }),
-    [currentLanguage, locale],
-  );
+  return useCallback((key: keyof DefaultDictionary, options?: LocaleOptions) => locales.getText({ key: key as string, options, language: currentLanguage, locale }), [currentLanguage, locale]);
 }
 
 export function useDictionary<DefaultDictionary extends DictionaryBase>(locale: LocaleBase<DefaultDictionary>, options?: LocaleOptions): DefaultDictionary {

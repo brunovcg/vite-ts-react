@@ -5,6 +5,7 @@ import { Input } from "@/components/input/Input";
 import { Select } from "@/components/select/Select";
 import type { Column } from "@/components/table/BaseTable";
 import { Table } from "@/components/table/Table";
+import { Tabs } from "@/components/tabs/Tabs";
 import { TextArea } from "@/components/text-area/TextArea";
 import { Form } from "react-router-dom";
 
@@ -222,6 +223,18 @@ export function Login() {
           <Button type='submit'>Submit</Button>
         </Form>
       </div>
+
+      <Tabs
+        id='tabtest'
+        tabs={[
+          { label: "Tab 1", id: "tab-1" },
+          { label: "Tab 2", id: "tab-2" },
+        ]}
+      >
+        <Tabs.Nav />
+        <Tabs.Item id='tab-1'>Tab 1 Content</Tabs.Item>
+        <Tabs.Item id='tab-2'>Tab 2 Content</Tabs.Item>
+      </Tabs>
     </div>
   );
 }

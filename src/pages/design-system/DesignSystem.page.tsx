@@ -5,6 +5,7 @@ import { Tabs } from "@/components/tabs/Tabs";
 import { useComponentDocs } from "@/hooks/use-component-docs/useComponentDocs.hook";
 import { StylesView, StylesNav } from "./components/StylesView";
 import { ComponentViewer } from "./components/ComponentViewer";
+import { ReadmesSidebar, ReadmesContent } from "./components/ReadmesView";
 import "./DesignSystem.css";
 import { mergeCss } from "@/utils/class-names/ClassNames.util";
 import { Button } from "@/components/button/Button";
@@ -47,6 +48,7 @@ export function DesignSystem() {
         tabs={[
           { id: "styles", label: "Styles" },
           { id: "components", label: "Components" },
+          { id: "doc", label: "Doc" },
         ]}
       >
         <div css={["display-flex", "flex-1", "height-full", "overflow-hidden"]}>
@@ -92,6 +94,10 @@ export function DesignSystem() {
                 )}
               </div>
             </Tabs.Item>
+
+            <Tabs.Item id='doc' css={["display-flex", "flex-column", "flex-1", "overflow-hidden"]}>
+              <ReadmesSidebar />
+            </Tabs.Item>
           </aside>
 
           {/* View Area */}
@@ -109,6 +115,10 @@ export function DesignSystem() {
                   <p>Select a component to view documentation</p>
                 </div>
               )}
+            </Tabs.Item>
+
+            <Tabs.Item id='doc' css={["height-full"]}>
+              <ReadmesContent />
             </Tabs.Item>
           </main>
         </div>

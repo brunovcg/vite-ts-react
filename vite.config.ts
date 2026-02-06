@@ -6,7 +6,6 @@ import { checker } from "vite-plugin-checker";
 
 import { exec } from "child_process";
 
-// Custom plugin to watch design styles
 const watchDesignStyles = () => ({
   name: "watch-design-styles",
   handleHotUpdate({ file }: { file: string }) {
@@ -20,7 +19,6 @@ const watchDesignStyles = () => ({
   },
 });
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react({ jsxImportSource: "@/runtime" }),
@@ -38,6 +36,20 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes("src/locales")) {
+            return "locales";
+          }
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
+        },
+      },
     },
   },
   server: {

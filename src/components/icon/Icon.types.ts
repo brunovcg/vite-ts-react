@@ -19,4 +19,6 @@ export type IconProps = {
   hide?: boolean;
   margin?: string;
   dataTestId?: string;
-} & HTMLAttributes<HTMLSpanElement>;
+  decorative?: boolean;
+  "aria-label"?: string;
+} & Omit<HTMLAttributes<HTMLSpanElement>, "aria-label">;

@@ -2,7 +2,7 @@ import { Environment } from "@/utils/environment/Environment.util";
 import { Icon } from "@/components/icon/Icon";
 import "./DesignSystemButton.css";
 import { mergeCss } from "@/utils/class-names/ClassNames.util";
-import { useTypedNavigate, useLocation } from "@/router/RouterHooks";
+import { useTypedNavigate, useLocation } from "@/router/Router.utils";
 
 export function DesignSystemButton() {
   const navigate = useTypedNavigate();

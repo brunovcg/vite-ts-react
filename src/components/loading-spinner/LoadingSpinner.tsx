@@ -3,12 +3,17 @@ import { loadingSpinnerLocale } from "./LoadingSpinner.locales";
 import { Icon } from "../icon/Icon";
 import type { PropsWithCss } from "@/runtime/css.types";
 import { mergeCss } from "@/utils/class-names/ClassNames.util";
+import type { IconSize } from "../icon/Icon.types";
 
-export function LoadingSpinner({ css }: PropsWithCss) {
+interface LoadingSpinnerProps extends PropsWithCss {
+  size?: IconSize;
+}
+
+export function LoadingSpinner({ css, size = "sm" }: LoadingSpinnerProps) {
   const dictionary = useDictionary(loadingSpinnerLocale);
   return (
     <div css={mergeCss(["background-white", "padding-xs", "display-flex", "align-center", "justify-center", "width-fit", "border-radius-circle"], css)} data-component='LoadingSpinner'>
-      <Icon css={["animate-rotate"]} icon='loading' aria-label={dictionary.loading} role='status' />
+      <Icon css={["animate-rotate"]} icon='loading' size={size} aria-label={dictionary.loading} role='status' />
     </div>
   );
 }

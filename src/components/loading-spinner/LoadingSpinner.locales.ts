@@ -4,7 +4,7 @@ export const loadingSpinnerLocale = locales.createLocale({
   enUS: {
     loading: "Loading content...",
   },
-  ptBr: {
+  ptBR: {
     loading: "Carregando conteúdo...",
   },
 });

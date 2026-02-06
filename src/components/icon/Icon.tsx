@@ -7,7 +7,10 @@ import "./Icon.css";
 import { ClassNames } from "@/utils/class-names/ClassNames.util";
 import { COLORS } from "@/constants/colors.constants";
 
-function IconComponent({ icon, size = "sm", color, margin = "0", className = "", mirrored, hide, dataTestId, title, ...rest }: IconProps, ref: ForwardedRef<HTMLSpanElement>) {
+function IconComponent(
+  { icon, size = "sm", color, margin = "0", className = "", mirrored, hide, dataTestId, title, decorative = true, "aria-label": ariaLabel, "aria-hidden": ariaHidden, ...rest }: IconProps,
+  ref: ForwardedRef<HTMLSpanElement>,
+) {
   const iconWrapperClasses = ClassNames.merge("im-icon", className, {
     [`im-icon-${icon}`]: true,
     ["display-none"]: !!hide,
@@ -28,6 +31,8 @@ function IconComponent({ icon, size = "sm", color, margin = "0", className = "",
     return null;
   }
 
+  const isDecorative = ariaHidden === "true" || (decorative && !ariaLabel);
+
   return (
     <span
       ref={ref}
@@ -43,6 +48,9 @@ function IconComponent({ icon, size = "sm", color, margin = "0", className = "",
         transform: mirrored ? "scaleX(-1)" : undefined,
       }}
       title={title}
+      role={!isDecorative ? "img" : undefined}
+      aria-hidden={isDecorative ? "true" : undefined}
+      aria-label={!isDecorative ? ariaLabel : undefined}
       dangerouslySetInnerHTML={{ __html: svgContent }}
       data-icon={icon}
       data-component='Icon'

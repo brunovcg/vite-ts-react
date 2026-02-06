@@ -2,6 +2,8 @@ import { useRouteError } from "react-router-dom";
 import { Button } from "@/components/button/Button";
 import { Icon } from "@/components/icon/Icon";
 import "@/components/error-boundary/ErrorBoundary.css";
+import { routerErrorBoundaryLocales } from "./RouterErrorBounday.locales";
+import { useDictionary } from "@/locales";
 
 export function RouterErrorBoundary() {
   const error = useRouteError() as Error;
@@ -10,6 +12,7 @@ export function RouterErrorBoundary() {
   const errorMessage = error?.message || "An unexpected error occurred";
   const errorName = error?.name || "Error";
   const errorStack = error?.stack;
+  const dictionary = useDictionary(routerErrorBoundaryLocales);
 
   if (!isDev) {
     return (
@@ -21,19 +24,19 @@ export function RouterErrorBoundary() {
           </div>
 
           <div className='error-message'>
-            <div className='error-text' style={{ textAlign: "center", fontSize: "16px", color: "#a0a0a0" }}>
-              We couldn't find the page you're looking for. It might have been moved or deleted.
+            <div className='error-text' css={["text-center", "font-size-lg", "color-primary"]}>
+              {dictionary.error}
             </div>
           </div>
 
           <div className='error-actions'>
             <Button variant='filled' onClick={() => (window.location.href = "/")}>
               <Icon icon='home' />
-              Go Home
+              {dictionary.goHome}
             </Button>
             <Button variant='outlined' onClick={() => window.history.back()}>
               <Icon icon='arrowBack' />
-              Go Back
+              {dictionary.goBack}
             </Button>
           </div>
         </div>

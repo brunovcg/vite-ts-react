@@ -10,7 +10,7 @@ export const tableLocale = locales.createLocale({
     nextPage: "Next page",
     rowsPerPage: "Rows per page:",
   },
-  ptBr: {
+  ptBR: {
     loading: "Carregando...",
     noData: "Nenhum dado disponível.",
     noResults: "Nenhum resultado encontrado para os filtros.",

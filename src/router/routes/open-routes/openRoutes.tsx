@@ -1,6 +1,10 @@
+import { lazy } from "react";
 import { Login } from "@/pages/login/Login.page";
-import { DesignSystem } from "@/pages/design-system/DesignSystem.page";
+
 import type { AppRoute } from "@/router/router.types";
+import { RouterPageLoading } from "@/router/router-layouts/router-page-loading/RouterPageLoading";
+
+const DesignSystem = lazy(() => import("@/pages/design-system/DesignSystem.page").then((module) => ({ default: module.DesignSystem })));
 
 export const OPEN_ROUTES = [
   {
@@ -16,7 +20,11 @@ export const OPEN_ROUTES = [
   },
   {
     path: "/design-system",
-    element: <DesignSystem />,
+    element: (
+      <RouterPageLoading>
+        <DesignSystem />
+      </RouterPageLoading>
+    ),
     handle: {
       hide: false,
       title: "Design System",

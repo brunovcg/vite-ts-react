@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Dashboard } from "@/pages/dashboard/Dashboard.page";
-import { AuthGuard } from "./AuthGuard";
+import { AuthGuard } from "./router-layouts/AuthGuard";
 import { NotFound } from "@/pages/not-found/NotFound.page";
 import { useMemo } from "react";
-import { GlobalLayout } from "./GlobalLayout";
-import { RouterErrorBoundary } from "./RouterErrorBoundary";
+import { GlobalLayout } from "./router-layouts/GlobalLayout";
+import { RouterErrorBoundary } from "./router-layouts/router-error-boundary/RouterErrorBoundary";
 import { useDashboardRoutes } from "./routes/dashboard-routes/useDashboardRoutes";
 import { OPEN_ROUTES } from "./routes/open-routes/openRoutes";
 

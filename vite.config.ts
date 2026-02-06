@@ -1,6 +1,8 @@
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import { visualizer } from "rollup-plugin-visualizer";
+import { checker } from "vite-plugin-checker";
 
 import { exec } from "child_process";
 
@@ -20,7 +22,19 @@ const watchDesignStyles = () => ({
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react({ jsxImportSource: "@/runtime" }), watchDesignStyles()],
+  plugins: [
+    react({ jsxImportSource: "@/runtime" }),
+    watchDesignStyles(),
+    checker({ typescript: true }),
+    ...(process.env.ANALYZE === "true"
+      ? [
+          visualizer({
+            open: false,
+            filename: "./.reports/bundle-analysis.html",
+          }),
+        ]
+      : []),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

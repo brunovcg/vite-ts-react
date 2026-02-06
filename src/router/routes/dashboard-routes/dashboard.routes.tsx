@@ -1,37 +1,51 @@
+import { lazy } from "react";
 import type { AppRoute } from "../../router.types";
+import { OverviewPage } from "@/pages/dashboard/overview/Overview.page";
+import { RouterPageLoading } from "@/router/router-layouts/router-page-loading/RouterPageLoading";
+
+const ReportsPage = lazy(() => import("@/pages/dashboard/reports/Reports.page").then((module) => ({ default: module.ReportsPage })));
+const InternalPage = lazy(() => import("@/pages/dashboard/internal/Internal.page").then((module) => ({ default: module.InternalPage })));
 
 export const DASHBOARD_ROUTES = [
   {
     path: "overview",
-    element: <div>Overview Content</div>,
+    element: <OverviewPage />,
     handle: {
       hide: false,
       title: "Overview",
-      icon: "home" as const,
-      fullPath: "/dashboard/overview" as const,
+      icon: "home",
+      fullPath: "/dashboard/overview",
       fallbackPath: "/",
     },
   },
   {
     path: "reports",
-    element: <div>Reports Content</div>,
+    element: (
+      <RouterPageLoading>
+        <ReportsPage />
+      </RouterPageLoading>
+    ),
     handle: {
       hide: false,
       title: "Reports",
-      icon: "file" as const,
-      fullPath: "/dashboard/reports" as const,
+      icon: "file",
+      fullPath: "/dashboard/reports",
       fallbackPath: "/dashbaord/overview",
     },
   },
   {
     path: "internal",
-    element: <div>Internal Hidden Page</div>,
+    element: (
+      <RouterPageLoading>
+        <InternalPage />
+      </RouterPageLoading>
+    ),
     handle: {
       hide: true,
       title: "Internal",
-      icon: "file" as const,
-      fullPath: "/dashboard/internal" as const,
-      fallbackPath: "/dashbaord/overview",
+      icon: "file",
+      fullPath: "/dashboard/internal",
+      fallbackPath: "/dashboard/overview",
     },
   },
 ] as const satisfies readonly AppRoute[];

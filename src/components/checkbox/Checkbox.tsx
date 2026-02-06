@@ -16,7 +16,7 @@ export function Checkbox({ label, css, className, inputClassName, id, type = "ch
   return (
     <label data-component='Checkbox' className={className} css={css} htmlFor={id} style={{ flexDirection: labelSide === "right" ? "row-reverse" : "row" }}>
       {label && <span className='label-text'>{label}</span>}
-      <input type={type} css={inputCss} className={inputClassName} id={id} aria-checked={rest.checked} {...rest} />
+      <input type={type} css={inputCss} className={inputClassName} id={id} {...rest} />
     </label>
   );
 }

@@ -10,6 +10,7 @@ import { EVENTS } from "@/events/events";
 import { useOnKeyPress } from "@/hooks/use-on-key-press/useOnKeyPress.hook";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside/useOnClickOutside.hook";
 import { useListenEvent } from "@/hooks/use-listen-event/useListenEvent.hook";
+import { useFocusTrap } from "@/hooks/use-focus-trap/useFocusTrap.hook";
 
 type DialogProps = PropsWithChildren &
   DialogHTMLAttributes<HTMLDialogElement> & {
@@ -75,6 +76,11 @@ export function Dialog({ dialogId, heading, className, children, width, allowXBu
     event: "CLOSE_DIALOG",
     handler: handleCloseDialog,
     enabled: closeOnEscape,
+  });
+
+  useFocusTrap({
+    ref: dialogRef,
+    active: true,
   });
 
   return (

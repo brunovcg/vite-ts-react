@@ -8,7 +8,7 @@ import { ComponentViewer } from "./components/ComponentViewer";
 import "./DesignSystem.css";
 import { mergeCss } from "@/utils/class-names/ClassNames.util";
 import { Button } from "@/components/button/Button";
-import { useTypedNavigate } from "@/router/RouterHooks";
+import { useTypedNavigate } from "@/router/Router.utils";
 
 export function DesignSystem() {
   const navigate = useTypedNavigate();

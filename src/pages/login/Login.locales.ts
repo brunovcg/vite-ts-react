@@ -7,7 +7,7 @@ export const loginLocale = locales.createLocale({
     loginTitle: "Login",
     buttonTitle: "Submit",
   },
-  ptBr: {
+  ptBR: {
     pageTitle: "CRM",
     companyName: "Vida Software",
     loginTitle: "Login",

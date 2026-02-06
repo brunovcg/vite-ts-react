@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useMatches } from "react-router-dom";
-import type { AppRouteHandle } from "./router.types";
+import type { AppRouteHandle } from "../router.types";
 
 export function AuthGuard() {
   const matches = useMatches();

@@ -4,7 +4,7 @@ export const buttonLocale = locales.createLocale({
   enUS: {
     loading: "Loading",
   },
-  ptBr: {
+  ptBR: {
     loading: "Carregando",
   },
 });

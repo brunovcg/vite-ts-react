@@ -1,0 +1,4 @@
+.page-loading {
+  min-height: 400px;
+  animation: fadeIn 0.3s ease-in;
+}

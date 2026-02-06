@@ -1,6 +1,6 @@
 import type { Css, PropsWithCss } from "@/runtime/css.types";
 import { mergeCss } from "@/utils/class-names/ClassNames.util";
-import { createContext, useContext, useMemo, useCallback, type PropsWithChildren } from "react";
+import { createContext, useContext, useMemo, useCallback, useRef, type PropsWithChildren } from "react";
 import { useSearchParams } from "react-router-dom";
 
 type Tab<TabId extends string | number> = { label: string; id: TabId; disabled?: boolean; hidden?: boolean };
@@ -82,6 +82,46 @@ function TabItem({ children, id, css, className }: TabsItemProps) {
 
 function TabNav({ css }: PropsWithCss) {
   const { setActiveTab, tabs, activeTab, baseId } = useTabContext();
+
+  const visibleTabs = useMemo(() => tabs.filter((t) => !t.hidden && !t.disabled), [tabs]);
+  const tabRefs = useRef<Map<string | number, HTMLButtonElement>>(new Map());
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent, currentIndex: number) => {
+      let nextIndex = currentIndex;
+      let shouldPreventDefault = false;
+
+      switch (e.key) {
+        case "ArrowRight":
+          shouldPreventDefault = true;
+          nextIndex = (currentIndex + 1) % visibleTabs.length;
+          break;
+        case "ArrowLeft":
+          shouldPreventDefault = true;
+          nextIndex = (currentIndex - 1 + visibleTabs.length) % visibleTabs.length;
+          break;
+        case "Home":
+          shouldPreventDefault = true;
+          nextIndex = 0;
+          break;
+        case "End":
+          shouldPreventDefault = true;
+          nextIndex = visibleTabs.length - 1;
+          break;
+      }
+
+      if (shouldPreventDefault) {
+        e.preventDefault();
+        const nextTab = visibleTabs[nextIndex];
+        setActiveTab(nextTab.id);
+        setTimeout(() => {
+          tabRefs.current.get(nextTab.id)?.focus();
+        }, 0);
+      }
+    },
+    [visibleTabs, setActiveTab],
+  );
+
   return (
     <nav css={mergeCss(["border-bottom", "width-fit", "padding-inline-sm"], css)} data-component='TabNav'>
       <ul role='tablist' css={["display-flex", "gap-md"]}>
@@ -91,14 +131,24 @@ function TabNav({ css }: PropsWithCss) {
             const isActive = tab.id === activeTab;
             const tabId = `${baseId}-tab-${tab.id}`;
             const panelId = `${baseId}-panel-${tab.id}`;
+            const visibleIndex = visibleTabs.findIndex((t) => t.id === tab.id);
+
             return (
               <li role='presentation' key={tab.id}>
                 <button
+                  ref={(el) => {
+                    if (el) {
+                      tabRefs.current.set(tab.id, el);
+                    } else {
+                      tabRefs.current.delete(tab.id);
+                    }
+                  }}
                   role='tab'
                   id={tabId}
                   aria-selected={isActive}
                   aria-controls={panelId}
                   tabIndex={isActive ? 0 : -1}
+                  disabled={tab.disabled}
                   css={mergeCss("cursor-pointer", "border-none", "padding-md", "border-top-radius-sm", "text-bold", {
                     "background-primary": isActive,
                     "color-white": isActive,
@@ -106,6 +156,7 @@ function TabNav({ css }: PropsWithCss) {
                     "color-primary": !isActive,
                   })}
                   onClick={() => setActiveTab(tab.id)}
+                  onKeyDown={(e) => handleKeyDown(e, visibleIndex)}
                 >
                   {tab.label}
                 </button>

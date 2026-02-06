@@ -1,12 +1,12 @@
 import { useState } from "react";
 import type { ComponentDoc, Control } from "@/types/component-doc.types";
-import { ControlsPanel } from "./ControlsPanel";
+import { DSControlsPanel } from "./DSControlsPanel";
 
 interface ComponentViewerProps {
   doc: ComponentDoc;
 }
 
-export function ComponentViewer({ doc }: ComponentViewerProps) {
+export function DSComponentViewer({ doc }: ComponentViewerProps) {
   const [args, setArgs] = useState(doc.args || {});
 
   const handleChange = (key: string, value: unknown) => {
@@ -16,7 +16,7 @@ export function ComponentViewer({ doc }: ComponentViewerProps) {
   const Component = doc.component;
 
   return (
-    <div css={["display-flex", "height-full", "width-full", "overflow-hidden"]} data-component='ComponentViewer'>
+    <div data-component='DSComponentViewer' css={["display-flex", "height-full", "width-full", "overflow-hidden"]}>
       <div css={["flex-1", "display-flex", "flex-column", "gap-lg", "padding-2xl", "background-light", "overflow-y-auto"]}>
         <div css={["border-bottom", "padding-bottom-md"]}>
           <h2 css={["margin-bottom-sm"]}>{doc.name}</h2>
@@ -69,7 +69,7 @@ ${Object.entries(args)
         </div>
       </div>
 
-      <ControlsPanel args={args} argTypes={(doc.argTypes as Record<string, Control>) || {}} onChange={handleChange} />
+      <DSControlsPanel args={args} argTypes={(doc.argTypes as Record<string, Control>) || {}} onChange={handleChange} />
     </div>
   );
 }

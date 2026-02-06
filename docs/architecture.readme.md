@@ -493,7 +493,7 @@ function getControlType(key: string, value: unknown): ControlType {
 ) : type === "select" ? (
   <Select options={options} value={value} onChange={onChange} />
 ) : type === "object" ? (
-  <ObjectInput value={value} onChange={onChange} />
+  <InputObject value={value} onChange={onChange} />
 ) : type === "function" ? (
   <FunctionControl value={value} onChange={onChange} />
 ) : (

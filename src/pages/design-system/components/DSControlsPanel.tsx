@@ -2,8 +2,8 @@ import { useState } from "react";
 import type { Control, ControlType } from "@/types/component-doc.types";
 import { Input } from "@/components/input/Input";
 import { Select } from "@/components/select/Select";
-import { ObjectInput } from "./ObjectInput";
-import { InputFunction } from "./InputFunction";
+import { DSInputObject } from "./DSInputObject";
+import { DSInputFunction } from "./DSInputFunction";
 import { Checkbox } from "@/components/checkbox/Checkbox";
 
 interface ControlsPanelProps {
@@ -12,7 +12,7 @@ interface ControlsPanelProps {
   onChange: (key: string, value: unknown) => void;
 }
 
-export function ControlsPanel({ args, argTypes, onChange }: ControlsPanelProps) {
+export function DSControlsPanel({ args, argTypes, onChange }: ControlsPanelProps) {
   // Helper to determine control type if not explicitly defined
   const getControlType = (key: string, value: unknown): ControlType => {
     if (argTypes[key]?.type) return argTypes[key].type;
@@ -24,7 +24,7 @@ export function ControlsPanel({ args, argTypes, onChange }: ControlsPanelProps) 
   };
 
   return (
-    <div css={["display-flex", "flex-column", "gap-md", "padding-lg", "border-left", "background-white", "width-300px", "overflow-y-auto"]}>
+    <div data-component='DSControlsPanel' css={["display-flex", "flex-column", "gap-md", "padding-lg", "border-left", "background-white", "width-300px", "overflow-y-auto"]}>
       <h3>Controls</h3>
       {Object.entries(args).map(([key, value]) => {
         const type = getControlType(key, value);
@@ -84,7 +84,7 @@ function ObjectControl({ initialValue, onChange, label }: { initialValue: unknow
     }
   };
 
-  return <ObjectInput value={jsonString} onChange={handleChange} format={Array.isArray(initialValue) ? "array" : "object"} label={label} />;
+  return <DSInputObject value={jsonString} onChange={handleChange} format={Array.isArray(initialValue) ? "array" : "object"} label={label} />;
 }
 
 function FunctionControl({ initialValue, onChange, label }: { label: string; initialValue: unknown; onChange: (val: unknown) => void }) {
@@ -104,5 +104,5 @@ function FunctionControl({ initialValue, onChange, label }: { label: string; ini
     }
   };
 
-  return <InputFunction value={codeString} onChange={handleChange} label={label} />;
+  return <DSInputFunction value={codeString} onChange={handleChange} label={label} />;
 }

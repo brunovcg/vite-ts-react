@@ -3,9 +3,9 @@ import { Environment } from "@/utils/environment/Environment.util";
 import { Icon } from "@/components/icon/Icon";
 import { Tabs } from "@/components/tabs/Tabs";
 import { useComponentDocs } from "@/hooks/use-component-docs/useComponentDocs.hook";
-import { StylesView, StylesNav } from "./components/StylesView";
-import { ComponentViewer } from "./components/ComponentViewer";
-import { ReadmesSidebar, ReadmesContent } from "./components/ReadmesView";
+import { StylesView, StylesNav } from "./components/DSStylesView";
+import { DSComponentViewer } from "./components/DSComponentViewer";
+import { DSReadmesSidebar, DSReadmesContent } from "./components/DSReadmesView";
 import "./DesignSystem.css";
 import { mergeCss } from "@/utils/class-names/ClassNames.util";
 import { Button } from "@/components/button/Button";
@@ -96,7 +96,7 @@ export function DesignSystem() {
             </Tabs.Item>
 
             <Tabs.Item id='doc' css={["display-flex", "flex-column", "flex-1", "overflow-hidden"]}>
-              <ReadmesSidebar />
+              <DSReadmesSidebar />
             </Tabs.Item>
           </aside>
 
@@ -108,7 +108,7 @@ export function DesignSystem() {
 
             <Tabs.Item id='components' css={["height-full"]}>
               {selectedComponentId ? (
-                <ComponentViewer key={selectedComponentId} doc={componentDocs.find((d) => d.id === selectedComponentId)!} />
+                <DSComponentViewer key={selectedComponentId} doc={componentDocs.find((d) => d.id === selectedComponentId)!} />
               ) : (
                 <div css={["height-full", "display-flex", "flex-center", "flex-column", "gap-lg", "color-typeface-light"]}>
                   <Icon icon='codeFrontend' size='xl' />
@@ -118,7 +118,7 @@ export function DesignSystem() {
             </Tabs.Item>
 
             <Tabs.Item id='doc' css={["height-full"]}>
-              <ReadmesContent />
+              <DSReadmesContent />
             </Tabs.Item>
           </main>
         </div>

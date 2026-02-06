@@ -9,7 +9,7 @@ interface ObjectInputProps {
   label?: string;
 }
 
-export function ObjectInput({ value, onChange, readOnly, format = "object", label }: ObjectInputProps) {
+export function DSInputObject({ value, onChange, readOnly, format = "object", label }: ObjectInputProps) {
   const [localValue, setLocalValue] = useState(value);
   const [error, setError] = useState<string | null>(null);
 
@@ -59,6 +59,7 @@ export function ObjectInput({ value, onChange, readOnly, format = "object", labe
 
   return (
     <div
+      data-component='DSInputObject'
       css={["position-relative", "height-auto", "width-full", "display-flex", "flex-column"]}
       style={{
         padding: 0,

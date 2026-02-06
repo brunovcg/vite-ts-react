@@ -17,7 +17,7 @@ function setPageInUrl(pageName: string) {
   window.dispatchEvent(new PopStateEvent("popstate"));
 }
 
-export function ReadmesSidebar() {
+export function DSReadmesSidebar() {
   const readmes = useReadmeFiles();
   const [selectedPage, setSelectedPage] = useState<string | null>(() => getPageFromUrl() || readmes[0]?.name || null);
 
@@ -83,7 +83,7 @@ export function ReadmesSidebar() {
   );
 }
 
-export function ReadmesContent() {
+export function DSReadmesContent() {
   const readmes = useReadmeFiles();
   const containerRef = useRef<HTMLDivElement>(null);
   const [selectedPage, setSelectedPage] = useState<string | null>(() => getPageFromUrl() || readmes[0]?.name || null);

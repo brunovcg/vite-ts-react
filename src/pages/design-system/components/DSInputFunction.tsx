@@ -12,7 +12,7 @@ interface InputFunctionProps {
   error?: string;
 }
 
-export function InputFunction({ value, onChange, css, label, error: paramsError }: InputFunctionProps) {
+export function DSInputFunction({ value, onChange, css, label, error: paramsError }: InputFunctionProps) {
   const [localError, setLocalError] = useState<string | null>(null);
 
   const validateFunction = useCallback((val: string) => {
@@ -39,7 +39,7 @@ export function InputFunction({ value, onChange, css, label, error: paramsError 
   const errorMessage = paramsError || localError;
 
   return (
-    <div css={mergeCss(["position-relative", "height-auto", "width-full", "display-flex", "flex-column"], css)} style={{ minHeight: "100px", padding: 0 }}>
+    <div data-component='DSInputFunction' css={mergeCss(["position-relative", "height-auto", "width-full", "display-flex", "flex-column"], css)} style={{ minHeight: "100px", padding: 0 }}>
       <TextArea
         label={label}
         value={value}

@@ -17,7 +17,7 @@ This isn't just another React app. It features **custom-built infrastructure** t
 - Custom JSX transformation intercepts all React elements
 - Type-safe CSS classes auto-generated from design tokens
 - Zero runtime overhead with compile-time validation
-- [Learn more →](#-custom-jsx-runtime)
+- [Learn more →](#custom-jsx-runtime)
 
 ### 🎭 **Custom Storybook Alternative**
 
@@ -25,14 +25,14 @@ This isn't just another React app. It features **custom-built infrastructure** t
 - Auto-discovery via Vite's `import.meta.glob`
 - Interactive playground with live code generation
 - Zero external dependencies (no 2MB Storybook bundle)
-- [Learn more →](#-design-system--documentation)
+- [Learn more →](#design-system--documentation)
 
 ### 🌐 **Custom Internationalization**
 
 - No i18n libraries - built from scratch
 - Template string interpolation
 - React 19 `useSyncExternalStore` integration
-- [Learn more →](#-internationalization-i18n)
+- [Learn more →](#internationalization-i18n)
 
 ### 🏗️ **Zero-Dependency Philosophy**
 

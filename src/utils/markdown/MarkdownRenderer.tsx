@@ -1,5 +1,4 @@
 import { parseMarkdown, parseInlineMarkdown, type MarkdownNode } from "./Markdown.parser";
-import { mergeCss } from "@/utils/class-names/ClassNames.util";
 import { highlightCode } from "@/utils/syntax-highlighter/SyntaxHighlighter.util";
 
 interface MarkdownRendererProps {
@@ -67,6 +66,10 @@ function List({ items, ordered }: { items: MarkdownNode[]; ordered?: boolean }) 
 
 function generateHeadingId(content: string): string {
   return content
+    .replace(/\*\*/g, "")
+    .replace(/__/g, "")
+    .replace(/\*/g, "")
+    .replace(/_/g, "")
     .toLowerCase()
     .replace(/[^a-z0-9\s-]/g, "")
     .trim()
@@ -135,29 +138,64 @@ function Paragraph({ content }: { content: string }) {
 function CodeBlock({ content, language }: { content: string; language?: string }) {
   const tokens = language ? highlightCode(content, language) : null;
 
-  function getTokenColor(tokenType: string) {
-    if (tokenType === "keyword") return "color-primary";
-    if (tokenType === "string") return "color-success";
-    if (tokenType === "number") return "color-warning";
-    if (tokenType === "comment") return "color-typeface-light";
-    if (tokenType === "function") return "color-warning";
-    if (tokenType === "type") return "color-light-primary";
-    if (tokenType === "operator") return "color-typeface-medium";
-    return "color-typeface-dark";
+  function getTokenColor(tokenType: string): string {
+    switch (tokenType) {
+      case "keyword":
+        return "#FF79C6";
+      case "string":
+        return "#F1FA8C";
+      case "number":
+        return "#BD93F9";
+      case "comment":
+        return "#6272A4";
+      case "function":
+        return "#50FA7B";
+      case "type":
+        return "#8BE9FD";
+      case "operator":
+        return "#F8F8F2";
+      default:
+        return "#F8F8F2";
+    }
   }
 
   return (
-    <div css={["margin-block-md"]}>
-      {language && <div css={["background-dark", "color-white", "padding-sm", "font-size-xs", "text-bold", "border-top-radius-sm"]}>{language}</div>}
-      <pre css={mergeCss("background-light", "padding-md", "overflow-x-auto", "font-family-monospace", "font-size-sm", "border", { "border-radius-sm": !language })}>
+    <div style={{ marginTop: "16px", marginBottom: "16px" }}>
+      {language && (
+        <div
+          style={{
+            background: "#21222C",
+            color: "#F8F8F2",
+            padding: "8px 12px",
+            fontSize: "12px",
+            fontWeight: "bold",
+            borderTopLeftRadius: "4px",
+            borderTopRightRadius: "4px",
+          }}
+        >
+          {language}
+        </div>
+      )}
+      <pre
+        style={{
+          background: "#282A36",
+          color: "#F8F8F2",
+          borderRadius: language ? "0 0 4px 4px" : "4px",
+          margin: 0,
+          padding: "16px",
+          overflowX: "auto",
+          fontFamily: "monospace",
+          fontSize: "14px",
+        }}
+      >
         {tokens ? (
           tokens.map((token, i) => (
-            <span key={i} css={[getTokenColor(token.type)]}>
+            <span key={i} style={{ color: getTokenColor(token.type) }}>
               {token.content}
             </span>
           ))
         ) : (
-          <span css={["color-typeface-dark"]}>{content}</span>
+          <span style={{ color: "#F8F8F2" }}>{content}</span>
         )}
       </pre>
     </div>

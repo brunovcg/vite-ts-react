@@ -8,7 +8,7 @@ Welcome to the Vida Frontend documentation. This project features extensive docu
 
 **Main project documentation** - Start here for an overview of the project, quick start guide, and feature highlights.
 
-### [ARCHITECTURE.md](./ARCHITECTURE.md)
+### [ARCHITECTURE.md](./ARCHITECTURE.readme.md)
 
 **Architecture deep dive** - Detailed explanation of custom JSX runtime, type-safe CSS system, state management patterns, and build pipeline.
 
@@ -43,7 +43,7 @@ All documentation follows these patterns:
 
 - `README.md` - Main project documentation at root
 - `*.readme.md` - System-specific documentation (lowercase, dash-separated)
-- `docs/ARCHITECTURE.md` - Architecture and patterns (uppercase)
+- `docs/architecture.readme.md` - Architecture and patterns (uppercase)
 - `.agent/workflows/*.md` - Development workflows
 
 ### Creating New Documentation

@@ -5,15 +5,15 @@ label[data-component="Checkbox"] {
   gap: 6px;
 
   span {
-    font-size: var(--font-size-xs);
+    font-size: var(--font_size-xs);
     font-weight: bold;
   }
 
   &:has(input:required) {
     .label-text::after {
       content: " *";
-      font-size: var(--font-size-md);
-      color: var(--error);
+      font-size: var(--font_size-md);
+      color: var(--color-error);
       font-weight: bold;
       line-height: 1;
       vertical-align: top;
@@ -29,19 +29,19 @@ label[data-component="Checkbox"] {
     cursor: pointer;
     width: 18px;
     height: 18px;
-    accent-color: var(--primary);
+    accent-color: var(--color-primary);
 
     &:checked {
-      accent-color: var(--primary);
+      accent-color: var(--color-primary);
     }
 
     &:focus-visible {
-      outline: 1px solid var(--primary);
+      outline: 1px solid var(--color-primary);
       outline-offset: 2px;
     }
 
     &:user-invalid {
-      accent-color: var(--error);
+      accent-color: var(--color-error);
     }
   }
 }

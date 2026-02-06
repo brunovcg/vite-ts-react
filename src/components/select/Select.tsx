@@ -66,7 +66,7 @@ export function Select<Option extends string>({
         aria-invalid={props["aria-invalid"]}
         disabled={disabled || loading}
         className={mergeClass("input-element", inputClassName, { placeholder: isPlaceholder })}
-        style={{ color: isPlaceholder ? "var(--placeholder-color)" : "var(--text-color)" }}
+        style={{ color: isPlaceholder ? "var(--color-placeholder)" : "var(--text-color)" }}
         css={inputCss}
       >
         {placeholder && (

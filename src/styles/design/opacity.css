@@ -1,7 +1,7 @@
 .opacity-disabled {
-  opacity: var(--disabled-opacity);
+  opacity: var(--opacity-disabled);
 }
 
 .opacity-hover {
-  opacity: var(--hover-opacity);
+  opacity: var(--opacity-hover);
 }

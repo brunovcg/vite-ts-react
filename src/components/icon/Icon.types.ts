@@ -1,7 +1,6 @@
 import type { HTMLAttributes } from "react";
 import { icons } from "./Icons";
-
-import type { Color } from "@/constants/colors.constants";
+import type { CssVariable } from "@/runtime/css.types";
 
 export const iconSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
@@ -12,7 +11,7 @@ export type IconName = keyof typeof icons;
 export type IconProps = {
   size?: IconSize;
   icon: IconName;
-  color?: Color;
+  color?: keyof CssVariable["color"];
   className?: string;
   mirrored?: boolean;
   title?: string;

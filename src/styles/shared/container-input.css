@@ -1,8 +1,8 @@
 label.container-input {
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius-sm);
   background-color: var(--background-white);
-  font-size: var(--font-size-sm);
+  font-size: var(--font_size-sm);
   height: 44px;
   display: flex;
   align-items: center;
@@ -12,7 +12,7 @@ label.container-input {
   position: relative;
 
   .label-text {
-    font-size: var(--font-size-xs);
+    font-size: var(--font_size-xs);
     font-weight: bold;
     line-height: 1;
     text-align: left;
@@ -26,8 +26,8 @@ label.container-input {
   .input-element {
     flex: 1;
     border: none;
-    font-size: var(--font-size-sm);
-    color: var(--typeface-dark);
+    font-size: var(--font_size-sm);
+    color: var(--color-grey_dark);
     width: 100%;
     background-color: var(--background-white);
   }
@@ -55,8 +55,8 @@ label.container-input {
   &:has(.input-element:required) {
     .label-text::after {
       content: " *";
-      font-size: var(--font-size-md);
-      color: var(--error);
+      font-size: var(--font_size-md);
+      color: var(--color-error);
       font-weight: bold;
       line-height: 1;
       vertical-align: top;
@@ -64,9 +64,9 @@ label.container-input {
   }
 
   .input-element:hover {
-    color: var(--typeface-dark);
+    color: var(--color-grey_dark);
     cursor: text;
-    border-color: var(--typeface-dark);
+    border-color: var(--color-grey_dark);
 
     &:select {
       cursor: pointer;
@@ -74,17 +74,17 @@ label.container-input {
   }
 
   &:has(.input-element:user-invalid) {
-    border-color: var(--error);
-    color: var(--error);
+    border-color: var(--color-error);
+    color: var(--color-error);
   }
 
   &:has(.input-element:focus-within) {
-    color: var(--primary);
-    border-color: var(--primary);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
   }
 
   .input-element:user-invalid {
-    color: var(--error);
+    color: var(--color-error);
   }
 
   &:has(.input-element:disabled) {
@@ -92,10 +92,10 @@ label.container-input {
   }
 
   .input-element:disabled {
-    color: var(--typeface-light);
+    color: var(--color-grey_light);
     cursor: not-allowed;
     opacity: 0.6;
-    border-color: var(--border-color);
+    border-color: var(--color-border);
   }
 
   .input-element[aria-busy="true"] {
@@ -110,7 +110,7 @@ label.container-input {
 
   [data-component="LoadingSpinner"] {
     position: absolute;
-    color: var(--primary);
+    color: var(--color-primary);
     right: 4px;
     bottom: 8px;
     pointer-events: none;
@@ -120,33 +120,33 @@ label.container-input {
   select {
     option[disabled][selected],
     option.placeholder {
-      color: var(--placeholder-color);
-      font-size: var(--font-size-sm);
+      color: var(--color-placeholder);
+      font-size: var(--font_size-sm);
     }
 
     &:has(option[disabled][selected]:checked),
     &:has(option.placeholder:checked) {
-      color: var(--placeholder-color);
+      color: var(--color-placeholder);
     }
   }
 
   input {
     &[type="date"]:not(:focus):user-invalid {
-      color: var(--error-color);
+      color: var(--color-error);
     }
 
     &[type="date"]::-webkit-datetime-edit-text,
     &[type="date"]::-webkit-datetime-edit-month-field,
     &[type="date"]::-webkit-datetime-edit-day-field,
     &[type="date"]::-webkit-datetime-edit-year-field {
-      color: var(--placeholder-color);
+      color: var(--color-placeholder);
     }
 
     &[type="date"]:valid::-webkit-datetime-edit-text,
     &[type="date"]:valid::-webkit-datetime-edit-month-field,
     &[type="date"]:valid::-webkit-datetime-edit-day-field,
     &[type="date"]:valid::-webkit-datetime-edit-year-field {
-      color: var(--typeface-medium);
+      color: var(--color-grey_medium);
     }
   }
 }

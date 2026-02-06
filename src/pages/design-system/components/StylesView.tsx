@@ -276,17 +276,17 @@ function Section({ id, title, description, children }: { id: string; title: stri
 
 function ColorGrid() {
   const colors = [
-    { name: "--primary", var: "var(--primary)", hex: "#038fc6" },
-    { name: "--primary-light", var: "var(--primary-light)", hex: "#e5f7ff", darkText: true },
-    { name: "--success", var: "var(--success)", hex: "#179b03" },
-    { name: "--success-light", var: "var(--success-light)", hex: "#e0ffdb", darkText: true },
-    { name: "--warning", var: "var(--warning)", hex: "rgb(190, 156, 0)" },
-    { name: "--warning-light", var: "var(--warning-light)", hex: "#fcfade", darkText: true },
-    { name: "--error", var: "var(--error)", hex: "#e12f26" },
-    { name: "--error-light", var: "var(--error-light)", hex: "#ffeaea", darkText: true },
-    { name: "--typeface-dark", var: "var(--typeface-dark)", hex: "#1c1c1c" },
-    { name: "--typeface-medium", var: "var(--typeface-medium)", hex: "#555555" },
-    { name: "--typeface-light", var: "var(--typeface-light)", hex: "#777777" },
+    { name: "--color-primary", var: "var(--color-primary)", hex: "#038fc6" },
+    { name: "--color-primary_light", var: "var(--color-primary_light)", hex: "#e5f7ff", darkText: true },
+    { name: "--color-success", var: "var(--color-success)", hex: "#179b03" },
+    { name: "--color-success_light", var: "var(--color-success_light)", hex: "#e0ffdb", darkText: true },
+    { name: "--color-warning", var: "var(--color-warning)", hex: "rgb(190, 156, 0)" },
+    { name: "--color-warning_light", var: "var(--color-warning_light)", hex: "#fcfade", darkText: true },
+    { name: "--color-error", var: "var(--color-error)", hex: "#e12f26" },
+    { name: "--color-error_light", var: "var(--color-error_light)", hex: "#ffeaea", darkText: true },
+    { name: "--color-grey_dark", var: "var(--color-grey_dark)", hex: "#1c1c1c" },
+    { name: "--color-grey_medium", var: "var(--color-grey_medium)", hex: "#555555" },
+    { name: "--color-grey_light", var: "var(--color-grey_light)", hex: "#777777" },
   ];
 
   return (

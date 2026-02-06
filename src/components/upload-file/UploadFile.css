@@ -1,8 +1,8 @@
 label[data-component="UploadFile"] {
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius-sm);
   background-color: var(--background-white);
-  font-size: var(--font-size-sm);
+  font-size: var(--font_size-sm);
   min-height: 100px;
   display: flex;
   align-items: center;
@@ -15,7 +15,7 @@ label[data-component="UploadFile"] {
   transition: all 0.2s ease;
 
   .label-text {
-    font-size: var(--font-size-xs);
+    font-size: var(--font_size-xs);
     font-weight: bold;
     line-height: 1;
     text-align: left;
@@ -24,14 +24,14 @@ label[data-component="UploadFile"] {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    color: var(--typeface-light);
+    color: var(--color-grey_light);
   }
 
   &:has(input:required) {
     .label-text::after {
       content: " *";
-      font-size: var(--font-size-md);
-      color: var(--error);
+      font-size: var(--font_size-md);
+      color: var(--color-error);
       font-weight: bold;
       line-height: 1;
       vertical-align: top;
@@ -44,15 +44,15 @@ label[data-component="UploadFile"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px dashed var(--border-color);
+    border: 2px dashed var(--color-border);
     border-radius: var(--border-radius-sm);
     padding: 16px;
     transition: all 0.2s ease;
   }
 
   .upload-text {
-    font-size: var(--font-size-sm);
-    color: var(--typeface-medium);
+    font-size: var(--font_size-sm);
+    color: var(--color-grey_medium);
     text-align: center;
     user-select: none;
   }
@@ -66,44 +66,44 @@ label[data-component="UploadFile"] {
   }
 
   &:hover {
-    border-color: var(--typeface-dark);
+    border-color: var(--color-grey_dark);
 
     .upload-area {
-      border-color: var(--typeface-dark);
+      border-color: var(--color-grey_dark);
       background-color: var(--background-light);
     }
 
     .label-text {
-      color: var(--typeface-dark);
+      color: var(--color-grey_dark);
     }
   }
 
   &:has(input:focus-visible) {
-    border-color: var(--primary);
-    outline: 2px solid var(--primary);
+    border-color: var(--color-primary);
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
 
     .upload-area {
-      border-color: var(--primary);
+      border-color: var(--color-primary);
     }
 
     .label-text {
-      color: var(--primary);
+      color: var(--color-primary);
     }
   }
 
   &.dragging {
-    border-color: var(--primary);
-    background-color: var(--primary-light);
+    border-color: var(--color-primary);
+    background-color: var(--color-primary_light);
 
     .upload-area {
-      border-color: var(--primary);
+      border-color: var(--color-primary);
       background-color: var(--background-white);
       border-style: solid;
     }
 
     .upload-text {
-      color: var(--primary);
+      color: var(--color-primary);
       font-weight: bold;
     }
   }
@@ -118,24 +118,24 @@ label[data-component="UploadFile"] {
     }
 
     &:hover {
-      border-color: var(--border-color);
+      border-color: var(--color-border);
 
       .upload-area {
-        border-color: var(--border-color);
+        border-color: var(--color-border);
         background-color: var(--background-light);
       }
     }
   }
 
   &:has(input:user-invalid) {
-    border-color: var(--error);
+    border-color: var(--color-error);
 
     .label-text {
-      color: var(--error);
+      color: var(--color-error);
     }
 
     .upload-area {
-      border-color: var(--error);
+      border-color: var(--color-error);
     }
   }
 }

@@ -23,11 +23,11 @@
 }
 
 .font-family-serif {
-  font-family: var(--typeface-serif);
+  font-family: var(--font_family-serif);
 }
 
 .font-family-monospace {
-  font-family: var(--typeface-monospace);
+  font-family: var(--font_family-monospace);
 }
 
 .font-inherit {
@@ -37,31 +37,31 @@
 /* SIZE */
 
 .font-size-xs {
-  font-size: var(--font-size-xs);
+  font-size: var(--font_size-xs);
 }
 
 .font-size-sm {
-  font-size: var(--font-size-sm);
+  font-size: var(--font_size-sm);
 }
 
 .font-size-md {
-  font-size: var(--font-size-md);
+  font-size: var(--font_size-md);
 }
 
 .font-size-lg {
-  font-size: var(--font-size-lg);
+  font-size: var(--font_size-lg);
 }
 
 .font-size-xl {
-  font-size: var(--font-size-xl);
+  font-size: var(--font_size-xl);
 }
 
 .font-size-2xl {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font_size-2xl);
 }
 
 .font-size-3xl {
-  font-size: var(--font-size-3xl);
+  font-size: var(--font_size-3xl);
 }
 
 /* ALIGN */
@@ -91,15 +91,15 @@
 }
 
 .text-preset-title {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font_size-2xl);
   font-weight: bold;
-  color: var(--typeface-dark);
+  color: var(--color-grey_dark);
 }
 
 .text-preset-body {
-  font-size: var(--font-size-md);
+  font-size: var(--font_size-md);
   font-weight: normal;
-  color: var(--typeface-dark);
+  color: var(--color-grey_dark);
 }
 
 .text-ellipsis {

@@ -15,6 +15,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "register:styles": "node scripts/generate-css-register.js",
+    "register:variables": "node scripts/generate-css-variables.js",
     "cloc": "node cloc.js"
   },
   "dependencies": {
@@ -59,6 +60,9 @@
     ],
     "src/styles/design/*.css": [
       "npm run register:styles"
+    ],
+    "src/styles/config/variables.css": [
+      "npm run register:variables"
     ]
   }
 }

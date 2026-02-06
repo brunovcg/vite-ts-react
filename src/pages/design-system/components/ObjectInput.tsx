@@ -73,7 +73,7 @@ export function ObjectInput({ value, onChange, readOnly, format = "object", labe
         css={["flex-1", "width-full", "background-transparent"]}
         style={{
           fontFamily: "monospace",
-          fontSize: "var(--font-size-sm)",
+          fontSize: "var(--font_size-sm)",
           lineHeight: "1.5",
           resize: "vertical",
           minHeight: "200px",

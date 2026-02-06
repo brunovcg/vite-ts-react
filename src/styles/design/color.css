@@ -1,55 +1,55 @@
 .color-primary {
-  color: var(--primary);
+  color: var(--color-primary);
 }
 
 .color-white {
-  color: var(--typeface-white);
+  color: var(--color-white);
 }
 
 .color-light-primary {
-  color: var(--primary-light);
+  color: var(--color-primary_light);
 }
 
 .color-success {
-  color: var(--success);
+  color: var(--color-success);
 }
 
 .color-light-success {
-  color: var(--success-light);
+  color: var(--color-success_light);
 }
 
 .color-warning {
-  color: var(--warning);
+  color: var(--color-warning);
 }
 
 .color-light-warning {
-  color: var(--warning-light);
+  color: var(--color-warning_light);
 }
 
 .color-error {
-  color: var(--error);
+  color: var(--color-error);
 }
 
 .color-light-error {
-  color: var(--error-light);
+  color: var(--color-error_light);
 }
 
 .color-typeface-white {
-  color: var(--typeface-white);
+  color: var(--color-white);
 }
 
 .color-typeface-light {
-  color: var(--typeface-light);
+  color: var(--color-grey_light);
 }
 
 .color-typeface-medium {
-  color: var(--typeface-medium);
+  color: var(--color-grey_medium);
 }
 
 .color-typeface-dark {
-  color: var(--typeface-dark);
+  color: var(--color-grey_dark);
 }
 
 .color-typeface-disabled {
-  color: var(--typeface-disabled);
+  color: var(--color-disabled);
 }

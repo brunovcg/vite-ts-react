@@ -5,7 +5,7 @@ import { icons } from "./Icons";
 
 import "./Icon.css";
 import { ClassNames } from "@/utils/class-names/ClassNames.util";
-import { COLORS } from "@/constants/colors.constants";
+import { CSS_VARIABLES } from "@/runtime/cssVariables";
 
 function IconComponent(
   { icon, size = "sm", color, margin = "0", className = "", mirrored, hide, dataTestId, title, decorative = true, "aria-label": ariaLabel, "aria-hidden": ariaHidden, ...rest }: IconProps,
@@ -40,7 +40,7 @@ function IconComponent(
       data-testid={dataTestId}
       style={{
         margin,
-        color: color ? COLORS[color] : undefined,
+        color: color ? CSS_VARIABLES.color[color] : undefined,
         width: iconSize,
         height: iconSize,
         minWidth: iconSize,

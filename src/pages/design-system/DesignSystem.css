@@ -4,7 +4,7 @@
   }
 
   .border-bottom-dashed {
-    border-bottom: 1px dashed var(--border-color);
+    border-bottom: 1px dashed var(--color-border);
   }
 
   .shadow-sm {
@@ -15,6 +15,6 @@
     background-color: rgba(0, 0, 0, 0.05);
     padding: 2px 4px;
     border-radius: 4px;
-    font-family: var(--typeface-monospace);
+    font-family: var(--font_family-monospace);
   }
 }

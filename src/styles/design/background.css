@@ -25,35 +25,35 @@
 }
 
 .background-primary {
-  background-color: var(--primary);
+  background-color: var(--color-primary);
 }
 
 .background-error {
-  background-color: var(--error);
+  background-color: var(--color-error);
 }
 
 .background-warning {
-  background-color: var(--warning);
+  background-color: var(--color-warning);
 }
 
 .background-success {
-  background-color: var(--success);
+  background-color: var(--color-success);
 }
 
 .background-success-light {
-  background-color: var(--success-light);
+  background-color: var(--color-success_light);
 }
 
 .background-error-light {
-  background-color: var(--error-light);
+  background-color: var(--color-error_light);
 }
 
 .background-warning-light {
-  background-color: var(--warning-light);
+  background-color: var(--color-warning_light);
 }
 
 .background-primary-light {
-  background-color: var(--primary-light);
+  background-color: var(--color-primary_light);
 }
 
 .background-primary-gradient {

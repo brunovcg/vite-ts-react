@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const designDir = path.resolve(__dirname, "../src/styles/design");
-const outputFile = path.resolve(__dirname, "../src/runtime/cssRegister.ts");
+const outputFile = path.resolve(__dirname, "../src/runtime/.ts");
 
 const toCamelCase = (str) => {
   return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());

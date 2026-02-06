@@ -8,7 +8,7 @@
     transform 0.2s;
 
   &:hover {
-    opacity: var(--hover-opacity);
+    opacity: var(--opacity-hover);
     transform: scale(1.05);
   }
 }

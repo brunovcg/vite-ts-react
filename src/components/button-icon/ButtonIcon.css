@@ -3,10 +3,10 @@
 
   &:hover:not(:disabled) {
     &.color-primary {
-      background-color: var(--primary-light);
+      background-color: var(--color-primary_light);
     }
     &.color-error {
-      background-color: var(--error-light);
+      background-color: var(--color-error_light);
     }
   }
 
@@ -16,6 +16,6 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--color-primary);
   }
 }

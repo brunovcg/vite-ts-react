@@ -4,8 +4,8 @@ import { DrawerUtils } from "./drawer.utils";
 import { Button } from "@/components/button/Button";
 import { Icon } from "@/components/icon/Icon";
 import { useDashboardRoutes } from "@/router/routes/dashboard-routes/useDashboardRoutes";
-import type { AppRouteHandle } from "@/router/router.types";
-import { useTypedNavigate, type TypedPath } from "@/router/Router.utils";
+import type { AppRouteHandle, RouterTypedPath } from "@/router/router.types";
+import { useTypedNavigate } from "@/router/Router.utils";
 
 export function Drawer() {
   const navigate = useTypedNavigate();
@@ -26,7 +26,7 @@ export function Drawer() {
             },
             (route) => {
               const handle = route.handle as AppRouteHandle | undefined;
-              const path = (route.path || "") as TypedPath;
+              const path = (route.path || "") as RouterTypedPath;
               const icon = handle?.icon;
 
               return (

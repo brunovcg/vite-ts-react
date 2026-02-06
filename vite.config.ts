@@ -19,10 +19,24 @@ const watchDesignStyles = () => ({
   },
 });
 
+const watchConfigVariables = () => ({
+  name: "watch-config-variables",
+  handleHotUpdate({ file }: { file: string }) {
+    if (file.includes("src/styles/config/variables.css")) {
+      exec("npm run register:variables", (error) => {
+        if (error) {
+          console.error(`Error running register:variables: ${error}`);
+        }
+      });
+    }
+  },
+});
+
 export default defineConfig({
   plugins: [
     react({ jsxImportSource: "@/runtime" }),
     watchDesignStyles(),
+    watchConfigVariables(),
     checker({ typescript: true }),
     ...(process.env.ANALYZE === "true"
       ? [

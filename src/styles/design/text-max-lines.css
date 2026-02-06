@@ -15,7 +15,7 @@
   overflow: hidden;
   &:hover {
     overflow: visible;
-    border-color: var(--border-color);
+    border-color: var(--color-border);
     border-radius: var(--container-border-radius);
     background-color: var(--background-light-color);
     box-shadow: var(--background-box-shadow);

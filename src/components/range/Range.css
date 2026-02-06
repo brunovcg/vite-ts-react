@@ -5,7 +5,7 @@ label[data-component="Range"] {
   gap: 6px;
 
   .label-text {
-    font-size: var(--font-size-xs);
+    font-size: var(--font_size-xs);
     font-weight: bold;
   }
 
@@ -16,19 +16,19 @@ label[data-component="Range"] {
 
   input {
     cursor: pointer;
-    accent-color: var(--primary);
+    accent-color: var(--color-primary);
 
     &:checked {
-      accent-color: var(--primary);
+      accent-color: var(--color-primary);
     }
 
     &:focus-visible {
-      outline: 1px solid var(--primary);
+      outline: 1px solid var(--color-primary);
       outline-offset: 2px;
     }
 
     &:user-invalid {
-      accent-color: var(--error);
+      accent-color: var(--color-error);
     }
   }
 }

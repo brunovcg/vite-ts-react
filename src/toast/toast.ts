@@ -76,8 +76,8 @@ export class CustomToastDialog extends HTMLDialogElement {
           </div>
           <div class="toast-message" style="
             flex: 1;
-            color: var(--typeface-dark);
-            font-size: var(--font-size-sm);
+            color: var(--color-grey_dark);
+            font-size: var(--font_size-sm);
             line-height: 1.5;
             word-wrap: break-word;
           ">
@@ -116,10 +116,10 @@ export class CustomToastDialog extends HTMLDialogElement {
 
   private getVariantConfig(variant: string): { icon: string; color: string } {
     const configs = {
-      info: { icon: "info", color: "var(--primary)" },
-      error: { icon: "cancel", color: "var(--error)" },
-      warning: { icon: "warning", color: "var(--warning)" },
-      success: { icon: "done", color: "var(--success)" },
+      info: { icon: "info", color: "var(--color-primary)" },
+      error: { icon: "cancel", color: "var(--color-error)" },
+      warning: { icon: "warning", color: "var(--color-warning)" },
+      success: { icon: "done", color: "var(--color-success)" },
     };
 
     return configs[variant as keyof typeof configs] || configs.info;

@@ -73,7 +73,7 @@ label.container-input {
     }
   }
 
-  &:has(.input-element:invalid) {
+  &:has(.input-element:user-invalid) {
     border-color: var(--error);
     color: var(--error);
   }
@@ -131,7 +131,7 @@ label.container-input {
   }
 
   input {
-    &[type="date"]:not(:focus):invalid {
+    &[type="date"]:not(:focus):user-invalid {
       color: var(--error-color);
     }
 

@@ -19,7 +19,7 @@ export function Login() {
         <Form css={["display-flex", "flex-column", "gap-md", "border-radius-md", "padding-2xl", "border", "width-400px", "gap-2xl", "background-white"]}>
           <h2 css={["font-size-lg", "text-left", "width-full", "color-primary"]}>{dictionary.loginTitle}</h2>
           <Input name='email' id='email' label='Email' required type='email' />
-          <Input name='password' id='password' label='Password' required />
+          <Input name='password' id='password' label='Password' required type='password' />
           <Button variant='filled' type='submit'>
             <Icon icon='login' />
             {dictionary.buttonTitle}

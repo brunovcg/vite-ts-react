@@ -5,6 +5,111 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vida Frontend</title>
+    <style>
+      /* Custom Vite Error Overlay Styling */
+      vite-error-overlay {
+        --color-primary: #1175dd;
+        --color-primary-dark: #0d5cb5;
+        --color-error: #ff5555;
+        --color-warning: #ffaa00;
+        --color-bg: #1a1a1a;
+        --color-bg-light: #2a2a2a;
+        --color-text: #ffffff;
+        --color-text-dim: #a0a0a0;
+      }
+
+      vite-error-overlay::part(backdrop) {
+        background: linear-gradient(135deg, rgba(17, 117, 221, 0.1) 0%, rgba(255, 85, 85, 0.1) 100%);
+        backdrop-filter: blur(10px);
+      }
+
+      vite-error-overlay::part(window) {
+        background: var(--color-bg);
+        border: 1px solid var(--color-primary);
+        border-radius: 12px;
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(17, 117, 221, 0.3);
+        max-width: 90vw;
+        max-height: 90vh;
+      }
+
+      vite-error-overlay::part(message) {
+        background: var(--color-bg-light);
+        border-radius: 8px;
+        padding: 20px;
+        margin: 16px;
+        color: var(--color-text);
+        font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+        font-size: 14px;
+        line-height: 1.6;
+        border-left: 4px solid var(--color-error);
+      }
+
+      vite-error-overlay::part(message-body) {
+        color: var(--color-text);
+        margin: 0;
+      }
+
+      vite-error-overlay::part(plugin) {
+        color: var(--color-primary);
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: inline-block;
+        background: rgba(17, 117, 221, 0.1);
+        padding: 4px 12px;
+        border-radius: 4px;
+      }
+
+      vite-error-overlay::part(file) {
+        color: var(--color-warning);
+        margin-bottom: 12px;
+        font-weight: 500;
+        text-decoration: underline;
+      }
+
+      vite-error-overlay::part(frame) {
+        color: var(--color-text-dim);
+        background: rgba(0, 0, 0, 0.3);
+        padding: 4px 8px;
+        border-radius: 4px;
+        margin: 2px 0;
+      }
+
+      vite-error-overlay::part(stack) {
+        color: var(--color-text-dim);
+        font-size: 13px;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      vite-error-overlay::part(tip) {
+        background: linear-gradient(90deg, rgba(17, 117, 221, 0.2) 0%, rgba(17, 138, 221, 0.2) 100%);
+        border-left: 4px solid var(--color-primary);
+        padding: 12px 16px;
+        margin: 16px;
+        border-radius: 4px;
+        color: var(--color-text);
+        font-size: 13px;
+      }
+
+      /* Enhanced code blocks */
+      vite-error-overlay pre {
+        background: #0d0d0d !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        padding: 16px;
+        overflow-x: auto;
+        margin: 12px 0;
+      }
+
+      vite-error-overlay code {
+        color: var(--color-text);
+        font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+        font-size: 13px;
+      }
+    </style>
   </head>
   <body>
     <div id="root" class="height-full"></div>

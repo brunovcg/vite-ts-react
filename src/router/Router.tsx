@@ -7,6 +7,7 @@ import { NotFound } from "@/pages/not-found/NotFound.page";
 import { useDashboardRoutes } from "./dashboard.routes";
 import { useMemo } from "react";
 import { GlobalLayout } from "./GlobalLayout";
+import { RouterErrorBoundary } from "./RouterErrorBoundary";
 
 export function Router() {
   const dashboardRoutes = useDashboardRoutes();
@@ -16,6 +17,7 @@ export function Router() {
       createBrowserRouter([
         {
           element: <GlobalLayout />,
+          errorElement: <RouterErrorBoundary />,
           children: [
             {
               path: "/login",

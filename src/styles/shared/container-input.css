@@ -52,10 +52,6 @@ label.container-input {
     padding-block: 4px;
   }
 
-  .input-element:user-invalid {
-    color: var(--error);
-  }
-
   &:has(.input-element:required) {
     .label-text::after {
       content: " *";
@@ -77,9 +73,18 @@ label.container-input {
     }
   }
 
+  &:has(.input-element:invalid) {
+    border-color: var(--error);
+    color: var(--error);
+  }
+
   &:has(.input-element:focus-within) {
     color: var(--primary);
     border-color: var(--primary);
+  }
+
+  .input-element:user-invalid {
+    color: var(--error);
   }
 
   &:has(.input-element:disabled) {

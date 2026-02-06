@@ -11,6 +11,7 @@ export const cssRegister = {
     "background-error-light",
     "background-light",
     "background-primary",
+    "background-primary-gradient",
     "background-primary-light",
     "background-success",
     "background-success-light",

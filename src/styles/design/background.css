@@ -55,3 +55,7 @@
 .background-primary-light {
   background-color: var(--primary-light);
 }
+
+.background-primary-gradient {
+  background: var(--background-primary-gradient);
+}

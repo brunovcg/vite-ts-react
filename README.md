@@ -45,19 +45,19 @@ This isn't just another React app. It features **custom-built infrastructure** t
 
 ## 📚 Table of Contents
 
-- [Quick Start](#-quick-start)
-- [Core Innovations](#-core-innovations)
-  - [Custom JSX Runtime](#-custom-jsx-runtime)
-  - [Type-Safe CSS System](#-type-safe-css-system)
-  - [Design System & Documentation](#-design-system--documentation)
-  - [URL-Driven State Management](#-url-driven-state-management)
-  - [Internationalization (i18n)](#-internationalization-i18n)
-  - [Build-Time Code Generation](#-build-time-code-generation)
-- [Project Structure](#-project-structure)
-- [Development Guide](#-development-guide)
-- [Quality Control](#%EF%B8%8F-quality-control)
-- [AI Agent Rules](#-ai-agent-rules)
-- [Advanced Documentation](#-advanced-documentation)
+- [Quick Start](#quick-start)
+- [Core Innovations](#core-innovations)
+  - [Custom JSX Runtime](#custom-jsx-runtime)
+  - [Type-Safe CSS System](#type-safe-css-system)
+  - [Design System & Documentation](#design-system--documentation)
+  - [URL-Driven State Management](#url-driven-state-management)
+  - [Internationalization (i18n)](#internationalization-i18n)
+  - [Build-Time Code Generation](#build-time-code-generation)
+- [Project Structure](#project-structure)
+- [Development Guide](#development-guide)
+- [Quality Control](#quality-control)
+- [AI Agent Rules](#ai-agent-rules)
+- [Advanced Documentation](#advanced-documentation)
 
 ---
 

@@ -5,7 +5,7 @@ interface ReadmeFile {
 }
 
 export function useReadmeFiles(): ReadmeFile[] {
-  const modules = import.meta.glob<string>(["/docs/**/*.readme.md", "/scripts/**/*.readme.md", "/*.md"], {
+  const modules = import.meta.glob<string>(["/docs/**/*.readme.md", "/scripts/**/*.readme.md", "/src/**/*.readme.md", "/*.md"], {
     query: "?raw",
     eager: true,
   });

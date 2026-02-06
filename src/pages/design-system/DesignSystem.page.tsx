@@ -48,7 +48,7 @@ export function DesignSystem() {
         tabs={[
           { id: "styles", label: "Styles" },
           { id: "components", label: "Components" },
-          { id: "doc", label: "Doc" },
+          { id: "doc", label: "Docs" },
         ]}
       >
         <div css={["display-flex", "flex-1", "height-full", "overflow-hidden"]}>

@@ -16,7 +16,11 @@
     "format:check": "prettier --check .",
     "register:styles": "node scripts/generate-css-register.js",
     "register:variables": "node scripts/generate-css-variables.js",
-    "cloc": "node cloc.js"
+    "cloc": "node cloc.js",
+    "todo:report": "node scripts/generate-todo-report.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.20",

@@ -1,0 +1,3 @@
+npm run todo:report
+npm run build:analyze
+npm run test

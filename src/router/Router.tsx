@@ -1,16 +1,15 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Login } from "@/pages/login/Login.page";
-import { DesignSystem } from "@/pages/design-system/DesignSystem.page";
 import { Dashboard } from "@/pages/dashboard/Dashboard.page";
 import { AuthGuard } from "./AuthGuard";
 import { NotFound } from "@/pages/not-found/NotFound.page";
-import { useDashboardRoutes } from "./dashboard.routes";
 import { useMemo } from "react";
 import { GlobalLayout } from "./GlobalLayout";
 import { RouterErrorBoundary } from "./RouterErrorBoundary";
+import { useDashboardRoutes } from "./routes/dashboard-routes/useDashboardRoutes";
+import { OPEN_ROUTES } from "./routes/open-routes/openRoutes";
 
 export function Router() {
-  const dashboardRoutes = useDashboardRoutes();
+  const DASHBOARD_ROUTES = useDashboardRoutes();
 
   const router = useMemo(
     () =>
@@ -19,22 +18,15 @@ export function Router() {
           element: <GlobalLayout />,
           errorElement: <RouterErrorBoundary />,
           children: [
-            {
-              path: "/login",
-              element: <Login />,
-            },
-            {
-              path: "/design-system",
-              element: <DesignSystem />,
-            },
+            ...OPEN_ROUTES,
             {
               path: "/",
               element: <AuthGuard />,
               children: [
                 {
-                  path: "/",
+                  path: "/dashboard",
                   element: <Dashboard />,
-                  children: dashboardRoutes,
+                  children: DASHBOARD_ROUTES,
                 },
               ],
             },
@@ -45,7 +37,7 @@ export function Router() {
           ],
         },
       ]),
-    [dashboardRoutes],
+    [DASHBOARD_ROUTES],
   );
 
   return <RouterProvider router={router} data-component='RouterProvider' />;

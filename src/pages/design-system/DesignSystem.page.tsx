@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Environment } from "@/utils/environment/Environment.util";
-import { useNavigate } from "react-router-dom";
 import { Icon } from "@/components/icon/Icon";
 import { Tabs } from "@/components/tabs/Tabs";
 import { useComponentDocs } from "@/hooks/use-component-docs/useComponentDocs.hook";
@@ -9,9 +8,10 @@ import { ComponentViewer } from "./components/ComponentViewer";
 import "./DesignSystem.css";
 import { mergeCss } from "@/utils/class-names/ClassNames.util";
 import { Button } from "@/components/button/Button";
+import { useTypedNavigate } from "@/router/RouterHooks";
 
 export function DesignSystem() {
-  const navigate = useNavigate();
+  const navigate = useTypedNavigate();
   const componentDocs = useComponentDocs().sort((a, b) => a.name.localeCompare(b.name));
   const [selectedComponentId, setSelectedComponentId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");

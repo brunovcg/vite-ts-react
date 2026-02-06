@@ -9,6 +9,7 @@ const SECTIONS = [
   { id: "animations", title: "Animations" },
   { id: "backgrounds", title: "Backgrounds" },
   { id: "borders", title: "Borders" },
+  { id: "colors", title: "Colors" },
   { id: "cursors", title: "Cursors & Interaction" },
   { id: "flexbox", title: "Flex Box" },
   { id: "icons", title: "Icons" },
@@ -18,7 +19,6 @@ const SECTIONS = [
   { id: "spacing", title: "Spacing" },
   { id: "text-max-lines", title: "Text Max Lines" },
   { id: "typography", title: "Typography" },
-  { id: "colors", title: "Variables (Colors)" },
 ];
 
 export function StylesNav() {
@@ -90,6 +90,9 @@ export function StylesView() {
               <ClassDoc className='.border-radius-circle' description='50%' css={[]} />
             </div>
           </div>
+        </Section>
+        <Section id='colors' title='Variables (Colors)' description='Core color palette used throughout the application.'>
+          <ColorGrid />
         </Section>
 
         <Section id='cursors' title='Cursors & Interaction' description='Cursor styles.'>
@@ -255,10 +258,6 @@ export function StylesView() {
             <TypeSpecimen css={["text-italic"]} label='.text-italic' />
             <TypeSpecimen css={["text-underline"]} label='.text-underline' />
           </div>
-        </Section>
-
-        <Section id='colors' title='Variables (Colors)' description='Core color palette used throughout the application.'>
-          <ColorGrid />
         </Section>
       </main>
     </div>

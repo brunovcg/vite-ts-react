@@ -4,7 +4,7 @@
 }
 
 aside[data-component="Drawer"] {
-  width: 280px;
+  width: 200px;
   background-color: var(--background-white);
   transition: transform 0.3s ease;
   z-index: var(--z-index-drawer);

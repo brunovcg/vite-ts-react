@@ -1,14 +1,15 @@
-import {
-  // Navigate
-  Outlet,
-} from "react-router-dom";
+import { Navigate, Outlet, useMatches } from "react-router-dom";
+import type { AppRouteHandle } from "./router.types";
 
 export function AuthGuard() {
-  // const isAuthenticated = localStorage.getItem('token'); // Simple check for now
+  const matches = useMatches();
 
-  // if (!isAuthenticated) {
-  //   return <Navigate to='/login' replace />;
-  // }
+  const currentMatch = matches[matches.length - 1];
+  const handle = currentMatch?.handle as AppRouteHandle | undefined;
+
+  if (handle?.hide) {
+    return <Navigate to={handle.fallbackPath || "/"} replace />;
+  }
 
   return <Outlet />;
 }

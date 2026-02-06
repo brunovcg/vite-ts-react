@@ -1,10 +1,14 @@
-import { useNavigate } from "react-router-dom";
 import { Environment } from "@/utils/environment/Environment.util";
 import { Icon } from "@/components/icon/Icon";
 import "./DesignSystemButton.css";
+import { mergeCss } from "@/utils/class-names/ClassNames.util";
+import { useTypedNavigate, useLocation } from "@/router/RouterHooks";
 
 export function DesignSystemButton() {
-  const navigate = useNavigate();
+  const navigate = useTypedNavigate();
+  const location = useLocation();
+
+  const isDesignSystemPage = location.pathname === "/design-system";
 
   if (!Environment.isDevelopment() && !Environment.isStaging()) {
     return null;
@@ -13,20 +17,10 @@ export function DesignSystemButton() {
   return (
     <button
       className='design-system-button'
-      css={[
-        "position-fixed",
-        "bottom",
-        "right",
-        "margin-lg",
-        "padding-md",
-        "background-primary",
-        "color-white",
-        "border-none",
-        "border-radius-circle",
-        "cursor-pointer",
-        "display-flex",
-        "flex-center",
-      ]}
+      css={mergeCss(["position-fixed", "bottom", "right", "margin-lg", "padding-md", "background-primary", "color-white", "border-none", "border-radius-circle", "cursor-pointer", "flex-center"], {
+        "display-flex": !isDesignSystemPage,
+        "display-none": isDesignSystemPage,
+      })}
       onClick={() => navigate("/design-system")}
       title='Open Design System'
     >

@@ -16,9 +16,7 @@ export type LocaleBase<DefaultDictionary extends DictionaryBase> = {
   [K in OtherLanguage]?: Record<keyof DefaultDictionary, string>;
 };
 
-export type LocaleFormat = "capitalize" | "title" | "lowercase" | "uppercase";
-
-export type LocaleOptions = { templates?: Replacements; format?: LocaleFormat };
+export type LocaleTemplates = Record<string, string | number | JSX.Element>;
 
 export type LocaleContextProps = {
   currentLanguage: Language;
@@ -26,4 +24,11 @@ export type LocaleContextProps = {
 
 export type LocaleProviderProps = {
   children: ReactNode;
+};
+
+export type GetTextArgs<CurrentDictionary extends DictionaryBase> = {
+  key: keyof CurrentDictionary;
+  templates?: LocaleTemplates;
+  locale: LocaleBase<CurrentDictionary>;
+  language?: Language;
 };

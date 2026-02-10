@@ -1,6 +1,6 @@
 import { locales } from "@/locales";
 
-export const loginLocale = locales.createLocale({
+export const loginLocale = locales.create({
   enUS: {
     pageTitle: "CRM",
     companyName: "Vida Software",

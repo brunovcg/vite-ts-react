@@ -107,7 +107,7 @@ Creates locale objects with consistent structure:
 
 ```typescript
 class Locales {
-  createLocale<T>(locale: LocaleBase<T>) {
+  create<T>(locale: LocaleBase<T>) {
     return locale; // With type checking
   }
 }

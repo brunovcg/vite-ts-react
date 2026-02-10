@@ -38,7 +38,7 @@ export function DSReadmesSidebar() {
 
   return (
     <>
-      <div css={["padding-md", "border-bottom"]}>
+      <div css={["padding-sm", "border-bottom"]}>
         <input
           type='search'
           placeholder='Search documentation...'

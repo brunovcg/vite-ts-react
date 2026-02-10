@@ -30,7 +30,7 @@ export const DASHBOARD_ROUTES = [
       title: "Reports",
       icon: "file",
       fullPath: "/dashboard/reports",
-      fallbackPath: "/dashbaord/overview",
+      fallbackPath: "/dashboard/overview",
     },
   },
   {

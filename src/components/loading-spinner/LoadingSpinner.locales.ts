@@ -1,6 +1,6 @@
 import { locales } from "@/locales";
 
-export const loadingSpinnerLocale = locales.createLocale({
+export const loadingSpinnerLocale = locales.create({
   enUS: {
     loading: "Loading content...",
   },

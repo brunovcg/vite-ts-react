@@ -1,6 +1,6 @@
 import { locales } from "@/locales";
 
-export const tableLocale = locales.createLocale({
+export const tableLocale = locales.create({
   enUS: {
     loading: "Loading...",
     noData: "No data available.",

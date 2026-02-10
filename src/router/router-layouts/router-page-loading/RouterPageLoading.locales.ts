@@ -1,6 +1,6 @@
 import { locales } from "@/locales";
 
-export const pageLoadingLocale = locales.createLocale({
+export const pageLoadingLocale = locales.create({
   ptBR: {
     loading: "Carregando...",
   },

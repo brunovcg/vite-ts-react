@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { useReadmeFiles } from "@/hooks/use-readme-files/useReadmeFiles.hook";
 import { MarkdownRenderer } from "@/utils/markdown/MarkdownRenderer";
 import { Icon } from "@/components/icon/Icon";
-import { mergeCss } from "@/utils/class-names/ClassNames.util";
 
 function getPageFromUrl(): string | null {
   const params = new URLSearchParams(window.location.search);
@@ -63,10 +62,19 @@ export function DSReadmesSidebar() {
             <button
               key={readme.path}
               onClick={() => setPageInUrl(readme.name)}
-              css={mergeCss("padding-md", "text-left", "border-none", "background-transparent", "cursor-pointer", "border-bottom", "opacity-hover", {
-                "background-primary-light": selectedPage === readme.name,
-                "color-primary": selectedPage === readme.name,
-              })}
+              css={[
+                "padding-md",
+                "text-left",
+                "border-none",
+                "background-transparent",
+                "cursor-pointer",
+                "border-bottom",
+                "opacity-hover",
+                {
+                  "background-primary-light": selectedPage === readme.name,
+                  "color-primary": selectedPage === readme.name,
+                },
+              ]}
             >
               <div css={["display-flex", "align-center", "gap-sm"]}>
                 <Icon icon='file' size='sm' />

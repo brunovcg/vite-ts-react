@@ -112,13 +112,7 @@ npm run cloc             # Generate code statistics
 <div className="display-flex flex-center gap-md background-primary" />
 
 // Use type-safe CSS arrays:
-<div css={["display-flex", "flex-center", "gap-md", "background-primary"]} />
-
-// Or conditional CSS objects:
-<div css={[
-  "display-flex",
-  { "background-primary": isActive, "background-error": hasError }
-]} />
+<div css={["display-flex", "flex-center", "gap-md", "background-primary", { "background-error": hasError }]} />
 ```
 
 #### Implementation

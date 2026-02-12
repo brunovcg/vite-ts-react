@@ -213,13 +213,18 @@ export function cssReducer(...args: unknown[]): string {
   const classes: string[] = [];
 
   for (const arg of args) {
+    if (!arg || typeof arg === "boolean") continue;
+
     if (typeof arg === "string") {
       classes.push(arg);
     } else if (Array.isArray(arg)) {
-      classes.push(cssReducer(...arg));
+      if (arg.length) {
+        const inner = cssReducer(...arg);
+        if (inner) classes.push(inner);
+      }
     } else if (typeof arg === "object") {
       // Conditional classes: { "class-name": condition }
-      for (const [key, value] of Object.entries(arg)) {
+      for (const [key, value] of Object.entries(arg as Record<string, unknown>)) {
         if (value) classes.push(key);
       }
     }
@@ -639,10 +644,10 @@ const result = array.filterMap(
 ### 2. CSS Class Memoization
 
 ```typescript
-// Cached class name generation
-const mergeCss = (...args) => {
-  // Returns reusable array reference
-  return cssReducer(...args);
+// Efficient class reduction
+const getClassName = (className, css) => {
+  // Optimized for V8
+  return cssReducer(className, css);
 };
 ```
 

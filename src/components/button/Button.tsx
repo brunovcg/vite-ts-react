@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes } from "react";
 import "./Button.css";
 import { LoadingSpinner } from "../loading-spinner/LoadingSpinner";
-import { mergeClass, mergeCss } from "@/utils/class-names/ClassNames.util";
+import { mergeClass } from "@/utils/class-names/ClassNames.util";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
@@ -24,7 +24,7 @@ export function Button({ className, color = "primary", variant = "regular", load
       disabled={loading || rest.disabled}
       aria-busy={loading}
       aria-disabled={loading || rest.disabled}
-      css={mergeCss([
+      css={[
         "display-flex",
         "flex-center",
         "gap-sm",
@@ -45,7 +45,7 @@ export function Button({ className, color = "primary", variant = "regular", load
           "background-error": color === "error" && variant === "filled",
         },
         css,
-      ])}
+      ]}
       {...rest}
     >
       {loading && (

@@ -1,8 +1,10 @@
-export function cssReducer(...args: unknown[]): string {
+import type { Css, CssClass } from "./css.types";
+
+export function cssReducer(...args: (Css | CssClass)[]): string {
   const classes: string[] = [];
 
   for (const arg of args) {
-    if (!arg) continue;
+    if (!arg || typeof arg === "boolean") continue;
 
     if (typeof arg === "string") {
       classes.push(arg);

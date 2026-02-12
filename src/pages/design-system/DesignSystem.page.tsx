@@ -7,7 +7,7 @@ import { StylesView, StylesNav } from "./components/DSStylesView";
 import { DSComponentViewer } from "./components/DSComponentViewer";
 import { DSReadmesSidebar, DSReadmesContent } from "./components/DSReadmesView";
 import "./DesignSystem.css";
-import { mergeCss } from "@/utils/class-names/ClassNames.util";
+
 import { Button } from "@/components/button/Button";
 import { useTypedNavigate } from "@/router/Router.utils";
 
@@ -82,10 +82,19 @@ export function DesignSystem() {
                     <button
                       key={doc.id}
                       onClick={() => setSelectedComponentId(doc.id)}
-                      css={mergeCss("padding-md", "text-left", "border-none", "background-transparent", "cursor-pointer", "border-radius-sm", "opacity-hover", {
-                        "background-primary-light": selectedComponentId === doc.id,
-                        "color-primary": selectedComponentId === doc.id,
-                      })}
+                      css={[
+                        "padding-md",
+                        "text-left",
+                        "border-none",
+                        "background-transparent",
+                        "cursor-pointer",
+                        "border-radius-sm",
+                        "opacity-hover",
+                        {
+                          "background-primary-light": selectedComponentId === doc.id,
+                          "color-primary": selectedComponentId === doc.id,
+                        },
+                      ]}
                     >
                       <span css={["text-bold", "display-block"]}>{doc.name}</span>
                       {doc.description && <span css={["font-size-xs", "color-typeface-light", "text-ellipsis", "display-block"]}>{doc.description}</span>}

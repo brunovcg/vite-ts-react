@@ -4,7 +4,6 @@ import { TableHeader } from "./TableHeader";
 import { TableLoading } from "./TableLoading";
 import { tableLocale } from "./Table.locales";
 import { useDictionary } from "@/locales";
-import { mergeCss } from "@/utils/class-names/ClassNames.util";
 
 export type CellProps<Row extends object> = {
   column: BaseTableProps<Row>["columns"][number];
@@ -119,17 +118,26 @@ export function BaseTable<Row extends object>({
                   <th
                     key={column.header}
                     aria-sort={isSortable ? ariaSort : undefined}
-                    css={mergeCss(["padding-sm", "border-bottom", { "text-left": headerAlign === "left", "text-center": headerAlign === "center", "text-right": headerAlign === "right" }])}
+                    css={["padding-sm", "border-bottom", { "text-left": headerAlign === "left", "text-center": headerAlign === "center", "text-right": headerAlign === "right" }]}
                   >
                     {isSortable ? (
                       <button
                         type='button'
                         onClick={() => handleSort(column.header)}
-                        css={mergeCss(["display-flex", "align-center", "gap-xs", "background-transparent", "border-none", "cursor-pointer", "width-full"], {
-                          "justify-start": headerAlign === "left",
-                          "justify-center": headerAlign === "center",
-                          "justify-end": headerAlign === "right",
-                        })}
+                        css={[
+                          "display-flex",
+                          "align-center",
+                          "gap-xs",
+                          "background-transparent",
+                          "border-none",
+                          "cursor-pointer",
+                          "width-full",
+                          {
+                            "justify-start": headerAlign === "left",
+                            "justify-center": headerAlign === "center",
+                            "justify-end": headerAlign === "right",
+                          },
+                        ]}
                         style={{ font: "inherit", color: "inherit" }}
                       >
                         {column.header}
@@ -137,11 +145,16 @@ export function BaseTable<Row extends object>({
                       </button>
                     ) : (
                       <div
-                        css={mergeCss(["display-flex", "align-center", "gap-xs"], {
-                          "justify-start": headerAlign === "left",
-                          "justify-center": headerAlign === "center",
-                          "justify-end": headerAlign === "right",
-                        })}
+                        css={[
+                          "display-flex",
+                          "align-center",
+                          "gap-xs",
+                          {
+                            "justify-start": headerAlign === "left",
+                            "justify-center": headerAlign === "center",
+                            "justify-end": headerAlign === "right",
+                          },
+                        ]}
                       >
                         {column.header}
                       </div>
@@ -160,7 +173,7 @@ export function BaseTable<Row extends object>({
                     return (
                       <td key={column.header} css={["padding-sm"]}>
                         <div
-                          css={mergeCss([
+                          css={[
                             "display-flex",
                             "align-center",
                             {
@@ -168,7 +181,7 @@ export function BaseTable<Row extends object>({
                               "justify-center": cellAlign === "center",
                               "justify-end": cellAlign === "right",
                             },
-                          ])}
+                          ]}
                         >
                           {column.cell
                             ? column.cell({

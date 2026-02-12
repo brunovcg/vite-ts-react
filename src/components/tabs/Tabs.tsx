@@ -1,5 +1,5 @@
 import type { Css, PropsWithCss } from "@/runtime/css.types";
-import { mergeCss } from "@/utils/class-names/ClassNames.util";
+
 import { createContext, useContext, useMemo, useCallback, useRef, type PropsWithChildren } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -123,7 +123,7 @@ function TabNav({ css }: PropsWithCss) {
   );
 
   return (
-    <nav css={mergeCss(["border-bottom", "width-fit", "padding-inline-sm"], css)} data-component='TabNav'>
+    <nav css={["border-bottom", "width-fit", "padding-inline-sm", css]} data-component='TabNav'>
       <ul role='tablist' css={["display-flex", "gap-md"]}>
         {tabs.filterMap(
           (tab) => !tab.hidden,
@@ -149,12 +149,19 @@ function TabNav({ css }: PropsWithCss) {
                   aria-controls={panelId}
                   tabIndex={isActive ? 0 : -1}
                   disabled={tab.disabled}
-                  css={mergeCss("cursor-pointer", "border-none", "padding-md", "border-top-radius-sm", "text-bold", {
-                    "background-primary": isActive,
-                    "color-white": isActive,
-                    "background-white": !isActive,
-                    "color-primary": !isActive,
-                  })}
+                  css={[
+                    "cursor-pointer",
+                    "border-none",
+                    "padding-md",
+                    "border-top-radius-sm",
+                    "text-bold",
+                    {
+                      "background-primary": isActive,
+                      "color-white": isActive,
+                      "background-white": !isActive,
+                      "color-primary": !isActive,
+                    },
+                  ]}
                   onClick={() => setActiveTab(tab.id)}
                   onKeyDown={(e) => handleKeyDown(e, visibleIndex)}
                 >

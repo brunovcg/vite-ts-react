@@ -1,7 +1,7 @@
 import { Environment } from "@/utils/environment/Environment.util";
 import { Icon } from "@/components/icon/Icon";
 import "./DesignSystemButton.css";
-import { mergeCss } from "@/utils/class-names/ClassNames.util";
+
 import { useTypedNavigate, useLocation } from "@/router/Router.utils";
 
 export function DesignSystemButton() {
@@ -17,10 +17,23 @@ export function DesignSystemButton() {
   return (
     <button
       className='design-system-button'
-      css={mergeCss(["position-fixed", "bottom", "right", "margin-lg", "padding-md", "background-primary", "color-white", "border-none", "border-radius-circle", "cursor-pointer", "flex-center"], {
-        "display-flex": !isDesignSystemPage,
-        "display-none": isDesignSystemPage,
-      })}
+      css={[
+        "position-fixed",
+        "bottom",
+        "right",
+        "margin-lg",
+        "padding-md",
+        "background-primary",
+        "color-white",
+        "border-none",
+        "border-radius-circle",
+        "cursor-pointer",
+        "flex-center",
+        {
+          "display-flex": !isDesignSystemPage,
+          "display-none": isDesignSystemPage,
+        },
+      ]}
       onClick={() => navigate("/design-system")}
       title='Open Design System'
     >

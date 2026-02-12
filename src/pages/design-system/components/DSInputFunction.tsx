@@ -1,7 +1,6 @@
 import { useState, useCallback } from "react";
 import { Icon } from "@/components/icon/Icon";
 import type { Css } from "@/runtime/css.types";
-import { mergeCss } from "@/utils/class-names/ClassNames.util";
 import { TextArea } from "@/components/text-area/TextArea";
 
 interface InputFunctionProps {
@@ -39,7 +38,7 @@ export function DSInputFunction({ value, onChange, css, label, error: paramsErro
   const errorMessage = paramsError || localError;
 
   return (
-    <div data-component='DSInputFunction' css={mergeCss(["position-relative", "height-auto", "width-full", "display-flex", "flex-column"], css)} style={{ minHeight: "100px", padding: 0 }}>
+    <div data-component='DSInputFunction' css={["position-relative", "height-auto", "width-full", "display-flex", "flex-column", css]} style={{ minHeight: "100px", padding: 0 }}>
       <TextArea
         label={label}
         value={value}

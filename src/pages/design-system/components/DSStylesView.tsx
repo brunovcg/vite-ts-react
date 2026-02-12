@@ -3,7 +3,6 @@ import { icons } from "@/components/icon/Icons";
 import { Icon } from "@/components/icon/Icon";
 import "../DesignSystem.css";
 import type { Css } from "@/runtime/css.types";
-import { mergeCss } from "@/utils/class-names/ClassNames.util";
 
 const SECTIONS = [
   { id: "animations", title: "Animations" },
@@ -315,7 +314,7 @@ function TypeSpecimen({ className, label, css }: { className?: string; label: st
 
 function ClassDoc({ className, description, css }: { className?: string; description: string; css: Css }) {
   return (
-    <div css={mergeCss(["display-flex", "align-center", "gap-md", "padding-sm", "background-light", "border-radius-sm"], css)}>
+    <div css={["display-flex", "align-center", "gap-md", "padding-sm", "background-light", "border-radius-sm", css]}>
       <code css={["text-bold", "color-primary"]} style={{ minWidth: "150px" }}>
         {className}
       </code>
@@ -326,7 +325,7 @@ function ClassDoc({ className, description, css }: { className?: string; descrip
 
 function SizeBar({ className, label, css }: { className?: string; label: string; css: Css }) {
   return (
-    <div css={mergeCss(["width-full", "background-light", "border-radius-sm", "overflow-hidden", "margin-bottom-xs"], css)}>
+    <div css={["width-full", "background-light", "border-radius-sm", "overflow-hidden", "margin-bottom-xs", css]}>
       <div className={className} css={["background-primary", "padding-xs", "color-white", "font-size-xs", "align-center", "white-space-nowrap"]}>
         {label}
       </div>
@@ -336,7 +335,7 @@ function SizeBar({ className, label, css }: { className?: string; label: string;
 
 function ColorSwatch({ className, label, css }: { className?: string; label: string; css: Css }) {
   return (
-    <div className={className} css={mergeCss(["padding-lg", "border-radius-md", "display-flex", "flex-center", "align-center", "border"], css)}>
+    <div className={className} css={["padding-lg", "border-radius-md", "display-flex", "flex-center", "align-center", "border", css]}>
       {label}
     </div>
   );

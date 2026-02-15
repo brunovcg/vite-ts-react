@@ -15,7 +15,7 @@ function DefaultErrorFallback({ error, errorInfo, reset }: { error: Error; error
 
   if (!isDev) {
     return (
-      <div className='error-boundary' data-component='ErrorBoundary'>
+      <div className='error-boundary' role='alert' data-component='ErrorBoundary'>
         <div className='error-content'>
           <div className='error-header'>
             <Icon icon='warning' size='xl' />

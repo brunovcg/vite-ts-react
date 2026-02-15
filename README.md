@@ -94,6 +94,9 @@ npm run preview          # Preview production build
 npm run typecheck        # Type checking without emit
 npm run lint             # ESLint code checking
 npm run format           # Format code with Prettier
+npm run test             # Run unit tests
+npm run test:watch       # Run tests in watch mode
+npm run test:ui          # Run tests with visual UI
 npm run cloc             # Generate code statistics
 ```
 
@@ -586,6 +589,28 @@ Every commit triggers:
 2. ✅ **Linting** (ESLint with auto-fix)
 3. ✅ **Formatting** (Prettier)
 4. ✅ **CSS regeneration** (if design files changed)
+
+### Testing
+
+Unit tests use **Vitest** with **Testing Library** and **jsdom** environment:
+
+```bash
+npm run test             # Run all tests
+npm run test:watch       # Watch mode for development
+npm run test:ui          # Visual test interface
+```
+
+**Test coverage includes:**
+
+- **Utility functions** - DateUtil, HttpClient, LocalStorage, UrlUtils, Download, Environment, ClassNames
+- **Custom hooks** - useDebounce, useIsHoldingKey, useOnClickOutside, useOnKeyPress, useUploadFile
+- **Systems** - Locales (i18n), DialogController (state management), Events
+
+**Test file conventions:**
+
+- Co-located with source: `Component.test.ts` or `util.test.ts`
+- Use `describe`/`it` with descriptive names
+- Setup file: `src/test/setup.ts`
 
 ### Manual Commands
 

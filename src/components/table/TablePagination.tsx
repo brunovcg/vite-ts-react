@@ -20,9 +20,9 @@ export function TablePagination({ total, totalPages, page, pageSize, loading, on
   const itemEnd = Math.min(page * pageSize, total);
 
   return (
-    <div className='display-flex justify-center align-center gap-md'>
+    <nav role='navigation' aria-label={dictionary.tablePagination} className='display-flex justify-center align-center gap-md'>
       <div className='display-flex align-items-center gap-md'>
-        <span className='display-flex align-center'>
+        <span className='display-flex align-center' role='status' aria-live='polite'>
           {itemStart}-{itemEnd} {dictionary.of} {total}
         </span>
         <select
@@ -45,6 +45,6 @@ export function TablePagination({ total, totalPages, page, pageSize, loading, on
         <ButtonIcon disabled={page === 1 || loading} onClick={() => onPageChange(Math.max(1, page - 1))} icon='arrowBack' aria-label={dictionary.previousPage} />
         <ButtonIcon icon='arrowForward' onClick={() => onPageChange(Math.max(1, page + 1))} disabled={page >= totalPages || loading} aria-label={dictionary.nextPage} />
       </div>
-    </div>
+    </nav>
   );
 }

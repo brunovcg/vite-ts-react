@@ -61,22 +61,29 @@ export function DropdownMenu({ options, css, trigger }: DropdownMenuProps) {
   return (
     <div ref={ref} className={mergeClass({ "dropdown-open": open })} css={[css]} data-component='dropdown-menu-component'>
       {trigger?.label && !trigger?.custom && (
-        <Button aria-label='dropdown-trigger' onClick={handleToggle}>
+        <Button aria-label='dropdown-trigger' aria-expanded={open} aria-haspopup='menu' onClick={handleToggle}>
           {trigger.icon && <Icon icon={trigger.icon} />}
           {trigger.label}
         </Button>
       )}
-      {!trigger?.label && trigger?.icon && !trigger?.custom && <ButtonIcon icon={trigger.icon} aria-label='dropdown-trigger' onClick={handleToggle} />}
+      {!trigger?.label && trigger?.icon && !trigger?.custom && <ButtonIcon icon={trigger.icon} aria-label='dropdown-trigger' aria-expanded={open} aria-haspopup='menu' onClick={handleToggle} />}
       {trigger?.custom && (
-        <button aria-label='dropdown-trigger' onClick={handleToggle} css={["border-none", "background-transparent", "cursor-pointer"]}>
+        <button aria-label='dropdown-trigger' aria-expanded={open} aria-haspopup='menu' onClick={handleToggle} css={["border-none", "background-transparent", "cursor-pointer"]}>
           {trigger.custom}
         </button>
       )}
-      <div aria-label='dropdown-options'>
+      <div role='menu' aria-label='dropdown-options'>
         {options.filterMap(
           (item) => !item.hide,
           (item) => (
-            <Button key={item.label} disabled={item.disabled} onClick={() => handleOptionClick(item)} color={item.color ?? "primary"} css={["width-full", "display-flex", "justify-start"]}>
+            <Button
+              key={item.label}
+              role='menuitem'
+              disabled={item.disabled}
+              onClick={() => handleOptionClick(item)}
+              color={item.color ?? "primary"}
+              css={["width-full", "display-flex", "justify-start"]}
+            >
               <div css={["width-20px", "display-flex", "justify-center"]}> {item.icon && <Icon icon={item.icon} />}</div>
               {item.label}
             </Button>

@@ -10,6 +10,12 @@ export function Avatar() {
     .toUpperCase();
 
   return (
-    <p css={["display-flex", "align-center", "justify-center", "padding-lg", "text-bold", "border-radius-circle", "background-primary", "color-white", "width-20px", "height-20px"]}>{initials}</p>
+    <div
+      role='img'
+      aria-label={user?.name || "User avatar"}
+      css={["display-flex", "align-center", "justify-center", "padding-lg", "text-bold", "border-radius-circle", "background-primary", "color-white", "width-20px", "height-20px"]}
+    >
+      {initials}
+    </div>
   );
 }

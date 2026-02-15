@@ -1,4 +1,6 @@
 import "./toast.css";
+import { locales } from "@/locales";
+import { toastLocale } from "./toast.locales";
 /**
  * A custom toast notification dialog with variants, auto-close, and progress bar.
  *
@@ -52,7 +54,7 @@ export class CustomToastDialog extends HTMLDialogElement {
     const variantConfig = this.getVariantConfig(variant);
 
     this.innerHTML = `
-      <div class="toast-dialog" style="
+      <div class="toast-dialog" role="status" aria-live="polite" style="
         background: var(--background-white);
         border-radius: var(--border-radius-container);
         padding: 16px;
@@ -83,7 +85,7 @@ export class CustomToastDialog extends HTMLDialogElement {
           ">
             ${message}
           </div>
-          <button type="button" class="toast-close button circle" style="
+          <button type="button" aria-label="${locales.getText({ key: "closeNotification", locale: toastLocale })}" class="toast-close button circle" style="
             flex-shrink: 0;
             margin-left: auto;
             margin-top: -4px;

@@ -3,7 +3,7 @@ import { Icon } from "../icon/Icon";
 import { TableHeader } from "./TableHeader";
 import { TableLoading } from "./TableLoading";
 import { tableLocale } from "./Table.locales";
-import { useDictionary } from "@/locales";
+import { useDictionary, useText } from "@/locales";
 
 export type CellProps<Row extends object> = {
   column: BaseTableProps<Row>["columns"][number];
@@ -66,6 +66,7 @@ export function BaseTable<Row extends object>({
   onFilterChange,
 }: BaseTableProps<Row>) {
   const dictionary = useDictionary(tableLocale);
+  const getText = useText(tableLocale);
   const hasFilters = columns.some((column) => column.filter);
   const totalPages = Math.ceil(total / pageSize);
 
@@ -117,12 +118,14 @@ export function BaseTable<Row extends object>({
                 return (
                   <th
                     key={column.header}
+                    scope='col'
                     aria-sort={isSortable ? ariaSort : undefined}
                     css={["padding-sm", "border-bottom", { "text-left": headerAlign === "left", "text-center": headerAlign === "center", "text-right": headerAlign === "right" }]}
                   >
                     {isSortable ? (
                       <button
                         type='button'
+                        aria-label={getText("sortBy", { column: column.header })}
                         onClick={() => handleSort(column.header)}
                         css={[
                           "display-flex",

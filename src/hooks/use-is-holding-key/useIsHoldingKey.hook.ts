@@ -29,8 +29,8 @@ export function useIsHoldingKey({ key, handler }: UseIsHoldingKeyProps) {
       document.addEventListener("keyup", keyupEvent);
 
       return () => {
-        document.addEventListener("keydown", keydownEvent);
-        document.addEventListener("keyup", keyupEvent);
+        document.removeEventListener("keydown", keydownEvent);
+        document.removeEventListener("keyup", keyupEvent);
       };
     }
   }, [key, handler]);

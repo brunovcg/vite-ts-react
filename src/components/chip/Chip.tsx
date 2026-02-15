@@ -10,7 +10,8 @@ interface ChipProps {
 
 export function Chip({ children, color, css }: ChipProps) {
   return (
-    <p
+    <span
+      role='status'
       data-component='Chip'
       css={[
         {
@@ -36,6 +37,6 @@ export function Chip({ children, color, css }: ChipProps) {
       ]}
     >
       {children}
-    </p>
+    </span>
   );
 }

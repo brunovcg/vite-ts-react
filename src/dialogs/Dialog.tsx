@@ -12,6 +12,8 @@ import { useOnClickOutside } from "@/hooks/use-on-click-outside/useOnClickOutsid
 import { useListenEvent } from "@/hooks/use-listen-event/useListenEvent.hook";
 import { useFocusTrap } from "@/hooks/use-focus-trap/useFocusTrap.hook";
 import type { PropsWithCss } from "@/runtime/css.types";
+import { useDictionary } from "@/locales";
+import { dialogLocale } from "./Dialog.locales";
 
 type DialogProps = PropsWithChildren &
   DialogHTMLAttributes<HTMLDialogElement> & {
@@ -53,6 +55,7 @@ function DialogFooter({ children, css }: PropsWithCss<PropsWithChildren>) {
 }
 
 export function Dialog({ dialogId, heading, className, children, width, allowXButton = true, closeOnEscape = true, css, ...rest }: DialogProps) {
+  const dictionary = useDictionary(dialogLocale);
   const handleCloseDialog = useCallback(() => {
     dialogController.close(dialogId);
   }, [dialogId]);
@@ -110,7 +113,7 @@ export function Dialog({ dialogId, heading, className, children, width, allowXBu
             <h2 id={`dialog-title-${dialogId}`} css={["width-full", "text-ellipsis"]}>
               {heading}
             </h2>
-            {allowXButton && <ButtonIcon icon='close' onClick={handleCloseDialog} aria-label='Close dialog' />}
+            {allowXButton && <ButtonIcon icon='close' onClick={handleCloseDialog} aria-label={dictionary.closeDialog} />}
           </section>
         )}
         {children}

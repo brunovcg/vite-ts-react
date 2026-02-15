@@ -15,7 +15,7 @@ export function useListenEvent({ ref, event, handler, enabled = true }: UseListe
     }
 
     const element = ref.current;
-    element?.addEventListener(event, handler);
+    element?.addEventListener(EVENTS[event], handler);
     return () => {
       element?.removeEventListener(EVENTS[event], handler);
     };

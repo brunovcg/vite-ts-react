@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Dashboard } from "@/pages/dashboard/Dashboard.page";
-import { AuthGuard } from "./router-layouts/AuthGuard";
+import { DashboardAuthGuard } from "./router-layouts/DashboardAuthGuard";
 import { NotFound } from "@/pages/not-found/NotFound.page";
 import { useMemo } from "react";
 import { GlobalLayout } from "./router-layouts/GlobalLayout";
@@ -22,7 +22,7 @@ export function Router() {
             ...OPEN_ROUTES,
             {
               path: "/",
-              element: <AuthGuard />,
+              element: <DashboardAuthGuard />,
               children: [
                 {
                   path: "/dashboard",

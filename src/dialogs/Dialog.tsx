@@ -38,7 +38,7 @@ function DialogCloseButton({ onClick, children, css, ...props }: PropsWithCss<Bu
   };
 
   return (
-    <Button {...props} css={["color-error", css]} onClick={handleClick} data-component='DialogCloseButton'>
+    <Button color='error' {...props} css={[css]} onClick={handleClick} data-component='DialogCloseButton'>
       {children}
     </Button>
   );

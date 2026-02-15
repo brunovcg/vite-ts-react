@@ -1,5 +1,5 @@
-import { TestDialog } from "./components/test-dialog/Test.dialog";
+import { UserPreferencesDialog } from "./components/user-preferences-dialog/UserPreferences.dialog";
 
 export const dialogs = {
-  TestDialog,
+  UserPreferencesDialog,
 };

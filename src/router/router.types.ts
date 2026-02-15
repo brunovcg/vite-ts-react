@@ -1,6 +1,6 @@
 import type { IconName } from "@/components/icon/Icon.types";
 import type { RouteObject } from "react-router-dom";
-import type { OPEN_ROUTES } from "./routes/open-routes/openRoutes";
+import type { OPEN_ROUTES } from "./routes/open-routes/open.routes";
 import type { DASHBOARD_ROUTES } from "./routes/dashboard-routes/dashboard.routes";
 
 type ExtractFullPath<T> = T extends readonly (infer U)[] ? (U extends { handle: { fullPath: infer P } } ? P : never) : never;

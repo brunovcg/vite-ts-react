@@ -5,8 +5,9 @@ import { NotFound } from "@/pages/not-found/NotFound.page";
 import { useMemo } from "react";
 import { GlobalLayout } from "./router-layouts/GlobalLayout";
 import { RouterErrorBoundary } from "./router-layouts/router-error-boundary/RouterErrorBoundary";
-import { useDashboardRoutes } from "./routes/dashboard-routes/useDashboardRoutes";
-import { OPEN_ROUTES } from "./routes/open-routes/openRoutes";
+
+import { OPEN_ROUTES } from "./routes/open-routes/open.routes";
+import { useDashboardRoutes } from "./routes/dashboard-routes/dashboard.routes";
 
 export function Router() {
   const DASHBOARD_ROUTES = useDashboardRoutes();

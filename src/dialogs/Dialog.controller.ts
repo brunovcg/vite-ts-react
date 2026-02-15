@@ -1,5 +1,4 @@
-import type { RefObject } from "react";
-import type { ConditionalProps, DialogItem, DialogListener, DialogId } from "./dialog.types";
+import type { DialogItem, DialogListener, DialogId, DialogOpenArgs } from "./dialog.types";
 import { UrlUtils } from "@/utils/url/Url.utils";
 
 /**
@@ -58,10 +57,9 @@ class DialogController {
    */
   open<CurrentDialogId extends DialogId, ComponentRef>(
     id: CurrentDialogId,
-    options: {
-      ref?: RefObject<ComponentRef>;
-    } & ConditionalProps<CurrentDialogId>,
+    ...args: DialogOpenArgs<CurrentDialogId, ComponentRef>
   ): void {
+    const options = args[0] ?? {};
     this.openedDialogs = [...this.openedDialogs.filter((item) => item.id !== id), { id, ...options } as DialogItem<DialogId, ComponentRef>];
     this.notify();
     this.syncUrl();

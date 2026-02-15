@@ -1,6 +1,7 @@
 import type { Css, PropsWithCss } from "@/runtime/css.types";
 
 import { createContext, useContext, useMemo, useCallback, useRef, type PropsWithChildren } from "react";
+import "./Tabs.css";
 import { useSearchParams } from "react-router-dom";
 
 type Tab<TabId extends string | number> = { label: string; id: TabId; disabled?: boolean; hidden?: boolean };
@@ -10,16 +11,18 @@ interface TabsContextProps<TabId extends string | number> {
   setActiveTab: (tabId: TabId) => void;
   tabs: Tab<TabId>[];
   baseId: string;
+  orientation: "vertical" | "horizontal";
 }
 
 interface TabsProps<TabId extends string | number> {
   children: React.ReactNode;
   tabs: Tab<TabId>[];
   id: string;
+  orientation?: "vertical" | "horizontal";
 }
 
-interface TabsItemProps {
-  id: string | number;
+interface TabsItemProps<TabId extends string | number> {
+  id: TabId;
   children: React.ReactNode;
   css?: Css;
   className?: string;
@@ -35,7 +38,7 @@ const useTabContext = () => {
   return context;
 };
 
-export function Tabs<TabId extends string | number>({ children, tabs, id }: TabsProps<TabId>) {
+export function Tabs<TabId extends string | number>({ children, tabs, id, orientation = "horizontal" }: TabsProps<TabId>) {
   const [searchParams, setSearchParams] = useSearchParams();
   const paramKey = `tab:id=${id}-active`;
 
@@ -62,10 +65,10 @@ export function Tabs<TabId extends string | number>({ children, tabs, id }: Tabs
     [paramKey, setSearchParams],
   );
 
-  return <TabsContext.Provider value={useMemo(() => ({ activeTab, setActiveTab, tabs, baseId: id }), [activeTab, setActiveTab, tabs, id])}>{children}</TabsContext.Provider>;
+  return <TabsContext.Provider value={useMemo(() => ({ activeTab, setActiveTab, tabs, baseId: id, orientation }), [activeTab, setActiveTab, tabs, id, orientation])}>{children}</TabsContext.Provider>;
 }
 
-function TabItem({ children, id, css, className }: TabsItemProps) {
+function TabItem<TabId extends string | number>({ children, id, css, className }: TabsItemProps<TabId>) {
   const { activeTab, baseId } = useTabContext();
   const isActive = activeTab === id;
   const panelId = `${baseId}-panel-${id}`;
@@ -81,7 +84,7 @@ function TabItem({ children, id, css, className }: TabsItemProps) {
 }
 
 function TabNav({ css }: PropsWithCss) {
-  const { setActiveTab, tabs, activeTab, baseId } = useTabContext();
+  const { setActiveTab, tabs, activeTab, baseId, orientation } = useTabContext();
 
   const visibleTabs = useMemo(() => tabs.filter((t) => !t.hidden && !t.disabled), [tabs]);
   const tabRefs = useRef<Map<string | number, HTMLButtonElement>>(new Map());
@@ -91,12 +94,15 @@ function TabNav({ css }: PropsWithCss) {
       let nextIndex = currentIndex;
       let shouldPreventDefault = false;
 
+      const nextKey = orientation === "vertical" ? "ArrowDown" : "ArrowRight";
+      const prevKey = orientation === "vertical" ? "ArrowUp" : "ArrowLeft";
+
       switch (e.key) {
-        case "ArrowRight":
+        case nextKey:
           shouldPreventDefault = true;
           nextIndex = (currentIndex + 1) % visibleTabs.length;
           break;
-        case "ArrowLeft":
+        case prevKey:
           shouldPreventDefault = true;
           nextIndex = (currentIndex - 1 + visibleTabs.length) % visibleTabs.length;
           break;
@@ -119,12 +125,12 @@ function TabNav({ css }: PropsWithCss) {
         }, 0);
       }
     },
-    [visibleTabs, setActiveTab],
+    [visibleTabs, setActiveTab, orientation],
   );
 
   return (
-    <nav css={["border-bottom", "width-fit", "padding-inline-sm", css]} data-component='TabNav'>
-      <ul role='tablist' css={["display-flex", "gap-md"]}>
+    <nav css={[orientation === "vertical" ? "border-right" : "border-bottom", orientation === "horizontal" && "width-fit", "padding-inline-sm", css]} data-component='TabNav'>
+      <ul role='tablist' aria-orientation={orientation} css={["display-flex", { "flex-column": orientation === "vertical" }, "gap-md"]}>
         {tabs.filterMap(
           (tab) => !tab.hidden,
           (tab) => {
@@ -153,8 +159,10 @@ function TabNav({ css }: PropsWithCss) {
                     "cursor-pointer",
                     "border-none",
                     "padding-md",
-                    "border-top-radius-sm",
                     "text-bold",
+                    orientation === "vertical" && "width-full",
+                    orientation === "vertical" && "text-left",
+                    "border-radius-sm",
                     {
                       "background-primary": isActive,
                       "color-white": isActive,

@@ -3,9 +3,9 @@ import "./Drawer.layout.css";
 import { DrawerUtils } from "./drawer.utils";
 import { Button } from "@/components/button/Button";
 import { Icon } from "@/components/icon/Icon";
-import { useDashboardRoutes } from "@/router/routes/dashboard-routes/useDashboardRoutes";
 import type { AppRouteHandle, RouterTypedPath } from "@/router/router.types";
 import { useTypedNavigate } from "@/router/Router.utils";
+import { useDashboardRoutes } from "@/router/routes/dashboard-routes/dashboard.routes";
 
 export function Drawer() {
   const navigate = useTypedNavigate();

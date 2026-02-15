@@ -1,12 +1,12 @@
-.dialog {
-  .dialog-content {
-    max-width: 90vw;
-    max-height: 90vh;
-    width: fit-content;
-    min-width: 400px;
-    min-height: 200px;
-  }
+:where(.dialog .dialog-content) {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: fit-content;
+  min-width: 400px;
+  min-height: 200px;
+}
 
+.dialog {
   .dialog-header {
     max-height: 50px;
   }

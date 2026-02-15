@@ -12,4 +12,10 @@ export type DialogItem<CurrentDialogId extends DialogId, ComponentRef = unknown>
   ref?: RefObject<ComponentRef>;
 } & ConditionalProps<CurrentDialogId>;
 
+export type DialogOpenArgs<CurrentDialogId extends DialogId, ComponentRef = unknown> = Parameters<
+  (typeof dialogs)[CurrentDialogId]
+>[number] extends never
+  ? [options?: { ref?: RefObject<ComponentRef> }]
+  : [options: { ref?: RefObject<ComponentRef> } & ConditionalProps<CurrentDialogId>];
+
 export type DialogListener<CurrentDialogId extends DialogId, ComponentRef = unknown> = (dialogs: DialogItem<CurrentDialogId, ComponentRef>[]) => void;

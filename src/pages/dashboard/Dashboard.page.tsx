@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Drawer } from "../../layouts/drawer/Drawer.layout";
-import { Header } from "../../layouts/Header.layout";
+import { Header } from "../../layouts/header/Header.layout";
 
 export function Dashboard() {
   return (

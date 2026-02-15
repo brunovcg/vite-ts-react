@@ -141,6 +141,7 @@ export const CSS_REGISTER = {
   position: ["bottom", "left", "position-absolute", "position-fixed", "position-relative", "position-static", "position-sticky", "right", "top"],
   sizing: [
     "aspect-ratio-1",
+    "height-20px",
     "height-auto",
     "height-fit",
     "height-full",
@@ -160,6 +161,7 @@ export const CSS_REGISTER = {
     "width-100px",
     "width-150px",
     "width-200px",
+    "width-20px",
     "width-250px",
     "width-300px",
     "width-400px",

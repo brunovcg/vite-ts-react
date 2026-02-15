@@ -1,13 +1,18 @@
 import { type SubmitEvent, type FormHTMLAttributes, type ReactNode } from "react";
 
-export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
+export type SubmitFormArgs<Data extends object> = { event: SubmitEvent<HTMLFormElement>; data: Data };
+
+export interface FormProps<Data extends object> extends Omit<FormHTMLAttributes<HTMLFormElement>, "onSubmit"> {
   children: ReactNode;
+  onSubmit: (args: SubmitFormArgs<Data>) => void;
 }
 
-export function Form({ children, onSubmit, ...props }: FormProps) {
+export function Form<Data extends object>({ children, onSubmit, ...props }: FormProps<Data>) {
   const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmit?.(event);
+    const formData = new FormData(event.currentTarget);
+    const data = Object.fromEntries(formData.entries()) as Data;
+    onSubmit?.({ event, data });
   };
 
   return (

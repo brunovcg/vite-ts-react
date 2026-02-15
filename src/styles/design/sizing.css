@@ -42,6 +42,10 @@
   width: 66.66%;
 }
 
+.width-20px {
+  width: 20px;
+}
+
 .width-100px {
   width: 100px;
 }
@@ -104,6 +108,10 @@
 
 .width-min {
   width: min-content;
+}
+
+.height-20px {
+  height: 20px;
 }
 
 .height-min {

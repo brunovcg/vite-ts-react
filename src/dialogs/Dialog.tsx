@@ -11,6 +11,7 @@ import { useOnKeyPress } from "@/hooks/use-on-key-press/useOnKeyPress.hook";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside/useOnClickOutside.hook";
 import { useListenEvent } from "@/hooks/use-listen-event/useListenEvent.hook";
 import { useFocusTrap } from "@/hooks/use-focus-trap/useFocusTrap.hook";
+import type { PropsWithCss } from "@/runtime/css.types";
 
 type DialogProps = PropsWithChildren &
   DialogHTMLAttributes<HTMLDialogElement> & {
@@ -30,28 +31,28 @@ function DialogContent({ children }: PropsWithChildren) {
   );
 }
 
-function DialogCloseButton({ onClick, children, ...props }: ButtonProps) {
+function DialogCloseButton({ onClick, children, css, ...props }: PropsWithCss<ButtonProps>) {
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.currentTarget.dispatchEvent(new CustomEvent(EVENTS.CLOSE_DIALOG, { bubbles: true }));
     onClick?.(e);
   };
 
   return (
-    <Button {...props} onClick={handleClick}>
+    <Button {...props} css={["color-error", css]} onClick={handleClick} data-component='DialogCloseButton'>
       {children}
     </Button>
   );
 }
 
-function DialogFooter({ children }: PropsWithChildren) {
+function DialogFooter({ children, css }: PropsWithCss<PropsWithChildren>) {
   return (
-    <section data-component='DialogFooter' className='padding-lg'>
+    <section data-component='DialogFooter' css={["padding-lg", "display-flex", "justify-end", css]}>
       {children}
     </section>
   );
 }
 
-export function Dialog({ dialogId, heading, className, children, width, allowXButton = true, closeOnEscape = true, ...rest }: DialogProps) {
+export function Dialog({ dialogId, heading, className, children, width, allowXButton = true, closeOnEscape = true, css, ...rest }: DialogProps) {
   const handleCloseDialog = useCallback(() => {
     dialogController.close(dialogId);
   }, [dialogId]);
@@ -103,13 +104,7 @@ export function Dialog({ dialogId, heading, className, children, width, allowXBu
       open
       {...rest}
     >
-      <div
-        className={"dialog-content"}
-        css={["display-flex", "flex-column", "gap-lg", "background-white", "border-radius-sm"]}
-        style={{
-          width: width ? `${width}px` : "400px",
-        }}
-      >
+      <div className='dialog-content' css={["display-flex", "flex-column", "background-white", "border-radius-sm", css]}>
         {(heading || allowXButton) && (
           <section className={"dialog-header"} css={["display-flex", "justify-between", "align-center", "border-bottom", "padding-lg"]}>
             <h2 id={`dialog-title-${dialogId}`} css={["width-full", "text-ellipsis"]}>

@@ -36,6 +36,7 @@
   --background-white: #ffffff;
   --background-backdrop: rgba(0, 0, 0, 0.5);
   --background-backdrop-light: rgba(0, 0, 0, 0.2);
+  --background-surface: #f5f7fa;
   --background-primary-gradient: linear-gradient(90deg, rgba(17, 117, 221, 1) 0%, rgba(17, 110, 221, 1) 23%, rgba(17, 138, 221, 1) 50%, rgba(17, 162, 221, 1) 100%);
 
   /* FOCUS */

@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import "./Drawer.layout.css";
 import { DrawerUtils } from "./drawer.utils";
-import { Button } from "@/components/button/Button";
 import { Icon } from "@/components/icon/Icon";
 import type { AppRouteHandle, RouterTypedPath } from "@/router/router.types";
 import { useTypedNavigate } from "@/router/Router.utils";
@@ -21,7 +20,7 @@ export function Drawer() {
       <label htmlFor='drawer-toggle' className='drawer-backdrop' />
 
       <aside css={["display-flex", "flex-column", "height-full", "border-right", "padding-block-lg", "align-center"]} data-component='Drawer'>
-        <nav aria-label={dictionary.mainNavigation} css={["display-flex", "flex-column", "gap-sm"]}>
+        <nav aria-label={dictionary.mainNavigation} css={["display-flex", "flex-column", "gap-sm", "flex-1"]}>
           {dashboardRoutes.filterMap(
             (route) => {
               const handle = route.handle as AppRouteHandle | undefined;
@@ -35,19 +34,18 @@ export function Drawer() {
               const isActive = location.pathname === `/dashboard/${path}`;
 
               return (
-                <Button
-                  variant={isActive ? "filled" : "regular"}
+                <button
+                  className='drawer-nav-item'
                   aria-current={isActive ? "page" : undefined}
-                  css={["display-flex", "justify-start", "gap-md", "width-150px"]}
                   key={path}
                   onClick={() => {
                     navigate(path);
                     DrawerUtils.toggle(false);
                   }}
                 >
-                  {icon && <Icon icon={icon} />}
-                  <p>{handle?.title || path}</p>
-                </Button>
+                  {icon && <Icon icon={icon} size='md' />}
+                  <span className='drawer-nav-label'>{handle?.title || path}</span>
+                </button>
               );
             },
           )}

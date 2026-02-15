@@ -15,6 +15,7 @@ export const CSS_REGISTER = {
     "background-primary-light",
     "background-success",
     "background-success-light",
+    "background-surface",
     "background-transparent",
     "background-warning",
     "background-warning-light",

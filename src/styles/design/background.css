@@ -56,6 +56,10 @@
   background-color: var(--color-primary_light);
 }
 
+.background-surface {
+  background-color: var(--background-surface);
+}
+
 .background-primary-gradient {
   background: var(--background-primary-gradient);
 }

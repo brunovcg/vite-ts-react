@@ -1,47 +1,3 @@
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes slide-in {
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes indeterminate {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 .animate-rotate {
   animation: rotate infinite 1s linear;
 }
@@ -64,4 +20,12 @@
 
 .animate-fade-in {
   animation: fadeIn 0.3s ease-in;
+}
+
+.animate-dialog-slide-up {
+  animation: dialog-slide-up 0.3s ease-out;
+}
+
+.animate-backdrop-fade-in {
+  animation: backdrop-fade-in 0.2s ease-out;
 }

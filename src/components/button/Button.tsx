@@ -19,6 +19,7 @@ export function Button({ className, color = "primary", variant = "regular", load
 
   return (
     <button
+      data-css='Button'
       data-component='Button'
       className={mergeClass(className, `variant-${variant}`)}
       disabled={loading || rest.disabled}

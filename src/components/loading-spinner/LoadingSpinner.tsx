@@ -12,7 +12,7 @@ interface LoadingSpinnerProps extends PropsWithCss {
 export function LoadingSpinner({ css, size = "sm" }: LoadingSpinnerProps) {
   const dictionary = useDictionary(loadingSpinnerLocale);
   return (
-    <div css={["background-white", "padding-xs", "display-flex", "align-center", "justify-center", "width-fit", "border-radius-circle", css]} data-component='LoadingSpinner'>
+    <div css={["background-white", "padding-xs", "display-flex", "align-center", "justify-center", "width-fit", "border-radius-circle", css]} data-component='LoadingSpinner' data-css='LoadingSpinner'>
       <Icon css={["animate-rotate"]} icon='loading' size={size} aria-label={dictionary.loading} role='status' />
     </div>
   );

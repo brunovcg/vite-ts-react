@@ -1,3 +1,4 @@
+/* DO NOT CHANGE ORDER OF IMPORTS */
 @import "./config/reset.css";
 @import "./config/variables.css";
 @import "./design/typography.css";
@@ -12,6 +13,7 @@
 @import "./design/display.css";
 @import "./design/position.css";
 @import "./config/responsive.css";
+@import "./config/keyframes.css";
 @import "./design/animations.css";
 @import "./design/text-max-lines.css";
 @import "./design/overflow.css";

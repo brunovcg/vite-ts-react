@@ -55,7 +55,7 @@ export function useDashboardRoutes() {
             fallbackPath: "/dashboard/overview",
           },
         },
-      ] satisfies AppRoute[],
+      ] as const satisfies AppRoute[],
     [dictionary],
   );
 

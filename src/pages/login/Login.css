@@ -1,14 +1,14 @@
-[data-component="Login"] {
+[data-css="Login"] {
   min-height: 100vh;
   min-height: 100dvh;
 }
 
-[data-component="Login"] .login-hero {
+[data-css="Login"] .login-hero {
   position: relative;
   overflow: hidden;
 }
 
-[data-component="Login"] .login-hero::before {
+[data-css="Login"] .login-hero::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -17,14 +17,14 @@
   border-radius: var(--border-radius-lg);
 }
 
-[data-component="Login"] .login-illustration {
+[data-css="Login"] .login-illustration {
   width: 100%;
   max-width: 380px;
   height: auto;
   animation: fadeIn 0.6s ease-in;
 }
 
-[data-component="Login"] .login-brand-icon {
+[data-css="Login"] .login-brand-icon {
   width: 48px;
   height: 48px;
   border-radius: var(--border-radius-md);
@@ -35,30 +35,30 @@
   color: var(--color-white);
 }
 
-[data-component="Login"] .login-card {
+[data-css="Login"] .login-card {
   width: 100%;
   max-width: 420px;
   box-shadow: var(--box-shadow);
   animation: slide-in 0.4s ease-out;
 }
 
-[data-component="Login"] .login-divider {
+[data-css="Login"] .login-divider {
   height: 1px;
   width: 100%;
   background-color: var(--color-border);
 }
 
-[data-component="Login"] .login-footer-text {
+[data-css="Login"] .login-footer-text {
   font-size: var(--font_size-xs);
   color: var(--color-grey_light);
 }
 
 @media (max-width: 768px) {
-  [data-component="Login"] .login-hero {
+  [data-css="Login"] .login-hero {
     display: none !important;
   }
 
-  [data-component="Login"] .login-card {
+  [data-css="Login"] .login-card {
     max-width: 100%;
     box-shadow: none;
     border: none !important;

@@ -9,10 +9,8 @@ import { DSReadmesSidebar, DSReadmesContent } from "./components/DSReadmesView";
 import "./DesignSystem.css";
 
 import { Button } from "@/components/button/Button";
-import { useTypedNavigate } from "@/router/Router.utils";
 
 export function DesignSystem() {
-  const navigate = useTypedNavigate();
   const componentDocs = useComponentDocs().sort((a, b) => a.name.localeCompare(b.name));
   const [selectedComponentId, setSelectedComponentId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -36,7 +34,7 @@ export function DesignSystem() {
           </div>
           <h1 css={["font-size-lg", "text-bold"]}>Design System</h1>
         </div>
-        <Button color='error' variant='outlined' onClick={() => navigate("/")}>
+        <Button color='error' variant='outlined' onClick={() => window.history.back()}>
           <Icon icon='logout' />
           Exit
         </Button>

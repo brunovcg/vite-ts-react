@@ -19,6 +19,7 @@ export function Progress({ label, ...props }: ProgressProps) {
       {...props}
       className={props.className}
       css={props.css}
+      data-css='Progress'
       data-component='Progress'
       aria-valuenow={valueNow}
       aria-valuemin={valueMin}

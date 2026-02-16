@@ -1,13 +1,15 @@
 import { useSession } from "@/context/session-context/useSession";
 
-export function Avatar() {
+interface AvatarProps {
+  userName?: string;
+}
+
+export function Avatar({ userName: propUser }: AvatarProps) {
   const { user } = useSession();
 
-  const initials = user?.name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase();
+  const splittedName = (propUser || user?.name || "").split(" ");
+
+  const initials = ((splittedName[0][0] || "") + (splittedName[splittedName.length - 1][0] || "")).toUpperCase();
 
   return (
     <div

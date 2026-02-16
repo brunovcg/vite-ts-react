@@ -93,7 +93,7 @@ export function Dialog({ dialogId, heading, className, children, width, allowXBu
       id={`dialog-${dialogId}`}
       aria-labelledby={`dialog-title-${dialogId}`}
       data-component='Dialog'
-      css={["position-fixed", "top", "left", "width-full", "height-full", "display-flex", "flex-center", "background-dialog-opacity", "border-none"]}
+      css={["position-fixed", "top", "left", "width-full", "height-full", "display-flex", "flex-center", "background-dialog-opacity", "border-none", "animate-backdrop-fade-in"]}
       className={ClassNames.merge(
         "dialog",
         {
@@ -107,7 +107,7 @@ export function Dialog({ dialogId, heading, className, children, width, allowXBu
       open
       {...rest}
     >
-      <div className='dialog-content' css={["display-flex", "flex-column", "background-white", "border-radius-sm", css]}>
+      <div className='dialog-content' css={["display-flex", "flex-column", "background-white", "border-radius-lg", "animate-dialog-slide-up", css]}>
         {(heading || allowXButton) && (
           <section className={"dialog-header"} css={["display-flex", "justify-between", "align-center", "border-bottom", "padding-lg"]}>
             <h2 id={`dialog-title-${dialogId}`} css={["width-full", "text-ellipsis"]}>

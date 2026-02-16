@@ -44,7 +44,7 @@ export function Login() {
   const handleShowPassword = () => setShowPassword((state) => !state);
 
   return (
-    <div data-component='Login' css={["display-flex", "flex-row", "height-full", "flex-wrap"]}>
+    <div data-component='Login' data-css='Login' css={["display-flex", "flex-row", "height-full", "flex-wrap"]}>
       {/* Left side - Branding */}
       <div className='login-hero' css={["flex-1", "display-flex", "flex-center", "align-center", "flex-column", "padding-3xl", "background-primary-gradient", "gap-xl"]}>
         <div css={["display-flex", "flex-column", "align-center", "gap-lg"]}>

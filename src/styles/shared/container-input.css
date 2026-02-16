@@ -108,7 +108,7 @@ label.container-input {
     }
   }
 
-  [data-component="LoadingSpinner"] {
+  [data-css="LoadingSpinner"] {
     position: absolute;
     color: var(--color-primary);
     right: 4px;

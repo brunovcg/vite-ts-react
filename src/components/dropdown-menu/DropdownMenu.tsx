@@ -59,7 +59,7 @@ export function DropdownMenu({ options, css, trigger }: DropdownMenuProps) {
   }
 
   return (
-    <div ref={ref} className={mergeClass({ "dropdown-open": open })} css={[css]} data-component='dropdown-menu-component'>
+    <div ref={ref} className={mergeClass({ "dropdown-open": open })} css={[css]} data-component='DropdownMenu' data-css='DropdownMenu'>
       {trigger?.label && !trigger?.custom && (
         <Button aria-label='dropdown-trigger' aria-expanded={open} aria-haspopup='menu' onClick={handleToggle}>
           {trigger.icon && <Icon icon={trigger.icon} />}

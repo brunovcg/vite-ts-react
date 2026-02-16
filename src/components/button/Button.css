@@ -1,4 +1,4 @@
-button[data-component="Button"] {
+button[data-css="Button"] {
   &:hover:not(:disabled) {
     /* Outlined or Regular */
     &.variant-outlined,

@@ -37,6 +37,7 @@ export const CSS_VARIABLES = {
     white: "#ffffff",
     backdrop: "rgba(0, 0, 0, 0.5)",
     backdrop_light: "rgba(0, 0, 0, 0.2)",
+    surface: "#f5f7fa",
     primary_gradient: "linear-gradient(90deg, rgba(17, 117, 221, 1) 0%, rgba(17, 110, 221, 1) 23%, rgba(17, 138, 221, 1) 50%, rgba(17, 162, 221, 1) 100%)",
   },
   outline: {

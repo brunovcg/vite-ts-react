@@ -1,4 +1,4 @@
-label[data-component="Range"] {
+label[data-css="Range"] {
   display: flex;
   align-items: center;
   justify-content: flex-end;

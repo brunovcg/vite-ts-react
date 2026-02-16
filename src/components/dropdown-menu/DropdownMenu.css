@@ -1,4 +1,4 @@
-div[data-component="dropdown-menu-component"] {
+div[data-css="DropdownMenu"] {
   position: relative;
   width: fit-content;
 

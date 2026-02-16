@@ -88,7 +88,7 @@ export function BaseTable<Row extends object>({
   };
 
   return (
-    <div data-component='BaseTable' css={["display-flex", "flex-column", "gap-md", "width-full"]}>
+    <div data-component='BaseTable' data-css='BaseTable' css={["display-flex", "flex-column", "gap-md", "width-full"]}>
       <TableHeader
         columns={columns}
         data={data}

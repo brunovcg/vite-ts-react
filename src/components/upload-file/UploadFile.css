@@ -1,4 +1,4 @@
-label[data-component="UploadFile"] {
+label[data-css="UploadFile"] {
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-sm);
   background-color: var(--background-white);

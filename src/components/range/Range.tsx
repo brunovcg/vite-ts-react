@@ -29,7 +29,7 @@ export function Range({ css, className, inputCss, inputClassName, label, labelSi
   };
 
   return (
-    <label data-component='Range' css={css} className={className} htmlFor={id} style={{ flexDirection: getFlexDirection() }}>
+    <label data-css='Range' data-component='Range' css={css} className={className} htmlFor={id} style={{ flexDirection: getFlexDirection() }}>
       {label && <span className='label-text'>{label}</span>}
       <input
         type='range'

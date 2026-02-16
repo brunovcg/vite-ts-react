@@ -3,7 +3,7 @@
   display: none;
 }
 
-aside[data-component="Drawer"] {
+aside[data-css="Drawer"] {
   width: 72px;
   background-color: var(--background-white);
   transition: transform 0.3s ease;
@@ -65,7 +65,7 @@ aside[data-component="Drawer"] {
 
 /* Mobile styles */
 @media (max-width: 768px) {
-  aside[data-component="Drawer"] {
+  aside[data-css="Drawer"] {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -96,7 +96,7 @@ aside[data-component="Drawer"] {
   }
 
   /* Slide drawer in when toggle is checked */
-  .drawer-toggle:checked ~ aside[data-component="Drawer"] {
+  .drawer-toggle:checked ~ aside[data-css="Drawer"] {
     transform: translateX(0);
   }
 }

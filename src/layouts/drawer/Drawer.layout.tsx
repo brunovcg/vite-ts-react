@@ -19,7 +19,7 @@ export function Drawer() {
     <>
       <label htmlFor='drawer-toggle' className='drawer-backdrop' />
 
-      <aside css={["display-flex", "flex-column", "height-full", "border-right", "padding-block-lg", "align-center"]} data-component='Drawer'>
+      <aside css={["display-flex", "flex-column", "height-full", "border-right", "padding-block-lg", "align-center"]} data-component='Drawer' data-css='Drawer'>
         <nav aria-label={dictionary.mainNavigation} css={["display-flex", "flex-column", "gap-sm", "flex-1"]}>
           {dashboardRoutes.filterMap(
             (route) => {

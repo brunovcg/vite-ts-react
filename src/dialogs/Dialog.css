@@ -1,9 +1,10 @@
 :where(.dialog .dialog-content) {
   max-width: 90vw;
-  max-height: 90vh;
+  max-height: 85vh;
   width: fit-content;
   min-width: 400px;
   min-height: 200px;
+  box-shadow: var(--box-shadow);
 }
 
 .dialog {

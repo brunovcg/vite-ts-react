@@ -1,4 +1,4 @@
-progress[data-component="Progress"] {
+progress[data-css="Progress"] {
   min-width: 100px;
   height: 12px;
   border: none;

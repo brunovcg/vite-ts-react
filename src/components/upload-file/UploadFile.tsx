@@ -31,6 +31,7 @@ export function UploadFile({ label, id, css, className, inputCss, inputClassName
       htmlFor={id}
       css={css}
       className={mergeClass(className, isDragging ? "dragging" : "")}
+      data-css='UploadFile'
       data-component='UploadFile'
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}

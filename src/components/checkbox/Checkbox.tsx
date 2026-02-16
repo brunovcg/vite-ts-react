@@ -14,7 +14,7 @@ type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
 
 export function Checkbox({ label, css, className, inputClassName, id, type = "checkbox", inputCss, labelSide = "right", ...rest }: CheckboxProps) {
   return (
-    <label data-component='Checkbox' className={className} css={css} htmlFor={id} style={{ flexDirection: labelSide === "right" ? "row-reverse" : "row" }}>
+    <label data-component='Checkbox' data-css='Checkbox' className={className} css={css} htmlFor={id} style={{ flexDirection: labelSide === "right" ? "row-reverse" : "row" }}>
       {label && <span className='label-text'>{label}</span>}
       <input type={type} css={inputCss} className={inputClassName} id={id} {...rest} />
     </label>

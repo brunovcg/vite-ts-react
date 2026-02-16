@@ -36,7 +36,7 @@ export function UserPreferencesDialog() {
         </div>
       </Tabs>
       <Dialog.Footer css={["padding-lg", "border-top"]}>
-        <Dialog.Close variant="regular"> {dictionary.close}</Dialog.Close>
+        <Dialog.Close> {dictionary.close}</Dialog.Close>
       </Dialog.Footer>
     </Dialog>
   );

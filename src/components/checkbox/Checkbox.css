@@ -1,4 +1,4 @@
-label[data-component="Checkbox"] {
+label[data-css="Checkbox"] {
   display: flex;
   align-items: center;
   justify-content: flex-end;

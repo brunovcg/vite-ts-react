@@ -7,10 +7,10 @@ function ToastDemo() {
     <div css={["display-flex", "flex-column", "gap-lg"]}>
       <section css={["display-flex", "flex-column", "gap-md"]}>
         <h3>Basic Usage</h3>
-        <p css={["font-size-sm", "color-grey-dark"]}>
+        <p css={["font-size-sm", "color-typeface-medium"]}>
           Toasts are triggered via the static <code>Toast</code> class. No wrapping provider needed — just call the method.
         </p>
-        <pre css={["background-grey-light", "padding-md", "border-radius-md", "font-size-sm"]}>
+        <pre css={["background-light", "padding-md", "border-radius-md", "font-size-sm"]}>
           {`import { Toast } from "@/overlays/toast/ToastControler";
 
 // Variant shortcuts
@@ -107,7 +107,7 @@ Toast.info("Loading...", { id: "loading-toast", duration: 10000 });`}
 
       <section css={["display-flex", "flex-column", "gap-md"]}>
         <h3>ToastConfig</h3>
-        <pre css={["background-grey-light", "padding-md", "border-radius-md", "font-size-sm"]}>
+        <pre css={["background-light", "padding-md", "border-radius-md", "font-size-sm"]}>
           {`interface ToastConfig {
   duration?: number;    // Auto-close time in ms (default: 5000)
   variant?: "info" | "error" | "warning" | "success";

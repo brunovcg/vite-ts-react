@@ -1,4 +1,4 @@
-import type { CellProps } from "../../BaseTable.component";
+import type { CellProps } from "../../instances/base-table/BaseTable.component";
 
 export function TextCell<Row extends Record<string, unknown>>(input: CellProps<Row> | string, maxLines: TextMaxLines) {
   const value = typeof input === "string" ? input : input.row[input.column?.accessor as keyof typeof input.row];

@@ -1,4 +1,4 @@
-import type { Column } from "@/components/table/BaseTable.component";
+import type { Column } from "@/components/table/instances/base-table/BaseTable.component";
 
 export class DownloadUtils {
   static csv(csvContent: string, fileName: string) {

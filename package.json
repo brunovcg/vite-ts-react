@@ -8,7 +8,7 @@
     "start": "vite --open",
     "build": "tsc -b && vite build",
     "build:analyze": "tsc && ANALYZE=true vite build && node cloc.js",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "lint": "eslint .",
     "preview": "vite preview",
     "prepare": "husky",

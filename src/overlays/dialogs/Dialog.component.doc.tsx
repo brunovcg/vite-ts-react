@@ -7,10 +7,10 @@ function DialogDemo() {
     <div css={["display-flex", "flex-column", "gap-lg"]}>
       <section css={["display-flex", "flex-column", "gap-md"]}>
         <h3>Basic Usage</h3>
-        <p css={["font-size-sm", "color-grey-dark"]}>
+        <p css={["font-size-sm", "color-typeface-medium"]}>
           Dialogs are managed via the <code>dialogController</code> singleton. Register your dialog in <code>dialog.register.ts</code>, then open it from anywhere.
         </p>
-        <pre css={["background-grey-light", "padding-md", "border-radius-md", "font-size-sm"]}>
+        <pre css={["color-typeface-medium", "padding-md", "border-radius-md", "font-size-sm"]}>
           {`// 1. Register your dialog in dialog.register.ts
 import { MyDialog } from "./components/MyDialog";
 
@@ -31,7 +31,7 @@ dialogController.close("MyDialog");`}
 
       <section css={["display-flex", "flex-column", "gap-md"]}>
         <h3>Dialog Component Structure</h3>
-        <pre css={["background-grey-light", "padding-md", "border-radius-md", "font-size-sm"]}>
+        <pre css={["color-typeface-medium", "padding-md", "border-radius-md", "font-size-sm"]}>
           {`// Compound component pattern
 function MyDialog({ userId }: { userId: string }) {
   return (
@@ -56,7 +56,7 @@ function MyDialog({ userId }: { userId: string }) {
         <div css={["display-flex", "gap-md", "flex-wrap"]}>
           <Button onClick={() => dialogController.open("UserPreferencesDialog")}>Open sm dialog</Button>
         </div>
-        <pre css={["background-grey-light", "padding-md", "border-radius-md", "font-size-sm"]}>
+        <pre css={["color-typeface-medium", "padding-md", "border-radius-md", "font-size-sm"]}>
           {`// Available widths: "sm" | "md" | "lg" | "full"
 <Dialog dialogId="my-dialog" heading="Title" width="md">
   ...

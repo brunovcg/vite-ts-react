@@ -73,7 +73,7 @@ export function DataList<Option extends string>({
         onChange={handleChange}
         onBlur={handleBlur}
         onInvalid={(e) => {
-          setInvalid(e.currentTarget, validate);
+          setInvalid(e, validate);
           props.onInvalid?.(e);
         }}
         css={inputCss}

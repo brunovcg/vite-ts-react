@@ -23,9 +23,10 @@ function runCustomValidation(target: FormElement, rules?: ValidationRule[]) {
 export function useValidationMessage() {
   const [validationMessage, setValidationMessage] = useState("");
 
-  const setInvalid = useCallback((target: FormElement, rules?: ValidationRule[]) => {
-    runCustomValidation(target, rules);
-    setValidationMessage(target.validationMessage);
+  const setInvalid = useCallback((e: { preventDefault: () => void; currentTarget: FormElement }, rules?: ValidationRule[]) => {
+    e.preventDefault();
+    runCustomValidation(e.currentTarget, rules);
+    setValidationMessage(e.currentTarget.validationMessage);
   }, []);
 
   const checkValidity = useCallback((target: FormElement, rules?: ValidationRule[]) => {

@@ -80,7 +80,7 @@ export function Input({ id, name, label, validate, maskFn, debounce, value, onCh
         defaultValue={passedDefaultValue}
         onChange={handleChange}
         onInvalid={(e) => {
-          setInvalid(e.currentTarget, validate);
+          setInvalid(e, validate);
           inputProps.onInvalid?.(e);
         }}
         disabled={disabled || loading}

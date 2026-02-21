@@ -39,7 +39,7 @@ export function TextArea({ id, name, label, validate, loading, disabled, classNa
           onChange?.(e);
         }}
         onInvalid={(e) => {
-          setInvalid(e.currentTarget, validate);
+          setInvalid(e, validate);
           onInvalidProp?.(e);
         }}
       />

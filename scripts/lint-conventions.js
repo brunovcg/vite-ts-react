@@ -10,35 +10,28 @@ const srcDir = path.resolve(__dirname, "../src");
 
 // ─── Helpers ────────────────────────────────────────────────────────
 
-// Secondary suffixes that are always allowed (exempt from primary suffix rules)
-const SECONDARY_SUFFIXES = [
-  // Component secondary suffixes
-  ".component.locales.ts",
-  ".component.types.ts",
-  ".component.types.tsx",
-  ".component.doc.tsx",
-  ".component.css",
-  // Non-component secondary suffixes
+// Allowed primary type suffixes (e.g. Button.component.tsx, Header.layout.tsx)
+const TYPES = ["component", "layout", "page", "context", "dialog", "controller", "routes"];
+
+// Allowed secondary variations (appended after a type or used standalone)
+const VARIATIONS = [
+  ".ts",
+  ".tsx",
+  ".css",
+  ".doc.tsx",
   ".locales.ts",
   ".types.ts",
-  ".types.tsx",
-  ".doc.tsx",
+  ".utils.ts",
   ".test.ts",
   ".test.tsx",
-  ".context.tsx",
-  ".context.ts",
-  ".context.provider.tsx",
-  ".context.types.ts",
   ".provider.tsx",
-  ".controller.ts",
-  ".controller.test.ts",
   ".register.ts",
-  ".routes.tsx",
-  ".routes.locales.ts",
-  ".layout.locales.ts",
-  ".layout.css",
-  ".layout.utils.ts",
-  ".dialog.locales.ts",
+];
+
+// Generate all valid secondary suffixes: standalone variations + type×variation combos
+const SECONDARY_SUFFIXES = [
+  ...VARIATIONS,
+  ...TYPES.flatMap((type) => VARIATIONS.map((v) => `.${type}${v}`)),
 ];
 
 const KEBAB_CASE_RE = /^[a-z][a-z0-9]*(-[a-z0-9]+)*$/;

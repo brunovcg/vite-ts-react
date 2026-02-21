@@ -21,7 +21,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
-    "creator": "node creator/index.js"
+    "creator": "node creator/index.js",
+    "lint:conventions": "node scripts/lint-conventions.js"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.20",
@@ -58,9 +59,14 @@
   "lint-staged": {
     "*.{ts,tsx}": [
       "eslint --fix",
-      "prettier --write"
+      "prettier --write",
+      "node scripts/lint-conventions.js"
     ],
-    "*.{json,md,html,css}": [
+    "*.css": [
+      "prettier --write",
+      "node scripts/lint-conventions.js"
+    ],
+    "*.{json,md,html}": [
       "prettier --write"
     ],
     "src/styles/design/*.css": [

@@ -1,4 +1,4 @@
-import type { KeyboardKey } from "@/constants/colors.constants";
+import type { KeyboardKey } from "@/constants/keyboard.constants";
 import type { RefObject } from "react";
 
 export type HoldActions =

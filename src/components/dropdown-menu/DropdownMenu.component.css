@@ -13,12 +13,25 @@ div[data-css="DropdownMenu"] {
     border-radius: var(--border-radius-md);
     background-color: var(--background-white);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    overflow: clip;
     display: none;
   }
 
   button {
     border-radius: 0;
+  }
+
+  [role="menuitem"]:focus {
+    outline: 2px dashed var(--color-primary);
+    outline-offset: -4px;
+
+    &:first-child {
+      border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+    }
   }
 
   &.dropdown-open [aria-label="dropdown-options"] {

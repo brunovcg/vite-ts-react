@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from "react";
 
-import type { KeyboardKey } from "@/constants/colors.constants";
+import type { KeyboardKey } from "@/constants/keyboard.constants";
 import type { UseOnKeyPressProps } from "./useOnKeyPress.hook.types";
 import { useIsHoldingKey } from "../use-is-holding-key/useIsHoldingKey.hook";
 

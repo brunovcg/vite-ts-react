@@ -42,7 +42,7 @@ export function Tooltip({ children, content, position = "top", delay = 300, disa
       onBlur={hide}
     >
       <div aria-describedby={visible ? tooltipId : undefined}>{children}</div>
-      <div id={tooltipId} role='tooltip' aria-label='tooltip-content'>
+      <div id={tooltipId} role='tooltip' aria-hidden={!visible}>
         {content}
       </div>
     </div>

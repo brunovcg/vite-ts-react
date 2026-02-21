@@ -83,6 +83,10 @@ label.container-input {
     border-color: var(--color-primary);
   }
 
+  .input-element:focus-visible {
+    outline: none;
+  }
+
   .input-element:user-invalid {
     color: var(--color-error);
   }

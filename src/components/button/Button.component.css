@@ -33,6 +33,6 @@ button[data-css="Button"] {
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-primary);
+    outline: 2px dashed var(--color-primary);
   }
 }

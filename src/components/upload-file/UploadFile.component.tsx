@@ -41,7 +41,7 @@ export function UploadFile({ label, id, css, className, inputCss, inputClassName
     >
       {label && <span className='label-text'>{label}</span>}
 
-      <div className='upload-area' role='button' aria-label='Click to browse files or drag and drop'>
+      <div className='upload-area' aria-hidden='true'>
         <span className='upload-text'>{getFileNames() || "Drag & drop files or click to browse"}</span>
       </div>
 

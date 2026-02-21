@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Environment } from "@/utils/environment/Environment.util";
 import { Icon } from "@/components/icon/Icon";
 import { Tabs } from "@/components/tabs/Tabs";
@@ -9,8 +9,13 @@ import { DSReadmesSidebar, DSReadmesContent } from "./components/DSReadmesView";
 import "./DesignSystem.css";
 
 import { Button } from "@/components/button/Button";
+import { useTypedNavigate, useLocation } from "@/router/Router.utils";
+import type { RouterTypedPath } from "@/router/router.types";
 
 export function DesignSystem() {
+  const navigate = useTypedNavigate();
+  const location = useLocation();
+  const returnTo = useRef(((location.state as { returnTo?: string })?.returnTo || "/") as RouterTypedPath);
   const componentDocs = useComponentDocs().sort((a, b) => a.name.localeCompare(b.name));
   const [selectedComponentId, setSelectedComponentId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -34,7 +39,7 @@ export function DesignSystem() {
           </div>
           <h1 css={["font-size-lg", "text-bold"]}>Design System</h1>
         </div>
-        <Button color='error' variant='outlined' onClick={() => window.history.back()}>
+        <Button color='error' variant='outlined' onClick={() => navigate(returnTo.current)}>
           <Icon icon='logout' />
           Exit
         </Button>

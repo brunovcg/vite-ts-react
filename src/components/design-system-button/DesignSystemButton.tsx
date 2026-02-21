@@ -34,7 +34,7 @@ export function DesignSystemButton() {
           "display-none": isDesignSystemPage,
         },
       ]}
-      onClick={() => navigate("/design-system")}
+      onClick={() => navigate("/design-system", { state: { returnTo: location.pathname } })}
       title='Open Design System'
     >
       <Icon icon='codeFrontend' size='lg' />

@@ -22,6 +22,10 @@ div[data-css="DropdownMenu"] {
   }
 
   [role="menuitem"]:focus {
+    outline: none;
+  }
+
+  [role="menuitem"].keyboard-focus {
     outline: 2px dashed var(--color-primary);
     outline-offset: -4px;
 

@@ -156,6 +156,7 @@ export function DropdownMenu({ options, css, trigger }: DropdownMenuProps) {
             key={item.label}
             role='menuitem'
             tabIndex={focusedIndex === index ? 0 : -1}
+            className={focusedIndex === index ? "keyboard-focus" : undefined}
             disabled={item.disabled}
             onClick={() => handleOptionClick(item)}
             color={item.color ?? "primary"}

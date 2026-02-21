@@ -2,7 +2,7 @@ import type { ComponentDoc } from "@/types/component-doc.types";
 
 export function useComponentDocs() {
   // Eagerly load all .doc.tsx files
-  const modules = import.meta.glob<Record<string, ComponentDoc>>("/src/components/**/*.doc.tsx", { eager: true });
+  const modules = import.meta.glob<Record<string, ComponentDoc>>("/src/**/*.doc.tsx", { eager: true });
 
   const docs = Object.values(modules).map((mod) => {
     // Assuming the doc is the default export or a named export matching the file pattern

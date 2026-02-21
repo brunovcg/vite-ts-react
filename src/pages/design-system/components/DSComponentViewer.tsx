@@ -23,7 +23,7 @@ export function DSComponentViewer({ doc }: ComponentViewerProps) {
           {doc.description && <p css={["color-typeface-light"]}>{doc.description}</p>}
         </div>
 
-        <div css={["display-flex", "flex-center", "background-white", "border-radius-md", "padding-2xl"]} style={{ minHeight: "300px", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }}>
+        <div css={["overflow-auto", "display-flex", "flex-center", "background-white", "border-radius-md", "padding-2xl"]} style={{ minHeight: "300px", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }}>
           <div css={["margin-auto"]}>
             <Component
               {...args}

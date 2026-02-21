@@ -93,7 +93,7 @@ export function Select<Option extends string>({
       </select>
       {validationMessage && (
         <Tooltip content={<span className='error-text'>{validationMessage}</span>} position='left'>
-          <Icon icon='warning' size='xs' className='error-icon' />
+          <Icon icon='warning' size='sm' className='error-icon' />
         </Tooltip>
       )}
     </label>

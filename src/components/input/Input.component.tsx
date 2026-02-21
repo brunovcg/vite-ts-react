@@ -12,6 +12,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label?: string;
   validate?: ValidationRule[];
+  maskFn?: (value: string) => string;
   debounce?: number;
   loading?: boolean;
   inputCss?: Css;
@@ -19,7 +20,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 
-export function Input({ id, name, label, validate, debounce, value, onChange, defaultValue, className, disabled, loading, inputCss, css, inputClassName, ...inputProps }: InputProps) {
+export function Input({ id, name, label, validate, maskFn, debounce, value, onChange, defaultValue, className, disabled, loading, inputCss, css, inputClassName, ...inputProps }: InputProps) {
   const isDebounced = typeof debounce === "number" && debounce > 0;
 
   const [localValue, setLocalValue] = useState<string | number | readonly string[] | undefined>(value !== undefined ? value : defaultValue !== undefined ? defaultValue : "");
@@ -52,6 +53,10 @@ export function Input({ id, name, label, validate, debounce, value, onChange, de
   const { validationMessage, setInvalid, checkValidity } = useValidationMessage();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (maskFn) {
+      const masked = maskFn(e.target.value);
+      e.target.value = masked;
+    }
     checkValidity(e.target, validate);
     if (isDebounced) {
       e.persist();
@@ -88,7 +93,7 @@ export function Input({ id, name, label, validate, debounce, value, onChange, de
       />
       {validationMessage && (
         <Tooltip content={<span className='error-text'>{validationMessage}</span>} position='left'>
-          <Icon icon='warning' size='xs' className='error-icon' />
+          <Icon icon='warning' size='sm' className='error-icon' />
         </Tooltip>
       )}
     </label>

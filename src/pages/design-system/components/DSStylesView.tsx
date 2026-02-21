@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
-import { icons } from "@/components/icon/Icons";
-import { Icon } from "@/components/icon/Icon";
+import { icons } from "@/components/icon/Icon.component.register";
+import { Icon } from "@/components/icon/Icon.component";
 import "../DesignSystem.css";
 import type { Css } from "@/runtime/css.types";
 

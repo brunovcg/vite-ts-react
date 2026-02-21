@@ -1,7 +1,7 @@
 import { useRouteError } from "react-router-dom";
-import { Button } from "@/components/button/Button";
-import { Icon } from "@/components/icon/Icon";
-import "@/components/error-boundary/ErrorBoundary.css";
+import { Button } from "@/components/button/Button.component";
+import { Icon } from "@/components/icon/Icon.component";
+import "@/components/error-boundary/ErrorBoundary.component.css";
 import { routerErrorBoundaryLocales } from "./RouterErrorBounday.locales";
 import { useDictionary } from "@/locales";
 

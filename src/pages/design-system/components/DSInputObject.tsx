@@ -1,4 +1,4 @@
-import { TextArea } from "@/components/text-area/TextArea";
+import { TextArea } from "@/components/text-area/TextArea.component";
 import { useState, useEffect } from "react";
 
 interface ObjectInputProps {

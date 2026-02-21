@@ -1,4 +1,4 @@
-import { LoadingSpinner } from "@/components/loading-spinner/LoadingSpinner";
+import { LoadingSpinner } from "@/components/loading-spinner/LoadingSpinner.component";
 import { useDictionary } from "@/locales";
 import { pageLoadingLocale } from "./RouterPageLoading.locales";
 import { Suspense, type PropsWithChildren } from "react";

@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
-import { Icon } from "@/components/icon/Icon";
+import { Icon } from "@/components/icon/Icon.component";
 import type { Css } from "@/runtime/css.types";
-import { TextArea } from "@/components/text-area/TextArea";
+import { TextArea } from "@/components/text-area/TextArea.component";
 
 interface InputFunctionProps {
   value: string;

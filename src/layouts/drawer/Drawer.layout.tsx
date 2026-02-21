@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import "./Drawer.layout.css";
-import { DrawerUtils } from "./drawer.utils";
-import { Icon } from "@/components/icon/Icon";
+import { DrawerUtils } from "./drawer.layout.utils";
+import { Icon } from "@/components/icon/Icon.component";
 import type { AppRouteHandle, RouterTypedPath } from "@/router/router.types";
 import { useTypedNavigate } from "@/router/Router.utils";
 import { useDashboardRoutes } from "@/router/routes/dashboard-routes/dashboard.routes";

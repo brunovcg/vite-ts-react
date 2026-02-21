@@ -1,6 +1,6 @@
-import { DesignSystemButton } from "@/components/design-system-button/DesignSystemButton";
-import { GlobalContext } from "@/context/GlobalContext";
-import { DialogProvider } from "@/dialogs/Dialog.provider";
+import { DesignSystemButton } from "@/components/design-system-button/DesignSystemButton.component";
+import { GlobalContext } from "@/context/Global.context";
+import { DialogProvider } from "@/overlays/dialogs/Dialog.provider";
 import { Outlet } from "react-router-dom";
 
 export function GlobalLayout() {

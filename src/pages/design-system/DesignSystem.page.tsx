@@ -1,14 +1,14 @@
 import { useRef, useState } from "react";
 import { Environment } from "@/utils/environment/Environment.util";
-import { Icon } from "@/components/icon/Icon";
-import { Tabs } from "@/components/tabs/Tabs";
+import { Icon } from "@/components/icon/Icon.component";
+import { Tabs } from "@/components/tabs/Tabs.component";
 import { useComponentDocs } from "@/hooks/use-component-docs/useComponentDocs.hook";
 import { StylesView, StylesNav } from "./components/DSStylesView";
 import { DSComponentViewer } from "./components/DSComponentViewer";
 import { DSReadmesSidebar, DSReadmesContent } from "./components/DSReadmesView";
 import "./DesignSystem.css";
 
-import { Button } from "@/components/button/Button";
+import { Button } from "@/components/button/Button.component";
 import { useTypedNavigate, useLocation } from "@/router/Router.utils";
 import type { RouterTypedPath } from "@/router/router.types";
 
@@ -30,7 +30,12 @@ export function DesignSystem() {
   }
 
   return (
-    <div className='design-system-container' css={["width-full", "height-viewport", "overflow-hidden", "background-light", "display-flex", "flex-column"]}>
+    <div
+      className='design-system-container'
+      data-css='DesignSystem'
+      data-component='DesignSystem'
+      css={["width-full", "height-viewport", "overflow-hidden", "background-light", "display-flex", "flex-column"]}
+    >
       {/* Header */}
       <header css={["background-white", "border-bottom", "padding-md", "display-flex", "align-center", "justify-between"]}>
         <div css={["display-flex", "align-center", "gap-md"]}>

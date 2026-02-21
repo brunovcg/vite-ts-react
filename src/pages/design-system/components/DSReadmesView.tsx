@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useReadmeFiles } from "@/hooks/use-readme-files/useReadmeFiles.hook";
-import { MarkdownRenderer } from "@/components/markdown/MarkdownRenderer";
-import { Icon } from "@/components/icon/Icon";
+import { MarkdownRenderer } from "@/components/markdown/MarkdownRenderer.component";
+import { Icon } from "@/components/icon/Icon.component";
 
 function getPageFromUrl(): string | null {
   const params = new URLSearchParams(window.location.search);

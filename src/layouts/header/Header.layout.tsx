@@ -1,13 +1,13 @@
-// import { Icon } from "@/components/icon/Icon";
-import "@/components/button-icon/ButtonIcon.css";
-import { ButtonIcon } from "@/components/button-icon/ButtonIcon";
-import { DrawerUtils } from "../drawer/drawer.utils";
+// import { Icon } from "@/components/icon/Icon.component";
+import "@/components/button-icon/ButtonIcon.component.css";
+import { ButtonIcon } from "@/components/button-icon/ButtonIcon.component";
+import { DrawerUtils } from "../drawer/drawer.layout.utils";
 import { useDictionary } from "@/locales";
 import { headerLocale } from "./Header.layout.locales";
-import { DropdownMenu } from "@/components/dropdown-menu/DropdownMenu";
+import { DropdownMenu } from "@/components/dropdown-menu/DropdownMenu.component";
 import { useSession } from "@/context/session-context/useSession";
-import { dialogController } from "@/dialogs/Dialog.controller";
-import { Avatar } from "@/components/avatar/Avatar";
+import { dialogController } from "@/overlays/dialogs/Dialog.controller";
+import { Avatar } from "@/components/avatar/Avatar.component";
 
 export function Header() {
   const dictionary = useDictionary(headerLocale);

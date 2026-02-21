@@ -1,0 +1,5 @@
+[data-css="Tabs"] button[role="tab"] {
+  &:hover:not(:disabled):not([aria-selected="true"]) {
+    background-color: var(--color-primary_light);
+  }
+}

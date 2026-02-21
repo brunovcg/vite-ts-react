@@ -1,10 +1,10 @@
 import { useState } from "react";
 import type { Control, ControlType } from "@/types/component-doc.types";
-import { Input } from "@/components/input/Input";
-import { Select } from "@/components/select/Select";
+import { Input } from "@/components/input/Input.component";
+import { Select } from "@/components/select/Select.component";
 import { DSInputObject } from "./DSInputObject";
 import { DSInputFunction } from "./DSInputFunction";
-import { Checkbox } from "@/components/checkbox/Checkbox";
+import { Checkbox } from "@/components/checkbox/Checkbox.component";
 
 interface ControlsPanelProps {
   args: Record<string, unknown>;

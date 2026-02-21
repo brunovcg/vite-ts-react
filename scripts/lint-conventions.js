@@ -10,7 +10,15 @@ const srcDir = path.resolve(__dirname, "../src");
 
 // ─── Helpers ────────────────────────────────────────────────────────
 
+// Secondary suffixes that are always allowed (exempt from primary suffix rules)
 const SECONDARY_SUFFIXES = [
+  // Component secondary suffixes
+  ".component.locales.ts",
+  ".component.types.ts",
+  ".component.types.tsx",
+  ".component.doc.tsx",
+  ".component.css",
+  // Non-component secondary suffixes
   ".locales.ts",
   ".types.ts",
   ".types.tsx",
@@ -19,6 +27,8 @@ const SECONDARY_SUFFIXES = [
   ".test.tsx",
   ".context.tsx",
   ".context.ts",
+  ".context.provider.tsx",
+  ".context.types.ts",
   ".provider.tsx",
   ".controller.ts",
   ".controller.test.ts",
@@ -27,11 +37,11 @@ const SECONDARY_SUFFIXES = [
   ".routes.locales.ts",
   ".layout.locales.ts",
   ".layout.css",
+  ".layout.utils.ts",
   ".dialog.locales.ts",
 ];
 
 const KEBAB_CASE_RE = /^[a-z][a-z0-9]*(-[a-z0-9]+)*$/;
-const PASCAL_CASE_RE = /^[A-Z][a-zA-Z0-9]*$/;
 
 function hasSecondarySuffix(filename) {
   return SECONDARY_SUFFIXES.some((suffix) => filename.endsWith(suffix));
@@ -95,13 +105,13 @@ function checkFileNaming(filePath) {
   const topDir = segments[0];
 
   // Only check convention directories
-  const checkedDirs = ["components", "pages", "hooks", "utils", "layouts", "dialogs"];
+  const checkedDirs = ["components", "pages", "hooks", "utils", "layouts", "dialogs", "context", "overlays"];
   if (!checkedDirs.includes(topDir)) return;
 
   // Skip non-source files (SVGs, images, etc.)
   if (!isSourceFile(filename) && !filename.endsWith(".css")) return;
 
-  // Skip CSS files (validated by data-css check)
+  // Skip CSS files (validated by data-css check + component suffix check)
   if (filename.endsWith(".css")) return;
 
   // Skip files with recognized secondary suffixes
@@ -115,7 +125,7 @@ function checkFileNaming(filePath) {
 
   // ── Pages ──
   if (topDir === "pages") {
-    if (isInNestedComponents(filePath)) return; // sub-components are free-form
+    if (isInNestedComponents(filePath)) return;
     if (!filename.endsWith(".page.tsx")) {
       error(filePath, `Page file should end with .page.tsx (e.g. Login.page.tsx)`);
     }
@@ -124,7 +134,6 @@ function checkFileNaming(filePath) {
 
   // ── Layouts ──
   if (topDir === "layouts") {
-    // Allow .layout.tsx for layout components and recognized secondary suffixes
     if (!filename.endsWith(".layout.tsx")) {
       error(filePath, `Layout file should end with .layout.tsx (e.g. Header.layout.tsx)`);
     }
@@ -149,25 +158,41 @@ function checkFileNaming(filePath) {
 
   // ── Dialogs ──
   if (topDir === "dialogs") {
-    // Files in dialog subdirectories should be .dialog.tsx (unless sub-component)
-    if (isInNestedComponents(filePath)) return; // sub-components are free-form
+    if (isInNestedComponents(filePath)) return;
     if (segments.length > 2 && !filename.endsWith(".dialog.tsx")) {
       error(filePath, `Dialog file should end with .dialog.tsx (e.g. UserPreferences.dialog.tsx)`);
     }
     return;
   }
 
+  // ── Context ──
+  if (topDir === "context") {
+    // Allow hooks (useSession.ts)
+    if (filename.match(/^use[A-Z]/)) return;
+    // Main context files should end with .context.tsx
+    if (filename.endsWith(".tsx") && !filename.endsWith(".context.tsx")) {
+      error(filePath, `Context file should end with .context.tsx (e.g. Session.context.tsx)`);
+    }
+    return;
+  }
+
   // ── Components ──
   if (topDir === "components") {
-    // Sub-components are free-form
     if (isInNestedComponents(filePath)) return;
-    // Only .tsx files must be PascalCase (allow .ts helpers like useUploadFile.ts, createTabs.ts)
+
+    // Skip hooks (useXxx.ts) and helper .ts files (camelCase like createTabs.ts)
+    if (filename.match(/^use[A-Z]/)) return;
+    if (filename.match(/^[a-z]/) && filename.endsWith(".ts")) return;
+
+    // .tsx component files must have .component.tsx suffix
     if (filename.endsWith(".tsx")) {
-      const name = filename.replace(/\.tsx$/, "");
-      if (!PASCAL_CASE_RE.test(name)) {
-        error(filePath, `Component .tsx file should be PascalCase (e.g. Button.tsx)`);
+      if (!filename.endsWith(".component.tsx")) {
+        error(filePath, `Component file should end with .component.tsx (e.g. Button.component.tsx)`);
       }
+      return;
     }
+
+    // .ts files (non-helper, non-hook) — no strict rule, just allow PascalCase
     return;
   }
 }
@@ -186,7 +211,7 @@ function checkDataComponent(filePath) {
   // Only check known component directories
   const rel = path.relative(srcDir, filePath);
   const topDir = rel.split(path.sep)[0];
-  const checkedDirs = ["components", "pages", "dialogs", "layouts"];
+  const checkedDirs = ["components", "pages", "dialogs", "layouts", "overlays"];
   if (!checkedDirs.includes(topDir)) return;
 
   // Skip sub-components in nested components/ directories
@@ -199,6 +224,9 @@ function checkDataComponent(filePath) {
 
   // Skip files that don't return JSX (pure re-export files, object exports, etc.)
   if (!content.includes("<")) return;
+
+  // Skip components that return createPortal directly
+  if (content.includes("createPortal(")) return;
 
   if (!content.includes("data-component=")) {
     error(filePath, `Missing data-component attribute on root JSX element`);
@@ -215,7 +243,7 @@ function checkDataCss(filePath) {
   // Only check component directories
   const rel = path.relative(srcDir, filePath);
   const topDir = rel.split(path.sep)[0];
-  const checkedDirs = ["components", "pages", "dialogs", "layouts"];
+  const checkedDirs = ["components", "pages", "dialogs", "layouts", "overlays"];
   if (!checkedDirs.includes(topDir)) return;
 
   const content = fs.readFileSync(filePath, "utf-8");
@@ -224,11 +252,88 @@ function checkDataCss(filePath) {
     error(filePath, `CSS file should use [data-css="ComponentName"] selectors`);
   }
 
-  // Check that data-css value matches filename
-  const expectedName = filename.replace(".layout.css", "").replace(".css", "");
+  // Check that data-css value matches the component name from filename
+  // Button.component.css → expect data-css="Button"
+  const expectedName = filename.replace(".component.css", "").replace(".layout.css", "").replace(".css", "");
   const dataCssMatch = content.match(/\[data-css=["'](\w+)["']\]/);
   if (dataCssMatch && dataCssMatch[1] !== expectedName) {
-    error(filePath, `data-css value "${dataCssMatch[1]}" doesn't match filename "${expectedName}"`);
+    error(filePath, `data-css value "${dataCssMatch[1]}" doesn't match expected "${expectedName}"`);
+  }
+}
+
+// ─── 4b. data-css attribute on TSX files (only when CSS exists) ─────
+
+function checkDataCssAttribute(filePath) {
+  const filename = path.basename(filePath);
+
+  // Only check .tsx files
+  if (!filename.endsWith(".tsx")) return;
+
+  // Skip non-component files
+  if (hasSecondarySuffix(filename)) return;
+
+  // Only check known component directories
+  const rel = path.relative(srcDir, filePath);
+  const topDir = rel.split(path.sep)[0];
+  const checkedDirs = ["components", "pages", "dialogs", "layouts", "overlays"];
+  if (!checkedDirs.includes(topDir)) return;
+
+  // Skip sub-components in nested components/ directories
+  if (isInNestedComponents(filePath)) return;
+
+  // Skip files in assets/ directories
+  if (isInAssetsDir(filePath)) return;
+
+  // Check if there's a CSS file in the same directory
+  const dir = path.dirname(filePath);
+  const dirEntries = fs.readdirSync(dir);
+  const hasCssFile = dirEntries.some((entry) => entry.endsWith(".css"));
+
+  if (!hasCssFile) return;
+
+  const content = fs.readFileSync(filePath, "utf-8");
+
+  // Skip files that don't return JSX
+  if (!content.includes("<")) return;
+
+  if (!content.includes("data-css=")) {
+    error(filePath, `Missing data-css attribute (CSS file exists in folder)`);
+  }
+}
+
+// ─── 5. Component CSS file naming ───────────────────────────────────
+
+function checkComponentCssNaming(filePath) {
+  const filename = path.basename(filePath);
+
+  if (!filename.endsWith(".css")) return;
+
+  const rel = path.relative(srcDir, filePath);
+  const topDir = rel.split(path.sep)[0];
+
+  // Only check CSS files in components/ directory
+  if (topDir !== "components") return;
+
+  if (!filename.endsWith(".component.css")) {
+    error(filePath, `Component CSS file should end with .component.css (e.g. Button.component.css)`);
+  }
+}
+
+// ─── 6. Restricted imports ───────────────────────────────────────────
+
+function checkRestrictedImports(filePath) {
+  const filename = path.basename(filePath);
+
+  if (!isSourceFile(filename)) return;
+
+  // Allow the file where useTypedNavigate wraps useNavigate
+  const rel = path.relative(srcDir, filePath);
+  if (rel === path.join("router", "Router.utils.ts")) return;
+
+  const content = fs.readFileSync(filePath, "utf-8");
+
+  if (content.match(/\buseNavigate\b/)) {
+    error(filePath, `Use useTypedNavigate instead of useNavigate (import from "@/router/Router.utils")`);
   }
 }
 
@@ -264,6 +369,9 @@ function main() {
     checkFileNaming(filePath);
     checkDataComponent(filePath);
     checkDataCss(filePath);
+    checkDataCssAttribute(filePath);
+    checkComponentCssNaming(filePath);
+    checkRestrictedImports(filePath);
   }
 
   if (errors.length > 0) {

@@ -1,11 +1,11 @@
-import { Button } from "@/components/button/Button";
-import { Input } from "@/components/input/Input";
+import { Button } from "@/components/button/Button.component";
+import { Input } from "@/components/input/Input.component";
 
 import { loginLocale } from "./Login.locales";
 import { useDictionary } from "@/locales";
-import { Form, type SubmitFormArgs } from "@/components/form/Form";
-import { Icon } from "@/components/icon/Icon";
-import { Checkbox } from "@/components/checkbox/Checkbox";
+import { Form, type SubmitFormArgs } from "@/components/form/Form.component";
+import { Icon } from "@/components/icon/Icon.component";
+import { Checkbox } from "@/components/checkbox/Checkbox.component";
 import { useState } from "react";
 import { useSession } from "@/context/session-context/useSession";
 

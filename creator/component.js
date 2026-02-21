@@ -20,11 +20,11 @@ export async function createComponent(rl) {
 
   console.log(`\nCreating component: ${Name}\n`);
 
-  // <Name>.tsx
+  // <Name>.component.tsx
   writeFile(
-    path.join(dir, `${Name}.tsx`),
-    `import "./${Name}.css";
-import { ${camelName}Locale } from "./${Name}.locales";
+    path.join(dir, `${Name}.component.tsx`),
+    `import "./${Name}.component.css";
+import { ${camelName}Locale } from "./${Name}.component.locales";
 import { useDictionary } from "@/locales";
 
 export function ${Name}() {
@@ -35,9 +35,9 @@ export function ${Name}() {
 `,
   );
 
-  // <Name>.locales.ts
+  // <Name>.component.locales.ts
   writeFile(
-    path.join(dir, `${Name}.locales.ts`),
+    path.join(dir, `${Name}.component.locales.ts`),
     `import { locales } from "@/locales";
 
 export const ${camelName}Locale = locales.create({
@@ -47,18 +47,18 @@ export const ${camelName}Locale = locales.create({
 `,
   );
 
-  // <Name>.css
+  // <Name>.component.css
   writeFile(
-    path.join(dir, `${Name}.css`),
+    path.join(dir, `${Name}.component.css`),
     `[data-css="${Name}"] {
 }
 `,
   );
 
-  // <Name>.doc.tsx
+  // <Name>.component.doc.tsx
   writeFile(
-    path.join(dir, `${Name}.doc.tsx`),
-    `import { ${Name} } from "./${Name}";
+    path.join(dir, `${Name}.component.doc.tsx`),
+    `import { ${Name} } from "./${Name}.component";
 import type { ComponentDoc } from "@/types/component-doc.types";
 
 export const ${camelName}Doc: ComponentDoc<React.ComponentProps<typeof ${Name}>> = {

@@ -1,4 +1,4 @@
-import type { IconName } from "@/components/icon/Icon.types";
+import type { IconName } from "@/components/icon/Icon.component.types";
 import type { RouteObject } from "react-router-dom";
 import type { OPEN_ROUTES } from "./routes/open-routes/open.routes";
 import type { useDashboardRoutes } from "./routes/dashboard-routes/dashboard.routes";

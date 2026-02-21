@@ -1,0 +1,32 @@
+/* Toast Container Styling */
+#toast-root[data-css="Toast"] {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-index-toast);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+  max-width: 500px;
+  width: auto;
+}
+
+#toast-root[data-css="Toast"] dialog {
+  pointer-events: auto;
+  position: static;
+  margin: 0;
+  border: none;
+  padding: 0;
+  background: transparent;
+  max-width: none;
+  width: auto;
+}
+
+#toast-root[data-css="Toast"] dialog::backdrop {
+  display: none;
+}
+#toast-root[data-css="Toast"] dialog[open] {
+  animation: slide-in 0.3s ease-out forwards;
+}

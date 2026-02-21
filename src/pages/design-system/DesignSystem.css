@@ -1,4 +1,4 @@
-.design-system-container {
+[data-css="DesignSystem"] {
   .section {
     box-shadow: var(--box-shadow);
   }

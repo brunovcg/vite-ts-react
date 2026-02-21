@@ -41,8 +41,8 @@ aside[data-css="Drawer"] {
 }
 
 .drawer-nav-item[aria-current="page"] {
-  background-color: var(--color-primary_light);
-  color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-white);
 }
 
 .drawer-nav-label {

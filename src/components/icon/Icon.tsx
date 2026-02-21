@@ -53,6 +53,7 @@ function IconComponent(
       aria-label={!isDecorative ? ariaLabel : undefined}
       dangerouslySetInnerHTML={{ __html: svgContent }}
       data-icon={icon}
+      data-css='Icon'
       data-component='Icon'
       {...rest}
     />

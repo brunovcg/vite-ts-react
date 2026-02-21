@@ -121,3 +121,7 @@
 .border-error {
   border: 1px solid var(--color-error);
 }
+
+.border-light {
+  border: 1px solid var(--color-border_light);
+}

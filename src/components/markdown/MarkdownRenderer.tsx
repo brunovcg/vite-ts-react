@@ -82,7 +82,7 @@ function Heading({ level, content }: { level: number; content: string }) {
 
   if (level === 1) {
     return (
-      <h1 id={id} css={["font-size-3xl", "text-bold", "margin-top-2xl", "margin-bottom-lg"]}>
+      <h1 id={id} css={["font-size-3xl", "text-bold", "margin-top-xl", "margin-bottom-lg"]}>
         <InlineContent content={content} />
       </h1>
     );

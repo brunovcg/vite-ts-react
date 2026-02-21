@@ -16,7 +16,8 @@ export interface ButtonIconProps extends Omit<ButtonHTMLAttributes<HTMLButtonEle
 export function ButtonIcon({ className, icon, color = "primary", iconProps, noBorder, css, "aria-label": ariaLabel, ...rest }: ButtonIconProps) {
   return (
     <button
-      className={mergeClass("button-icon", className)}
+      data-css='ButtonIcon'
+      className={mergeClass(className)}
       css={[
         "border-radius-circle",
         "padding-sm",

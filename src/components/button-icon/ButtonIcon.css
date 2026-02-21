@@ -1,4 +1,4 @@
-.button-icon {
+[data-css="ButtonIcon"] {
   transition: all 0.2s ease-in-out;
 
   &:hover:not(:disabled) {

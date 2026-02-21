@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useReadmeFiles } from "@/hooks/use-readme-files/useReadmeFiles.hook";
-import { MarkdownRenderer } from "@/utils/markdown/MarkdownRenderer";
+import { MarkdownRenderer } from "@/components/markdown/MarkdownRenderer";
 import { Icon } from "@/components/icon/Icon";
 
 function getPageFromUrl(): string | null {

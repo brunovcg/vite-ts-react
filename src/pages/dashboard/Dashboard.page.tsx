@@ -1,8 +1,11 @@
 import { Outlet } from "react-router-dom";
 import { Drawer } from "../../layouts/drawer/Drawer.layout";
 import { Header } from "../../layouts/header/Header.layout";
+import { useRouteTitle } from "../../router/Router.utils";
 
 export function Dashboard() {
+  const title = useRouteTitle();
+
   return (
     <div className='display-flex flex-column height-full overflow-hidden' data-component='Dashboard'>
       <Header />
@@ -10,6 +13,7 @@ export function Dashboard() {
         <input type='checkbox' id='drawer-toggle' className='drawer-toggle' />
         <Drawer />
         <main css={["flex-1", "padding-xl", "overflow-y-auto", "background-surface"]}>
+          <h1 css={["font-size-2xl", "text-bold", "margin-bottom-lg"]}>{title}</h1>
           <Outlet />
         </main>
       </div>

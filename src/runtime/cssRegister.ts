@@ -32,6 +32,7 @@ export const CSS_REGISTER = {
     "border-left-radius-lg",
     "border-left-radius-md",
     "border-left-radius-sm",
+    "border-light",
     "border-none",
     "border-primary",
     "border-radius-circle",

@@ -18,6 +18,7 @@ export const CSS_VARIABLES = {
     grey_dark: "#1c1c1c",
     disabled: "#9d9d9d",
     border: "#dddddd",
+    border_light: "#e5e5e5",
   },
   font: {
     family_sans_serif: "Arial, Helvetica, sans-serif",

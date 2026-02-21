@@ -16,7 +16,7 @@ export function DesignSystemButton() {
 
   return (
     <button
-      className='design-system-button'
+      data-css='DesignSystemButton'
       css={[
         "position-fixed",
         "bottom",

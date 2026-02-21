@@ -20,7 +20,8 @@
     "todo:report": "node scripts/generate-todo-report.js",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "creator": "node creator/index.js"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.20",

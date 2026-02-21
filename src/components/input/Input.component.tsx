@@ -2,12 +2,16 @@ import { type ChangeEvent, type InputHTMLAttributes, useEffect, useRef, useState
 import { useDebounce } from "../../hooks/use-debounce/useDebounce.hook";
 import { mergeClass } from "@/utils/class-names/ClassNames.util";
 import { LoadingSpinner } from "../loading-spinner/LoadingSpinner.component";
+import { useValidationMessage, type ValidationRule } from "@/hooks/use-validation-message/useValidationMessage.hook";
+import { Icon } from "../icon/Icon.component";
+import { Tooltip } from "../tooltip/Tooltip.component";
 import type { Css } from "@/runtime/css.types";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
   name: string;
   label?: string;
+  validate?: ValidationRule[];
   debounce?: number;
   loading?: boolean;
   inputCss?: Css;
@@ -15,7 +19,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 
-export function Input({ id, name, label, debounce, value, onChange, defaultValue, className, disabled, loading, inputCss, css, inputClassName, ...inputProps }: InputProps) {
+export function Input({ id, name, label, validate, debounce, value, onChange, defaultValue, className, disabled, loading, inputCss, css, inputClassName, ...inputProps }: InputProps) {
   const isDebounced = typeof debounce === "number" && debounce > 0;
 
   const [localValue, setLocalValue] = useState<string | number | readonly string[] | undefined>(value !== undefined ? value : defaultValue !== undefined ? defaultValue : "");
@@ -45,7 +49,10 @@ export function Input({ id, name, label, debounce, value, onChange, defaultValue
     },
   });
 
+  const { validationMessage, setInvalid, checkValidity } = useValidationMessage();
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    checkValidity(e.target, validate);
     if (isDebounced) {
       e.persist();
       lastChangeEvent.current = e;
@@ -67,6 +74,10 @@ export function Input({ id, name, label, debounce, value, onChange, defaultValue
         value={passedValue}
         defaultValue={passedDefaultValue}
         onChange={handleChange}
+        onInvalid={(e) => {
+          setInvalid(e.currentTarget, validate);
+          inputProps.onInvalid?.(e);
+        }}
         disabled={disabled || loading}
         aria-busy={loading}
         aria-required={inputProps.required}
@@ -75,6 +86,11 @@ export function Input({ id, name, label, debounce, value, onChange, defaultValue
         className={mergeClass("input-element", inputClassName)}
         {...inputProps}
       />
+      {validationMessage && (
+        <Tooltip content={<span className='error-text'>{validationMessage}</span>} position='left'>
+          <Icon icon='warning' size='xs' className='error-icon' />
+        </Tooltip>
+      )}
     </label>
   );
 }

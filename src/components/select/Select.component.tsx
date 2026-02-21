@@ -1,12 +1,16 @@
 import { useState, type SelectHTMLAttributes } from "react";
 import { LoadingSpinner } from "../loading-spinner/LoadingSpinner.component";
 import { mergeClass } from "@/utils/class-names/ClassNames.util";
+import { useValidationMessage, type ValidationRule } from "@/hooks/use-validation-message/useValidationMessage.hook";
+import { Icon } from "../icon/Icon.component";
+import { Tooltip } from "../tooltip/Tooltip.component";
 import type { Css } from "@/runtime/css.types";
 
 interface SelectProps<Option extends string> extends Omit<SelectHTMLAttributes<HTMLSelectElement>, "children" | "name" | "id" | "onChange" | "onBlur"> {
   name: string;
   id: string;
   label: string;
+  validate?: ValidationRule[];
   options: { label: string; value: Option; disabled?: boolean }[];
   loading?: boolean;
   placeholder?: string;
@@ -23,6 +27,7 @@ interface SelectProps<Option extends string> extends Omit<SelectHTMLAttributes<H
 
 export function Select<Option extends string>({
   label,
+  validate,
   options,
   id,
   onChange,
@@ -39,8 +44,10 @@ export function Select<Option extends string>({
   ...props
 }: SelectProps<Option>) {
   const [currentValue, setCurrentValue] = useState<Option | null>("" as Option);
+  const { validationMessage, setInvalid, checkValidity } = useValidationMessage();
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    checkValidity(event.target, validate);
     const newValue = event.target.value as Option;
     setCurrentValue(newValue);
     onChange?.(event as React.ChangeEvent<HTMLSelectElement> & { target: { value: Option } });
@@ -60,6 +67,10 @@ export function Select<Option extends string>({
         name={name}
         onChange={handleChange}
         onBlur={handleBlur}
+        onInvalid={(e) => {
+          setInvalid(e.currentTarget, validate);
+          props.onInvalid?.(e);
+        }}
         {...props}
         aria-busy={loading}
         aria-required={props.required}
@@ -80,6 +91,11 @@ export function Select<Option extends string>({
           </option>
         ))}
       </select>
+      {validationMessage && (
+        <Tooltip content={<span className='error-text'>{validationMessage}</span>} position='left'>
+          <Icon icon='warning' size='xs' className='error-icon' />
+        </Tooltip>
+      )}
     </label>
   );
 }

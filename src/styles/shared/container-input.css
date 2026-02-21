@@ -23,6 +23,25 @@ label.container-input {
     white-space: nowrap;
   }
 
+  [data-css="Tooltip"]:has(.error-icon) {
+    position: absolute;
+    right: 4px;
+    bottom: 8px;
+
+    & [role="tooltip"] {
+      border-color: var(--color-error);
+    }
+  }
+
+  .error-icon {
+    color: var(--color-error);
+    cursor: help;
+  }
+
+  .error-text {
+    color: var(--color-error);
+  }
+
   .input-element {
     flex: 1;
     border: none;
@@ -73,7 +92,8 @@ label.container-input {
     }
   }
 
-  &:has(.input-element:user-invalid) {
+  &:has(.input-element:user-invalid),
+  &:has(.input-element[aria-invalid="true"]) {
     border-color: var(--color-error);
     color: var(--color-error);
   }

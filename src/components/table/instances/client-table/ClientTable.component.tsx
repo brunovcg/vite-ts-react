@@ -6,9 +6,10 @@ export interface ClientTableProps<Row extends object> {
   primaryKey: keyof Row;
   rows: Row[];
   downloadable?: boolean;
+  id: string;
 }
 
-export function ClientTable<Row extends object>({ columns, primaryKey, rows, downloadable }: ClientTableProps<Row>) {
+export function ClientTable<Row extends object>({ columns, primaryKey, rows, downloadable, id }: ClientTableProps<Row>) {
   // State
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -72,6 +73,7 @@ export function ClientTable<Row extends object>({ columns, primaryKey, rows, dow
   return (
     <BaseTable
       data-component='ClientTable'
+      id={id}
       columns={columns}
       data={data}
       primaryKey={primaryKey}

@@ -60,7 +60,7 @@ export function Input({ id, name, label, debounce, value, onChange, defaultValue
 
   return (
     <label htmlFor={id} css={css} className={mergeClass("container-input", className)} data-component='Input'>
-      <span className='label-text'>{label}</span> {loading && <LoadingSpinner />}
+      {label && <span className='label-text'>{label}</span>} {loading && <LoadingSpinner />}
       <input
         id={id}
         name={name}

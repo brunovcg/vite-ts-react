@@ -17,7 +17,7 @@ export interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> 
 export function TextArea({ id, name, label, loading, disabled, className, css, inputCss, inputClassName, ...props }: InputProps) {
   return (
     <label htmlFor={id} css={css} className={mergeClass("container-input", className)} data-component='TextArea'>
-      <span className='label-text'>{label}</span> {loading && <LoadingSpinner />}
+      {label && <span className='label-text'>{label}</span>} {loading && <LoadingSpinner />}
       <textarea
         id={id}
         className={mergeClass("input-element", inputClassName)}

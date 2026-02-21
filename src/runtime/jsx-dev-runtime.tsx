@@ -1,26 +1,24 @@
 /* eslint-disable react-refresh/only-export-components */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { ElementType, Key, ReactElement } from "react";
 import { jsxDEV as _jsxDEV, Fragment as _Fragment } from "react/jsx-dev-runtime";
-
-import type { JSX as ReactJSX } from "react/jsx-runtime";
+import type { JSX as ReactJSX, JSXSource } from "react/jsx-dev-runtime";
+import type { Css } from "./css.types";
 import { cssReducer } from "./cssReducer";
 
 export const Fragment = _Fragment;
 export type { ReactJSX as JSX };
 
-export function jsxDEV(type: any, props: any, key: any, isStaticChildren: any, source: any, self: any) {
+export function jsxDEV(type: ElementType, props: Record<string, unknown>, key: Key | undefined, isStaticChildren: boolean, source?: JSXSource, self?: unknown): ReactElement {
   if (!props || !Object.prototype.hasOwnProperty.call(props, "css")) {
     return _jsxDEV(type, props, key, isStaticChildren, source, self);
   }
 
-  // Only transform for intrinsic DOM elements like 'div', 'button', etc.
-  // For React components, keep the `css` prop intact.
   if (typeof type !== "string") {
     return _jsxDEV(type, props, key, isStaticChildren, source, self);
   }
 
   const { css, className, ...otherProps } = props;
-  const newClassName = cssReducer(className, css);
+  const newClassName = cssReducer(className as Css, css as Css);
 
-  return _jsxDEV(type as any, { ...otherProps, className: newClassName }, key, isStaticChildren, source, self);
+  return _jsxDEV(type, { ...otherProps, className: newClassName }, key, isStaticChildren, source, self);
 }

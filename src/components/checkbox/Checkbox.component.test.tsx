@@ -4,7 +4,7 @@ import { Checkbox } from "./Checkbox.component";
 
 describe("components/Checkbox", () => {
   it("should render a checkbox input", () => {
-    render(<Checkbox id='test-cb' />);
+    render(<Checkbox id='test-cb' aria-label='Test' />);
 
     expect(screen.getByRole("checkbox")).toBeInTheDocument();
   });
@@ -27,7 +27,7 @@ describe("components/Checkbox", () => {
 
   it("should call onChange when clicked", () => {
     const onChange = vi.fn();
-    render(<Checkbox id='test-cb' onChange={onChange} />);
+    render(<Checkbox id='test-cb' aria-label='Test' onChange={onChange} />);
 
     fireEvent.click(screen.getByRole("checkbox"));
 
@@ -35,32 +35,32 @@ describe("components/Checkbox", () => {
   });
 
   it("should render as radio when type is radio", () => {
-    render(<Checkbox id='test-radio' type='radio' />);
+    render(<Checkbox id='test-radio' type='radio' aria-label='Test' />);
 
     expect(screen.getByRole("radio")).toBeInTheDocument();
   });
 
   it("should default to checkbox type", () => {
-    render(<Checkbox id='test-cb' />);
+    render(<Checkbox id='test-cb' aria-label='Test' />);
 
     const input = screen.getByRole("checkbox");
     expect(input).toHaveAttribute("type", "checkbox");
   });
 
   it("should support disabled state", () => {
-    render(<Checkbox id='test-cb' disabled />);
+    render(<Checkbox id='test-cb' aria-label='Test' disabled />);
 
     expect(screen.getByRole("checkbox")).toBeDisabled();
   });
 
   it("should not render label text when label is not provided", () => {
-    const { container } = render(<Checkbox id='test-cb' />);
+    const { container } = render(<Checkbox id='test-cb' aria-label='Test' />);
 
     expect(container.querySelector(".label-text")).not.toBeInTheDocument();
   });
 
   it("should forward additional input props", () => {
-    render(<Checkbox id='test-cb' name='agreement' value='yes' />);
+    render(<Checkbox id='test-cb' aria-label='Test' name='agreement' value='yes' />);
 
     const input = screen.getByRole("checkbox");
     expect(input).toHaveAttribute("name", "agreement");

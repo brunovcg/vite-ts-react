@@ -29,6 +29,16 @@ export function Tooltip({ children, content, position = "top", delay = 300, disa
     setVisible(false);
   }, []);
 
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "Escape" && visible) {
+        e.preventDefault();
+        hide();
+      }
+    },
+    [visible, hide],
+  );
+
   return (
     <div
       className={mergeClass({ "tooltip-visible": visible })}
@@ -40,6 +50,7 @@ export function Tooltip({ children, content, position = "top", delay = 300, disa
       onMouseLeave={hide}
       onFocus={show}
       onBlur={hide}
+      onKeyDown={handleKeyDown}
     >
       <div aria-describedby={visible ? tooltipId : undefined}>{children}</div>
       <div id={tooltipId} role='tooltip' aria-hidden={!visible}>

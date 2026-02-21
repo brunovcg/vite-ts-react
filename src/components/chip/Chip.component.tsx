@@ -11,7 +11,6 @@ interface ChipProps {
 export function Chip({ children, color, css }: ChipProps) {
   return (
     <span
-      role='status'
       data-component='Chip'
       css={[
         {

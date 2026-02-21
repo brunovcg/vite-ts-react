@@ -10,6 +10,8 @@ export function useFocusTrap({ ref, active }: UseFocusTrapProps) {
     if (!active || !ref.current) return;
 
     const element = ref.current;
+    const previouslyFocusedElement = document.activeElement as HTMLElement | null;
+
     const focusableElements = element.querySelectorAll<HTMLElement>(
       'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
     );
@@ -32,6 +34,9 @@ export function useFocusTrap({ ref, active }: UseFocusTrapProps) {
     };
 
     element.addEventListener("keydown", handleTab);
-    return () => element.removeEventListener("keydown", handleTab);
+    return () => {
+      element.removeEventListener("keydown", handleTab);
+      previouslyFocusedElement?.focus();
+    };
   }, [ref, active]);
 }

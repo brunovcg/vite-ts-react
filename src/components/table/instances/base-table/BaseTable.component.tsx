@@ -32,6 +32,7 @@ export interface BaseTableProps<Row extends object> {
   primaryKey: keyof Row;
   loading?: boolean;
   downloadable?: boolean;
+  id: string;
 
   // Pagination props
   page: number;
@@ -55,6 +56,7 @@ export function BaseTable<Row extends object>({
   primaryKey,
   loading = false,
   downloadable = false,
+  id,
   page,
   pageSize,
   total,
@@ -106,7 +108,7 @@ export function BaseTable<Row extends object>({
       <div css={["position-relative", "overflow-x-auto", "width-full"]}>
         <TableLoading loading={loading} />
 
-        <table className={"border-collapse"} css={["width-full"]}>
+        <table className={"border-collapse"} css={["width-full"]} aria-label={getText("tableLabel", { id })}>
           <thead>
             <tr>
               {columns.map((column) => {

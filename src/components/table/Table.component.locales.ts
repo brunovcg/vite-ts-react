@@ -12,6 +12,7 @@ export const tableLocale = locales.create({
     rowsPerPage: "Rows per page:",
     tablePagination: "Table pagination",
     sortBy: "Sort by {{column}}",
+    tableLabel: "{{id}} table",
   },
   ptBR: {
     loading: "Carregando...",
@@ -24,5 +25,6 @@ export const tableLocale = locales.create({
     rowsPerPage: "Linhas por página:",
     tablePagination: "Paginação da tabela",
     sortBy: "Ordenar por {{column}}",
+    tableLabel: "Tabela de {{id}}",
   },
 });

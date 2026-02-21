@@ -3,15 +3,16 @@ import type { ComponentDoc } from "@/types/component-doc.types";
 import type { InputHTMLAttributes } from "react";
 import type { Css } from "@/runtime/css.types";
 
-type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
+type CheckboxBaseProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
   css?: Css;
   inputCss?: Css;
   className?: string;
   inputClassName?: string;
-  label?: string;
   type?: "checkbox" | "radio";
   labelSide?: "left" | "right";
 };
+
+type CheckboxProps = CheckboxBaseProps & ({ label: string; "aria-label"?: string } | { label?: never; "aria-label": string });
 
 export const checkboxDoc: ComponentDoc<CheckboxProps> = {
   id: "checkbox",

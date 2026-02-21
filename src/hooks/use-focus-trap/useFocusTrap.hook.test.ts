@@ -154,4 +154,28 @@ describe("hooks/useFocusTrap", () => {
 
     document.body.removeChild(container);
   });
+
+  it("should restore focus to the previously focused element on unmount", () => {
+    const trigger = document.createElement("button");
+    trigger.textContent = "Open Dialog";
+    document.body.appendChild(trigger);
+
+    Object.defineProperty(document, "activeElement", { value: trigger, writable: true, configurable: true });
+
+    const { container } = createFocusableContainer();
+
+    const { unmount } = renderHook(() => {
+      const ref = useRef<HTMLDivElement>(container);
+      useFocusTrap({ ref, active: true });
+    });
+
+    const focusSpy = vi.spyOn(trigger, "focus");
+    unmount();
+
+    expect(focusSpy).toHaveBeenCalled();
+
+    Object.defineProperty(document, "activeElement", { value: document.body, writable: true, configurable: true });
+    document.body.removeChild(container);
+    document.body.removeChild(trigger);
+  });
 });

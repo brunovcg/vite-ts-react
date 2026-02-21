@@ -29,6 +29,7 @@ export const clientTableDoc: ComponentDoc<ClientTableProps<RowData>> = {
   description: "A client-side table with sorting and pagination.",
   component: Table.Client,
   args: {
+    id: "Employees",
     columns: columns,
     rows: data,
     primaryKey: "id",

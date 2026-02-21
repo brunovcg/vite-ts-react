@@ -13,7 +13,7 @@ import "./Login.css";
 
 function LoginIllustration() {
   return (
-    <svg className='login-illustration' viewBox='0 0 400 320' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg className='login-illustration' viewBox='0 0 400 320' fill='none' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'>
       <rect x='80' y='40' width='240' height='160' rx='12' fill='var(--color-primary)' opacity='0.1' />
       <rect x='100' y='60' width='200' height='120' rx='8' fill='var(--background-white)' stroke='var(--color-border)' strokeWidth='1.5' />
       <rect x='120' y='85' width='120' height='10' rx='5' fill='var(--color-primary)' opacity='0.3' />
@@ -44,7 +44,7 @@ export function Login() {
   const handleShowPassword = () => setShowPassword((state) => !state);
 
   return (
-    <div data-component='Login' data-css='Login' css={["display-flex", "flex-row", "height-full", "flex-wrap"]}>
+    <main data-component='Login' data-css='Login' css={["display-flex", "flex-row", "height-full", "flex-wrap"]}>
       {/* Left side - Branding */}
       <div className='login-hero' css={["flex-1", "display-flex", "flex-center", "align-center", "flex-column", "padding-3xl", "background-primary-gradient", "gap-xl"]}>
         <div css={["display-flex", "flex-column", "align-center", "gap-lg"]}>
@@ -91,6 +91,6 @@ export function Login() {
           </div>
         </Form>
       </div>
-    </div>
+    </main>
   );
 }

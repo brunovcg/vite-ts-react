@@ -22,6 +22,7 @@ export function Header() {
       </div>
 
       <DropdownMenu
+        aria-label={dictionary.userMenu}
         options={[
           { label: dictionary.preferences, onClick: () => dialogController.open("UserPreferencesDialog"), icon: "userSettings", color: "primary" },
           { label: dictionary.logout, onClick: logout, icon: "logout", color: "error" },

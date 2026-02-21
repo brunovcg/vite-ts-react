@@ -2,7 +2,7 @@ div[data-css="DropdownMenu"] {
   position: relative;
   width: fit-content;
 
-  & [aria-label="dropdown-options"] {
+  & [role="menu"] {
     position: absolute;
     top: 100%;
     right: 0;
@@ -38,7 +38,7 @@ div[data-css="DropdownMenu"] {
     }
   }
 
-  &.dropdown-open [aria-label="dropdown-options"] {
+  &.dropdown-open [role="menu"] {
     display: block;
   }
 }

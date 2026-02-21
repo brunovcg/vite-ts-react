@@ -18,9 +18,10 @@ export interface ServerTableProps<Row extends object> {
   primaryKey: keyof Row;
   service: (pagination: TablePagination) => Promise<Paginated<Row>>;
   downloadable?: boolean;
+  id: string;
 }
 
-export function ServerTable<Row extends object>({ columns, primaryKey, service, downloadable }: ServerTableProps<Row>) {
+export function ServerTable<Row extends object>({ columns, primaryKey, service, downloadable, id }: ServerTableProps<Row>) {
   const [data, setData] = useState<Row[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -63,6 +64,7 @@ export function ServerTable<Row extends object>({ columns, primaryKey, service, 
   return (
     <BaseTable
       data-component='ServerTable'
+      id={id}
       columns={columns}
       data={data}
       primaryKey={primaryKey}

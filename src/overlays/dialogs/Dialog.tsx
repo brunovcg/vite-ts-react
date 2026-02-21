@@ -92,6 +92,7 @@ export function Dialog({ dialogId, heading, className, children, width, allowXBu
       ref={dialogRef}
       id={`dialog-${dialogId}`}
       aria-labelledby={`dialog-title-${dialogId}`}
+      aria-modal='true'
       data-component='Dialog'
       data-css='Dialog'
       css={["position-fixed", "top", "left", "width-full", "height-full", "display-flex", "flex-center", "background-dialog-opacity", "border-none", "animate-backdrop-fade-in"]}

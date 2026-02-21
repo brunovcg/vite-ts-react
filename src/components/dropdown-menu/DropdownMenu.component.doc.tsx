@@ -9,6 +9,7 @@ export const dropdownMenuDoc: ComponentDoc<DropdownMenuProps> = {
   description: "A toggleable dropdown menu with configurable trigger and action options.",
   component: DropdownMenu,
   args: {
+    "aria-label": "Actions menu",
     trigger: {
       label: "Actions",
       icon: "menu",

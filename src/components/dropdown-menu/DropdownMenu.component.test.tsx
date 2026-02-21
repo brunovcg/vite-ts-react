@@ -17,30 +17,30 @@ const defaultOptions = [
 
 describe("components/DropdownMenu", () => {
   it("should render a trigger button with label", () => {
-    render(<DropdownMenu options={defaultOptions} trigger={{ label: "Actions" }} />);
+    render(<DropdownMenu aria-label='Actions menu' options={defaultOptions} trigger={{ label: "Actions" }} />);
 
-    expect(screen.getByRole("button", { name: "dropdown-trigger" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Actions menu" })).toBeInTheDocument();
     expect(screen.getByText("Actions")).toBeInTheDocument();
   });
 
   it("should have aria-haspopup on trigger", () => {
-    render(<DropdownMenu options={defaultOptions} trigger={{ label: "Actions" }} />);
+    render(<DropdownMenu aria-label='Actions menu' options={defaultOptions} trigger={{ label: "Actions" }} />);
 
-    const trigger = screen.getByRole("button", { name: "dropdown-trigger" });
+    const trigger = screen.getByRole("button", { name: "Actions menu" });
     expect(trigger).toHaveAttribute("aria-haspopup", "menu");
   });
 
   it("should have aria-expanded=false initially", () => {
-    render(<DropdownMenu options={defaultOptions} trigger={{ label: "Actions" }} />);
+    render(<DropdownMenu aria-label='Actions menu' options={defaultOptions} trigger={{ label: "Actions" }} />);
 
-    const trigger = screen.getByRole("button", { name: "dropdown-trigger" });
+    const trigger = screen.getByRole("button", { name: "Actions menu" });
     expect(trigger).toHaveAttribute("aria-expanded", "false");
   });
 
   it("should toggle aria-expanded on click", () => {
-    render(<DropdownMenu options={defaultOptions} trigger={{ label: "Actions" }} />);
+    render(<DropdownMenu aria-label='Actions menu' options={defaultOptions} trigger={{ label: "Actions" }} />);
 
-    const trigger = screen.getByRole("button", { name: "dropdown-trigger" });
+    const trigger = screen.getByRole("button", { name: "Actions menu" });
 
     fireEvent.click(trigger);
     expect(trigger).toHaveAttribute("aria-expanded", "true");
@@ -50,13 +50,13 @@ describe("components/DropdownMenu", () => {
   });
 
   it("should render a menu with role=menu", () => {
-    render(<DropdownMenu options={defaultOptions} trigger={{ label: "Actions" }} />);
+    render(<DropdownMenu aria-label='Actions menu' options={defaultOptions} trigger={{ label: "Actions" }} />);
 
     expect(screen.getByRole("menu")).toBeInTheDocument();
   });
 
   it("should render menu items with role=menuitem", () => {
-    render(<DropdownMenu options={defaultOptions} trigger={{ label: "Actions" }} />);
+    render(<DropdownMenu aria-label='Actions menu' options={defaultOptions} trigger={{ label: "Actions" }} />);
 
     const items = screen.getAllByRole("menuitem");
     expect(items).toHaveLength(2);
@@ -66,18 +66,18 @@ describe("components/DropdownMenu", () => {
     const editHandler = vi.fn();
     const options = [{ label: "Edit", onClick: editHandler }];
 
-    render(<DropdownMenu options={options} trigger={{ label: "Actions" }} />);
+    render(<DropdownMenu aria-label='Actions menu' options={options} trigger={{ label: "Actions" }} />);
 
-    fireEvent.click(screen.getByRole("button", { name: "dropdown-trigger" }));
+    fireEvent.click(screen.getByRole("button", { name: "Actions menu" }));
     fireEvent.click(screen.getByRole("menuitem", { name: "Edit" }));
 
     expect(editHandler).toHaveBeenCalledOnce();
   });
 
   it("should close menu after clicking an option", () => {
-    render(<DropdownMenu options={defaultOptions} trigger={{ label: "Actions" }} />);
+    render(<DropdownMenu aria-label='Actions menu' options={defaultOptions} trigger={{ label: "Actions" }} />);
 
-    const trigger = screen.getByRole("button", { name: "dropdown-trigger" });
+    const trigger = screen.getByRole("button", { name: "Actions menu" });
 
     fireEvent.click(trigger);
     expect(trigger).toHaveAttribute("aria-expanded", "true");
@@ -92,7 +92,7 @@ describe("components/DropdownMenu", () => {
       { label: "Hidden", onClick: vi.fn(), hide: true },
     ];
 
-    render(<DropdownMenu options={options} trigger={{ label: "Actions" }} />);
+    render(<DropdownMenu aria-label='Actions menu' options={options} trigger={{ label: "Actions" }} />);
 
     expect(screen.getByRole("menuitem", { name: "Visible" })).toBeInTheDocument();
     expect(screen.queryByRole("menuitem", { name: "Hidden" })).not.toBeInTheDocument();
@@ -101,15 +101,15 @@ describe("components/DropdownMenu", () => {
   it("should disable options with disabled=true", () => {
     const options = [{ label: "Disabled action", onClick: vi.fn(), disabled: true }];
 
-    render(<DropdownMenu options={options} trigger={{ label: "Actions" }} />);
+    render(<DropdownMenu aria-label='Actions menu' options={options} trigger={{ label: "Actions" }} />);
 
     expect(screen.getByRole("menuitem", { name: "Disabled action" })).toBeDisabled();
   });
 
   it("should close on Escape key", () => {
-    render(<DropdownMenu options={defaultOptions} trigger={{ label: "Actions" }} />);
+    render(<DropdownMenu aria-label='Actions menu' options={defaultOptions} trigger={{ label: "Actions" }} />);
 
-    const trigger = screen.getByRole("button", { name: "dropdown-trigger" });
+    const trigger = screen.getByRole("button", { name: "Actions menu" });
 
     fireEvent.click(trigger);
     expect(trigger).toHaveAttribute("aria-expanded", "true");
@@ -119,7 +119,7 @@ describe("components/DropdownMenu", () => {
   });
 
   it("should support custom trigger", () => {
-    render(<DropdownMenu options={defaultOptions} trigger={{ custom: <span data-testid='custom'>Custom trigger</span> }} />);
+    render(<DropdownMenu aria-label='Actions menu' options={defaultOptions} trigger={{ custom: <span data-testid='custom'>Custom trigger</span> }} />);
 
     expect(screen.getByTestId("custom")).toBeInTheDocument();
   });

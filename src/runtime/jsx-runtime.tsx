@@ -1,44 +1,40 @@
 /* eslint-disable react-refresh/only-export-components */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { ElementType, Key, ReactElement } from "react";
 import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 import type { JSX as ReactJSX } from "react/jsx-runtime";
+import type { Css } from "./css.types";
 import { cssReducer } from "./cssReducer";
 
 export const Fragment = _Fragment;
 
 export type { ReactJSX as JSX };
 
-export function jsx(type: any, props: any, key: any) {
+export function jsx(type: ElementType, props: Record<string, unknown>, key?: Key): ReactElement {
   if (!props || !Object.prototype.hasOwnProperty.call(props, "css")) {
     return _jsx(type, props, key);
   }
 
-  // Only transform for intrinsic DOM elements like 'div', 'button', etc.
-  // For React components, keep the `css` prop intact.
   if (typeof type !== "string") {
     return _jsx(type, props, key);
   }
 
   const { css, className, ...otherProps } = props;
+  const newClassName = cssReducer(className as Css, css as Css);
 
-  const newClassName = cssReducer(className, css);
-
-  return _jsx(type as any, { ...otherProps, className: newClassName }, key);
+  return _jsx(type, { ...otherProps, className: newClassName }, key);
 }
 
-export function jsxs(type: any, props: any, key: any) {
+export function jsxs(type: ElementType, props: Record<string, unknown>, key?: Key): ReactElement {
   if (!props || !Object.prototype.hasOwnProperty.call(props, "css")) {
     return _jsxs(type, props, key);
   }
 
-  // Only transform for intrinsic DOM elements like 'div', 'button', etc.
-  // For React components, keep the `css` prop intact.
   if (typeof type !== "string") {
     return _jsxs(type, props, key);
   }
 
   const { css, className, ...otherProps } = props;
-  const newClassName = cssReducer(className, css);
+  const newClassName = cssReducer(className as Css, css as Css);
 
-  return _jsxs(type as any, { ...otherProps, className: newClassName }, key);
+  return _jsxs(type, { ...otherProps, className: newClassName }, key);
 }

@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState, useEffect } from "react";
 import type { Css } from "@/runtime/css.types";
 import type { IconName } from "../icon/Icon.component.types";
 import { Button } from "../button/Button.component";
 import { ButtonIcon } from "../button-icon/ButtonIcon.component";
 import { Icon } from "../icon/Icon.component";
 import { mergeClass } from "@/utils/class-names/ClassNames.util";
+import { useOnClickOutside } from "@/hooks/use-on-click-outside/useOnClickOutside.hook";
 import "./DropdownMenu.component.css";
 
 type CustomTrigger =
@@ -30,9 +31,10 @@ type DropdownMenuProps = {
   options: DropdownMenuOption[];
   css?: Css;
   trigger: CustomTrigger;
+  "aria-label": string;
 };
 
-export function DropdownMenu({ options, css, trigger }: DropdownMenuProps) {
+export function DropdownMenu({ options, css, trigger, "aria-label": ariaLabel }: DropdownMenuProps) {
   const [open, setOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const ref = useRef<HTMLDivElement>(null);
@@ -42,20 +44,10 @@ export function DropdownMenu({ options, css, trigger }: DropdownMenuProps) {
   const close = useCallback(() => {
     setOpen(false);
     setFocusedIndex(-1);
+    ref.current?.querySelector<HTMLButtonElement>('[aria-haspopup="menu"]')?.focus();
   }, []);
 
-  useEffect(() => {
-    if (!open) return;
-
-    function handleClickOutside(event: MouseEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        close();
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [open, close]);
+  useOnClickOutside({ ref, handler: close, active: open });
 
   useEffect(() => {
     if (focusedIndex >= 0) {
@@ -130,17 +122,17 @@ export function DropdownMenu({ options, css, trigger }: DropdownMenuProps) {
   return (
     <div ref={ref} className={mergeClass({ "dropdown-open": open })} css={[css]} data-component='DropdownMenu' data-css='DropdownMenu' onKeyDown={handleMenuKeyDown}>
       {trigger?.label && !trigger?.custom && (
-        <Button aria-label='dropdown-trigger' aria-expanded={open} aria-haspopup='menu' onClick={handleToggle} onKeyDown={handleTriggerKeyDown}>
+        <Button aria-label={ariaLabel} aria-expanded={open} aria-haspopup='menu' onClick={handleToggle} onKeyDown={handleTriggerKeyDown}>
           {trigger.icon && <Icon icon={trigger.icon} />}
           {trigger.label}
         </Button>
       )}
       {!trigger?.label && trigger?.icon && !trigger?.custom && (
-        <ButtonIcon icon={trigger.icon} aria-label='dropdown-trigger' aria-expanded={open} aria-haspopup='menu' onClick={handleToggle} onKeyDown={handleTriggerKeyDown} />
+        <ButtonIcon icon={trigger.icon} aria-label={ariaLabel} aria-expanded={open} aria-haspopup='menu' onClick={handleToggle} onKeyDown={handleTriggerKeyDown} />
       )}
       {trigger?.custom && (
         <button
-          aria-label='dropdown-trigger'
+          aria-label={ariaLabel}
           aria-expanded={open}
           aria-haspopup='menu'
           onClick={handleToggle}
@@ -150,7 +142,7 @@ export function DropdownMenu({ options, css, trigger }: DropdownMenuProps) {
           {trigger.custom}
         </button>
       )}
-      <div role='menu' aria-label='dropdown-options'>
+      <div role='menu' aria-label={ariaLabel}>
         {visibleOptions.map((item, index) => (
           <Button
             key={item.label}

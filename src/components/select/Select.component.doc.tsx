@@ -12,6 +12,7 @@ export const selectDoc: ComponentDoc<ComponentProps<typeof Select>> = {
     name: "select-demo",
     label: "Role",
     placeholder: "Select a role...",
+    css: ["width-200px"],
     options: [
       { label: "Admin", value: "admin" },
       { label: "User", value: "user" },

@@ -5,7 +5,7 @@ import type { ComponentProps } from "react";
 export const selectDoc: ComponentDoc<ComponentProps<typeof Select>> = {
   id: "select",
   name: "Select",
-  description: "A dropdown selection component.",
+  description: "A dropdown selection component with custom option rendering, multiselect, search, and edge-aware positioning.",
   component: Select,
   args: {
     id: "select-demo",
@@ -19,7 +19,10 @@ export const selectDoc: ComponentDoc<ComponentProps<typeof Select>> = {
     ],
     loading: false,
     disabled: false,
-    allowClear: true,
+    clearable: true,
+    searchable: false,
+    multiple: false,
+    required: false,
   },
   argTypes: {
     loading: {
@@ -28,7 +31,16 @@ export const selectDoc: ComponentDoc<ComponentProps<typeof Select>> = {
     disabled: {
       type: "boolean",
     },
-    allowClear: {
+    clearable: {
+      type: "boolean",
+    },
+    searchable: {
+      type: "boolean",
+    },
+    required: {
+      type: "boolean",
+    },
+    multiple: {
       type: "boolean",
     },
   },

@@ -11,8 +11,8 @@ export function UserPreferencesLanguage() {
   return (
     <div css={["flex-1", "display-flex"]}>
       <Select
-        onChange={(e) => handleChange(e.target.value as Language)}
-        options={Object.entries(languages).map(([key, value]) => ({ label: value, value: key }))}
+        onChange={(value) => handleChange(value)}
+        options={Object.typedEntries(languages).map(([value, label]) => ({ label, value }))}
         id='UserPreferences-language-select'
         name='language-select'
         label={dictionary.selectLanguage}

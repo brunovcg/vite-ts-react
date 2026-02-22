@@ -31,6 +31,7 @@ export const CSS_VARIABLES = {
     size_md: "1rem",
     size_sm: "0.8rem",
     size_xs: "0.7rem",
+    size_2xs: "0.6rem",
   },
   background: {
     dark: "#afafaf",

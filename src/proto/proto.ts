@@ -1,3 +1,5 @@
+// ARRAY
+
 if (!Array.prototype.filterMap) {
   Object.defineProperty(Array.prototype, "filterMap", {
     value: function <T, U>(this: T[], filterFn: (item: T, index: number, array: T[]) => boolean, mapFn: (item: T, index: number, array: T[]) => U): U[] {
@@ -9,6 +11,18 @@ if (!Array.prototype.filterMap) {
         }
       }
       return result;
+    },
+    writable: true,
+    configurable: true,
+  });
+}
+
+// OBJECT
+
+if (!Object.typedEntries) {
+  Object.defineProperty(Object, "typedEntries", {
+    value: function <K extends string, V>(obj: Record<K, V>): [K, V][] {
+      return Object.entries(obj) as [K, V][];
     },
     writable: true,
     configurable: true,

@@ -43,10 +43,12 @@ export const CSS_REGISTER = {
     "border-right-radius-lg",
     "border-right-radius-md",
     "border-right-radius-sm",
+    "border-success",
     "border-top",
     "border-top-radius-lg",
     "border-top-radius-md",
     "border-top-radius-sm",
+    "border-warning",
   ],
   color: [
     "color-error",

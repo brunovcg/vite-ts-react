@@ -22,6 +22,10 @@ declare global {
   interface Array<T> {
     filterMap<U>(filterFn: (item: T, index: number, array: T[]) => boolean, mapFn: (item: T, index: number, array: T[]) => U): U[];
   }
+
+  interface ObjectConstructor {
+    typedEntries<K extends string, V>(obj: Record<K, V>): [K, V][];
+  }
 }
 
 export {};

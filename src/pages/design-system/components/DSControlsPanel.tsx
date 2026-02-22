@@ -52,7 +52,7 @@ export function DSControlsPanel({ args, argTypes, onChange }: ControlsPanelProps
                 label={key}
                 value={String(value)}
                 options={options.map((opt) => ({ label: String(opt), value: String(opt) }))}
-                onChange={(e) => onChange(key, e.target.value)}
+                onChange={(value) => onChange(key, value)}
               />
             ) : (
               <Input

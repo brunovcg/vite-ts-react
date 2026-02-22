@@ -6,6 +6,7 @@ import { ButtonIcon } from "../button-icon/ButtonIcon.component";
 import { Icon } from "../icon/Icon.component";
 import { mergeClass } from "@/utils/class-names/ClassNames.util";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside/useOnClickOutside.hook";
+import { useDropdownPosition } from "@/hooks/use-dropdown-position/useDropdownPosition.hook";
 import "./DropdownMenu.component.css";
 
 type CustomTrigger =
@@ -38,14 +39,16 @@ export function DropdownMenu({ options, css, trigger, "aria-label": ariaLabel }:
   const [open, setOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const ref = useRef<HTMLDivElement>(null);
+  const { position, computePosition, reset: resetPosition } = useDropdownPosition({ ref });
 
   const visibleOptions = useMemo(() => options.filter((item) => !item.hide), [options]);
 
   const close = useCallback(() => {
     setOpen(false);
     setFocusedIndex(-1);
+    resetPosition();
     ref.current?.querySelector<HTMLButtonElement>('[aria-haspopup="menu"]')?.focus();
-  }, []);
+  }, [resetPosition]);
 
   useOnClickOutside({ ref, handler: close, active: open });
 
@@ -60,6 +63,7 @@ export function DropdownMenu({ options, css, trigger, "aria-label": ariaLabel }:
     if (open) {
       close();
     } else {
+      computePosition();
       setOpen(true);
     }
   }
@@ -120,7 +124,14 @@ export function DropdownMenu({ options, css, trigger, "aria-label": ariaLabel }:
   );
 
   return (
-    <div ref={ref} className={mergeClass({ "dropdown-open": open })} css={[css]} data-component='DropdownMenu' data-css='DropdownMenu' onKeyDown={handleMenuKeyDown}>
+    <div
+      ref={ref}
+      className={mergeClass({ "dropdown-open": open, "open-above": position.openAbove, "open-left": position.openLeft })}
+      css={[css]}
+      data-component='DropdownMenu'
+      data-css='DropdownMenu'
+      onKeyDown={handleMenuKeyDown}
+    >
       {trigger?.label && !trigger?.custom && (
         <Button aria-label={ariaLabel} aria-expanded={open} aria-haspopup='menu' onClick={handleToggle} onKeyDown={handleTriggerKeyDown}>
           {trigger.icon && <Icon icon={trigger.icon} />}

@@ -5,7 +5,7 @@ import { mergeClass } from "@/utils/class-names/ClassNames.util";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
-  color?: "primary" | "error";
+  color?: "primary" | "error" | "warning" | "success";
   variant?: "filled" | "outlined" | "regular";
   loading?: boolean;
   loadingMessage?: string;
@@ -38,12 +38,18 @@ export function Button({ className, color = "primary", variant = "regular", load
         {
           "border-none": variant !== "outlined",
           "border-primary": color === "primary" && variant !== "regular",
+          "border-success": color === "success" && variant !== "regular",
           "border-error": color === "error" && variant !== "regular",
+          "border-warning": color === "warning" && variant !== "regular",
           "color-white": variant === "filled",
           "color-primary": color === "primary" && variant !== "filled",
+          "color-success": color === "success" && variant !== "filled",
           "color-error": color === "error" && variant !== "filled",
+          "color-warning": color === "warning" && variant !== "filled",
           "background-primary": color === "primary" && variant === "filled",
+          "background-success": color === "success" && variant === "filled",
           "background-error": color === "error" && variant === "filled",
+          "background-warning": color === "warning" && variant === "filled",
         },
         css,
       ]}

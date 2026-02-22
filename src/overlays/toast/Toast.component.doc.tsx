@@ -30,16 +30,18 @@ Toast.info("Loading...", { id: "loading-toast", duration: 10000 });`}
       <section css={["display-flex", "flex-column", "gap-md"]}>
         <h3>Live Examples</h3>
         <div css={["display-flex", "gap-md", "flex-wrap"]}>
-          <Button variant='filled' onClick={() => Toast.success("Item saved successfully!")}>
+          <Button variant='filled' color='success' onClick={() => Toast.success("Item saved successfully!")}>
             Success
           </Button>
           <Button variant='filled' color='error' onClick={() => Toast.error("Failed to save item.")}>
             Error
           </Button>
-          <Button variant='outlined' onClick={() => Toast.warning("This action cannot be undone.")}>
+          <Button variant='filled' color='warning' onClick={() => Toast.warning("This action cannot be undone.")}>
             Warning
           </Button>
-          <Button onClick={() => Toast.info("You have 3 unread messages.")}>Info</Button>
+          <Button variant='filled' color='primary' onClick={() => Toast.info("You have 3 unread messages.")}>
+            Info
+          </Button>
         </div>
       </section>
 
